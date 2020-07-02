@@ -1,3 +1,10 @@
+/**
+ * @file: description
+ * @author: yangqianjun
+ * @Date: 2020-07-02 17:45:07
+ * @LastEditors: yangqianjun
+ * @LastEditTime: 2020-07-02 22:48:53
+ */
 import React, { useEffect, useState } from 'react';
 import { Spin } from 'antd';
 import queryString from 'query-string';

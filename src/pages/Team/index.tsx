@@ -49,17 +49,26 @@ export const Team = (props:Iprops) => {
             <Spin spinning={loading }>
                 <div className={$style['groupList']}>
                     {loading ? null :
-                        groupList.map((item:any, index) => {
-                            return (
-                            <div key={item.id} onClick={handleToTeamDetail(item.id)} className={index % 2 === 0 ? $style['groupItem'] : $style['dark'] + ' ' + $style['groupItem']}>
-                                <img src={item.img} width='187' height='245'/>
+                        <>
+                            <div className={$style["groupList-content"]}>
                                 <div className={$style['group']}>
-                                    <h3 className={$style['groupTitle']}>{item.name}</h3>
-                                    <div className={$style['groupContent']} dangerouslySetInnerHTML={{__html: item.descripe}}></div>
+                                {/* <h3 className={$style['groupTitle']}>{.name}</h3> */}
+                                {/* <div className={$style['groupContent']} dangerouslySetInnerHTML={{__html: item.descripe}}></div> */}
+
                                 </div>
                             </div>
-                            )
-                        })
+                        </>
+                        // groupList.map((item:any, index) => {
+                        //     return (
+                        //     <div key={item.id} onClick={handleToTeamDetail(item.id)} className={index % 2 === 0 ? $style['groupItem'] : $style['dark'] + ' ' + $style['groupItem']}>
+                        //         <img src={item.img} width='187' height='245'/>
+                        //         <div className={$style['group']}>
+                        //             <h3 className={$style['groupTitle']}>{item.name}</h3>
+                        //             <div className={$style['groupContent']} dangerouslySetInnerHTML={{__html: item.descripe}}></div>
+                        //         </div>
+                        //     </div>
+                        //     )
+                        // })
                     }
                     <Pagination
                         className={$style['pagination']}
