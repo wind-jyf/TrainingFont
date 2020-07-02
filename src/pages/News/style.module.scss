@@ -1,0 +1,36 @@
+.newsWrapper {
+    min-height: 1200px;
+    .newsList {
+        width: 1110px;
+        margin: 40px auto 40px auto;
+        .newsItem {
+            display: flex;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+            .news {
+                position: relative;
+                flex: 1 0 auto;
+                padding-left: 10px;
+                .newsTitle {
+                    font-size: 1.25rem;
+                    font-weight: 600;
+                }
+                .newsDate {
+                    position: absolute;
+                    bottom: 0px;
+                    right: 0px;
+                }
+            }
+            &:hover,
+            &.dark {
+                background-color: #f9f9f9;
+            }
+        }
+    }
+    .pagination {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 10px;
+    }
+}

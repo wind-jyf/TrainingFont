@@ -1,0 +1,11 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    height: 200px;
+    padding: 48px 0 0;
+    color: white;
+    background-color: #0E1833;
+    .copyright {
+        margin-right: 40px;
+    }
+}

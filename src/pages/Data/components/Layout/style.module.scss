@@ -1,0 +1,23 @@
+$menuWidth: 200px;
+
+.layoutContainer{
+  display: flex;
+  min-height: 1200px;
+  background-color: #f8f8f8;
+}
+
+.menuContainer{
+  position: sticky;
+  flex: 0 0 $menuWidth;
+  background-color: #fff;
+  :global{
+    .ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
+      border-right: none
+    }
+  }
+}
+
+.mainContainer{
+  flex:1;
+  min-width: 1400px;
+}
