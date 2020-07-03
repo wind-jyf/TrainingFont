@@ -1,3 +1,10 @@
+/**
+ * @file: description
+ * @author: yangqianjun
+ * @Date: 2020-07-02 17:45:07
+ * @LastEditors: yangqianjun
+ * @LastEditTime: 2020-07-03 11:09:29
+ */
 import React, { useEffect, useState } from 'react';
 
 import { Pagination, Spin } from 'antd';
@@ -5,6 +12,8 @@ import { Pagination, Spin } from 'antd';
 import { getInstrumentList } from '../../api/instrument';
 import $style from "./style.module.scss";
 import { LOCALES } from '../../constants/index';
+import instrumentPic from "../../img/instrument-pic.jpg";
+import { getInstrumentById } from '../../api/instrument';
 
 interface Iprops {
     [key:string]: any;
@@ -22,8 +31,22 @@ export const Instrument = (props:Iprops) => {
 
     const hanldePageInit = (res: any) => {
         const { instrumentList, pagination } = res;
-        setInstrumentList(instrumentList);
+        // setInstrumentList(instrumentList);
         setPage(pagination);
+
+        Promise.all(instrumentList.map((item: any, index: any) => {
+            return new Promise((resolve, reject) => {
+                console.log(item)
+                getInstrumentById({lan: LOCALES.zh, id:item.id}).then(res => {
+                    console.log(res)
+                    const picSrc = res.content.match(/src=[\'\"]?([^\'\"]*)[\'\"]?/i)
+                    console.log(picSrc[1])
+                    item.picSrc = picSrc[1] ? require('../../img/' + picSrc[1]): instrumentPic
+                    resolve(item)
+                })
+                // item.picSrc = /<IMG src=\"([^\"]*?)\">/gi;
+            })
+        })).then(res => setInstrumentList(res as any))
     }
 
     useEffect(() => {
@@ -53,6 +76,10 @@ export const Instrument = (props:Iprops) => {
                             return (
                             <div key={item.id} onClick={handleToInstrumentDetail(item.id)} className={index % 2 === 0 ? $style['instrumentItem'] : $style['dark'] + ' ' + $style['instrumentItem']}>
                                 <div className={$style['instrument']}>
+                                    <div className={$style['instrument-img-wrapper']}>
+                                        {/* <img src={instrumentPic} alt="" /> */}
+                                        <img src={item.picSrc} alt="" />
+                                    </div>
                                     <h3 className={$style['instrumentTitle']}>{item.name}</h3>
                                 </div>
                             </div>
