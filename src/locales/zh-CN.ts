@@ -1,3 +1,10 @@
+/**
+ * @file: description
+ * @author: yangqianjun
+ * @Date: 2020-07-02 17:45:07
+ * @LastEditors: yangqianjun
+ * @LastEditTime: 2020-07-03 14:54:24
+ */
 export const zh = {
     'news': '新闻',
     'team': '团队',
@@ -16,5 +23,6 @@ export const zh = {
     'password': '密码',
     'username_null_tip': '请输入账号',
     'password_null_tip': '请输入密码',
-    'footer_copyright': '版权所有 2016-2017'
+    'footer_copyright': '版权所有 2016-2017',
+    'manage' : '管理'
 }

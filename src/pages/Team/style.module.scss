@@ -1,27 +1,71 @@
 .groupWrapper {
     min-height: 1200px;
     .groupList {
-        width: 1110px;
-        margin: 40px auto 40px auto;
+        width: 1310px;
+        // margin: 40px auto 40px auto;
+
+        // display: flex;
+        // flex-wrap: wrap;
+        margin: 98px auto;
+        // overflow: hidden;
         .groupItem {
-            display: flex;
+            // display: flex;
+            float: left;
             padding: 8px;
-            border-bottom: 1px solid #ddd;
+            // border-bottom: 1px solid #ddd;
             cursor: pointer;
             .group {
                 position: relative;
                 flex: 1 0 auto;
-                padding-left: 5px;
-                .groupTitle {
-                    font-size: 1.25rem;
-                    font-weight: 600;
+                // padding-left: 5px;
+                padding:0 50px 50px 50px;
+                margin-bottom: 150px;
+                margin-right: 20px;
+
+                width: 386px;
+                // height: 370px;
+                background-color: #ffffff;
+                box-shadow: -1px 3px 10px 0px rgba(0, 0, 0, 0.19);
+                border-radius: 4px;
+
+                .group-img-wrapper {
+                    img {
+                        transform: translate(20px,-75px);
+                        width: 150px;
+                        height:150px;
+                        border-radius: 50%;
+                    }
                 }
-                .groupContent {
-                    width: 905px;
+                .group-title {
+                    // padding-left: 20px;
+                    margin-top: -30px;
+                    // height: 24px;
+                    font-size: 24px;
+                    color: #353535;
+                    margin-bottom: 28px;
+                    // margin-top: 38px;
+                }
+
+                span{
+                    width: 60px;
+                    height: 4px;
+                    background-color: #4bb344;
+                    border-radius: 2px;
+                    display: block;
+                    // margin-left: 51px;
+                    margin-top: -10px;
+                    margin-bottom: 20px;
+                }
+                .group-subtitle {
+
+                    height: 50px;
+                    font-size: 18px;
+                    color: #999999;
+                    width: 280px;
                     overflow: hidden;
                     text-overflow: ellipsis;
                     display: -webkit-box;
-                    -webkit-line-clamp: 9;
+                    -webkit-line-clamp: 2;
                     -webkit-box-orient: vertical;
                 }
             }
@@ -32,6 +76,7 @@
         }
     }
     .pagination {
+        clear: both;
         display: flex;
         justify-content: flex-end;
         margin-top: 10px;
