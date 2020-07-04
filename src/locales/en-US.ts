@@ -1,9 +1,18 @@
+/**
+ * @file: description
+ * @author: xinguangtai
+ * @Date: 2020-07-02 17:45:07
+ * @LastEditors: xinguangtai
+ * @LastEditTime: 2020-07-04 14:05:45
+ */
 export const en = {
     'news': 'News',
     'team': 'Team',
     'instrument': 'Instrument',
     'article': 'Publication',
     'project': 'project',
+    'manage': 'Manage',
+    'position': 'Position',
     'Homepage_Title': 'crop phenotyping center',
     'Homepage_Keywords': 'huazhong agriculture university,crop,phenotyping,rice ,cor,cotton,rape,crop phenotyping center',
     'Homepage_Description': 'crop phenotyping center of huazhong agriculture university',

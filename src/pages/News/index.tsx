@@ -2,8 +2,8 @@
  * @file: description
  * @author: yangqianjun
  * @Date: 2020-07-02 17:45:07
- * @LastEditors: yangqianjun
- * @LastEditTime: 2020-07-03 16:41:56
+ * @LastEditors: xinguangtai
+ * @LastEditTime: 2020-07-04 13:13:33
  */
 import React, { useEffect, useState } from "react";
 
@@ -105,12 +105,12 @@ export const News = (props: Iprops) => {
                     <div className={$style["news-img-right-part"]}>
                       {renderNewsMainContent(
                         newsList[0].name,
-                        String(newsList[0].subtitle), 0
+                        String(newsList[0].subtitle), newsList[0].id
                       )}
                       {/* {String(newsList[0].subtitle)} */}
                       {renderNewsMainContent(
                         newsList[1].name,
-                        newsList[1].subtitle ? newsList[1].subtitle : "", 1
+                        newsList[1].subtitle ? newsList[1].subtitle : "", newsList[1].id
                       )}
                     </div>
                   </div>
@@ -118,11 +118,11 @@ export const News = (props: Iprops) => {
                   <div className={$style["news-list-middle"]}>
                     {renderNewsMainContent(
                       newsList[2].name,
-                      newsList[2].subtitle + "", 2
+                      newsList[2].subtitle + "", newsList[2].id
                     )}
                     {renderNewsMainContent(
                       newsList[3].name,
-                      newsList[3].subtitle + "", 3
+                      newsList[3].subtitle + "", newsList[3].id
                     )}
                   </div>
                 </>

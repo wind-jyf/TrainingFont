@@ -1,0 +1,124 @@
+
+.position{
+    width: 1302px;
+    margin: 90px auto;
+
+    .position-title{
+        height: 28px;
+        font-family: MicrosoftYaHei;
+        font-size: 28px;
+        color: #000000;
+        text-align: center;
+        line-height: 28px;
+        margin: 95px 0 30px;
+    }
+
+    .position-map{
+        width: 1301px;
+        height: 709px;
+        margin: 0 auto 98px;
+    }
+
+    h2{
+        height: 30px;
+        font-size: 27px;
+        letter-spacing: 2px;
+        line-height: 25px;
+        color: #000000;
+        margin: 76px 0 39px 76px;
+    }
+
+    h2~span{
+        height: 109px;
+        font-size: 24px;
+        line-height: 40px;
+        letter-spacing: 1px;
+        color: #969696;
+        margin-left: 76px;
+    }
+
+
+
+    .position-map-card1{
+        position: relative;
+        .img1{
+            
+        }            
+        .position-card1{
+            width: 727px;
+            height: 329px;
+            background-color: #ffffff;
+            box-shadow: 11px 9px 43px 0px rgba(0, 0, 0, 0.07);
+            position: absolute;
+            top: 51px;
+            right: 0;
+        }
+    }
+
+
+
+
+    .position-map-card2{
+        position: relative;
+        margin-top: 100px;
+        .img2{
+            // position: absolute;
+            margin-left:250px;
+        }
+        .position-card2{
+            width: 727px;
+            height: 329px;
+            background-color: #ffffff;
+            box-shadow: 11px 9px 43px 0px rgba(0, 0, 0, 0.07);
+            right: 0;
+            position: absolute;
+            top: 51px;
+            left: 0;
+            
+        }
+    }
+
+
+
+    .position-map-card3{
+        // width: 1302px;
+        // height: 441px;
+        position: relative;
+        margin-top: 100px;
+        .img3{
+            width: 60%;
+            height: 40%;
+        }
+        .position-card3{
+            width: 727px;
+            height: 329px;
+            background-color: #ffffff;
+            box-shadow: 11px 9px 43px 0px rgba(0, 0, 0, 0.07);
+            position: absolute;
+            top: 51px;
+            right: 0;           
+        }
+    }
+
+
+
+    .position-map-card4{
+        position: relative;
+        margin-top: 100px;
+        .img4{
+            margin-left:250px;
+            //TODO:为什么设置宽度无效
+            // width: 652px;
+        }
+        .position-card4{
+            width: 727px;
+            height: 329px;
+            background-color: #ffffff;
+            box-shadow: 11px 9px 43px 0px rgba(0, 0, 0, 0.07);
+            right: 0;
+            position: absolute;
+            top: 51px;
+            left: 0;         
+        }
+    }
+}

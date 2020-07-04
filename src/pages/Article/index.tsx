@@ -1,3 +1,10 @@
+/**
+ * @file: description
+ * @author: yangqianjun
+ * @Date: 2020-07-02 17:45:07
+ * @LastEditors: xinguangtai
+ * @LastEditTime: 2020-07-04 18:03:46
+ */
 import React, { useEffect, useState } from 'react';
 import intl from '../../utils/intlSafe';
 
@@ -31,7 +38,7 @@ export const Article = (props:Iprops) => {
         getArticleList({
             lan,
             page: 1,
-            page_size: 20
+            page_size: 10
         }).then((res) => {
             hanldePageInit(res);
         });
@@ -56,11 +63,11 @@ export const Article = (props:Iprops) => {
                     {loading ? null :
                         articleList.map((item:any, index) => {
                             return (
-                            <div key={item.id} onClick={handleToArticle(item.path)} className={index % 2 === 0 ? $style['articleItem'] : $style['dark'] + ' ' + $style['articleItem']}>
+                            <div key={item.id} onClick={handleToArticle(item.path)} className={$style['articleItem']}>
                                 <div className={$style['article']}>
                                     <h3 className={$style['articleTitle']}>{item.name}</h3>
                                 </div>
-                                <div>{item.date}</div>
+                                <div className={$style['date']}>{item.date}</div>
                             </div>
                             )
                         })

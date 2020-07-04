@@ -2,8 +2,8 @@
  * @file: description
  * @author: yangqianjun
  * @Date: 2020-07-02 17:45:07
- * @LastEditors: yangqianjun
- * @LastEditTime: 2020-07-03 14:51:37
+ * @LastEditors: xinguangtai
+ * @LastEditTime: 2020-07-04 14:16:12
  */
 import React, { useContext } from 'react';
 import intl, { isZhCN } from './utils/intlSafe';
@@ -26,6 +26,7 @@ import { InstrumentDetailEn } from './pages/instrumentDetailEn';
 import { Data } from './pages/Data';
 import { Layout } from './pages/layout'
 import { Manage } from './pages/Manage'
+import { Position } from './pages/Position'
 
 import { Context } from './context';
 
@@ -44,9 +45,10 @@ const getRoutes = (admin:boolean) => {
     { path: '/project', component: Project, hide:!isZhCN() },
     { path: '/teamDetail', component: isZhCN() ? TeamDetail : TeamDetailEn },
     { path: '/instrument', component: isZhCN() ? Instrument : InstrumentEn },
+    { path: '/manage', component: Manage},
+    { path: '/position', component: Position},
     { path: '/instrumentDetail', component: isZhCN() ? InstrumentDetail : InstrumentDetailEn },
     { path: '/dataSearch', component: Data},
-    { path: '/manage', component: Manage},
     { key: 'default', component: News } // 兜底页面
   ];
   return routes.filter((item:any) => !item.hide);

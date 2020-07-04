@@ -3,7 +3,7 @@
  * @author: yangqianjun
  * @Date: 2020-07-02 17:45:07
  * @LastEditors: yangqianjun
- * @LastEditTime: 2020-07-02 22:48:53
+ * @LastEditTime: 2020-07-03 19:45:59
  */
 import React, { useEffect, useState } from 'react';
 import { Spin } from 'antd';
@@ -25,6 +25,8 @@ export const NewsDetail = () => {
     useEffect(() => {
         getNewsById({id:searchQuerys.id}).then((res: any) => {
             const { content } = res;
+            // alert(content + '')
+            // if(!content) return
             const contentBlock = htmlToDraft(content);
             const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
             const editorState = EditorState.createWithContent(contentState);

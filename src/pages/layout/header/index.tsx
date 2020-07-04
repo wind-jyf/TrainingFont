@@ -41,6 +41,12 @@ const getMenus = (admin:boolean) => {
     },
     {
       title: 'data', route: '/dataSearch'
+    },
+    {
+      title: 'manage', route: '/manage'
+    },
+    {
+      title: 'position', route: '/position'
     }
   ];
   return MENUS.filter(item => !item.hide)
@@ -59,7 +65,9 @@ export const Header = (props: Iprops) => {
       };
 
     const activeTitle = (
-        menus.find(v => window.location.pathname.includes(v.route)) || {}
+        // menus.find(v => window.location.pathname.includes(v.route)) || {}
+        // 别的路由如果携带相关字符，也会 active
+        menus.find(v => window.location.pathname.match(new RegExp( v.route + "$","gim"))) || {}
       ).title;
 
       const languageMenuJSX = (
