@@ -30,3 +30,19 @@ export async function postNews(data:any) {
   });
   return res.data;
 }
+
+export async function putNews(data:any) {
+  const res: any = await request('/news', {
+    method: "put",
+    data
+  });
+  return res.data;
+}
+
+export async function deleteNews(data:any) {
+  const res: any = await request('/news', {
+    method: "delete",
+    data
+  });
+  return res.data;
+}

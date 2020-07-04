@@ -3,7 +3,7 @@
  * @author: xinguangtai
  * @Date: 2020-07-03 21:44:22
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-03 23:48:31
+ * @LastEditTime: 2020-07-05 00:58:42
  */
 
 import React, { useContext, useState, useEffect } from "react";
@@ -15,7 +15,7 @@ import { Context } from "../../../../context";
 import { Table, Tag, Space, Button } from "antd";
 import { homedir } from "os";
 
-import { getNewsList } from "../../../../api/news";
+import { getNewsList, deleteNews } from "../../../../api/news";
 
 const pageDefault = {
   page: 1,
@@ -47,9 +47,17 @@ export const NewsManage = (props: any) => {
     return () => props.history.push(`/newsDetail?id=${id}`);
   };
 
-  const handleToNewsEdit = (id: number) => {
-    return () => props.history.push(`/manage/newsEdit?id=${id}`);
+  const handleToNewsEdit = (id?: number) => {
+    return id != null
+      ? () => props.history.push(`/manage/newsEdit?id=${id}`)
+      : () => props.history.push(`/manage/newsEdit`);
   };
+
+  const handleToNewsDelete = (id: number) => {
+    return () => {
+      deleteNews({id, lan: 'CH'})
+    }
+  }
 
   const columns = [
     {
@@ -81,28 +89,37 @@ export const NewsManage = (props: any) => {
       key: "action",
       render: (record: any) => (
         <>
-          <Button onClick={handleToNewsEdit(record.id)} type="primary" style={{ marginRight: "20px" }}>
+          <Button
+            onClick={handleToNewsEdit(record.id)}
+            type="primary"
+            style={{ marginRight: "20px" }}
+          >
             编辑
           </Button>
-          <Button danger>删除</Button>
+          <Button onClick={handleToNewsDelete(record.id)} danger>删除</Button>
         </>
       ),
     },
   ];
 
   return (
-    <Table
-      columns={columns}
-      dataSource={data}
-      pagination={{
-        size: "small",
-        showSizeChanger: false,
-        showQuickJumper: true,
-        total: page.total ? page.total : 0,
-        current: page.page ? page.page : 1,
-        pageSize: page.page_size ? page.page_size : 15,
-        onChange: handlePageChange,
-      }}
-    />
+    <>
+      <Button type="primary" onClick={handleToNewsEdit()}>
+        新增新闻
+      </Button>
+      <Table
+        columns={columns}
+        dataSource={data}
+        pagination={{
+          size: "small",
+          showSizeChanger: false,
+          showQuickJumper: true,
+          total: page.total ? page.total : 0,
+          current: page.page ? page.page : 1,
+          pageSize: page.page_size ? page.page_size : 15,
+          onChange: handlePageChange,
+        }}
+      />
+    </>
   );
 };
