@@ -17,7 +17,8 @@ import { TeamDetailEn } from './pages/TeamDetailEn';
 import { InstrumentDetail } from './pages/instrumentDetail';
 import { InstrumentDetailEn } from './pages/instrumentDetailEn';
 import { Data } from './pages/Data';
-import { Layout } from './pages/layout'
+import { Layout } from './pages/layout';
+import { DataShow } from './pages/DataShow';
 
 import { Context } from './context';
 
@@ -26,45 +27,46 @@ interface Ipros {
   handleChangeLocale: any;
 }
 
-const getRoutes = (admin:boolean) => {
+const getRoutes = (admin: boolean) => {
 
   const routes = [
     { path: '/news', component: News },
     { path: '/newsDetail', component: NewsDetail },
     { path: '/team', component: isZhCN() ? Team : TeamEn },
     { path: '/article', component: Article },
-    { path: '/project', component: Project, hide:!isZhCN() },
+    { path: '/project', component: Project, hide: !isZhCN() },
     { path: '/teamDetail', component: isZhCN() ? TeamDetail : TeamDetailEn },
     { path: '/instrument', component: isZhCN() ? Instrument : InstrumentEn },
     { path: '/instrumentDetail', component: isZhCN() ? InstrumentDetail : InstrumentDetailEn },
-    { path: '/dataSearch', component: Data},
+    { path: '/dataSearch', component: Data },
+    { path: '/dataShow/:type', component: DataShow },
     { key: 'default', component: News } // 兜底页面
   ];
-  return routes.filter((item:any) => !item.hide);
+  return routes.filter((item: any) => !item.hide);
 };
 
-const Home = (props:Ipros) => {
-  const {state:{ admin }} = useContext(Context);
+const Home = (props: Ipros) => {
+  const { state: { admin } } = useContext(Context);
   const { handleChangeLocale, currentLocale } = props;
 
   return (
-        <Layout 
-          header={{
-            changeLocale: handleChangeLocale,
-            currentLocale
-          }}
-        >
-            <HelmetTemplate
-              title={intl.get('Homepage_Title')}
-              keywords={intl.get('Homepage_Keywords')}
-              description={intl.get('Homepage_Description')}
-            />
-            <Switch>
-              {getRoutes(admin).map(item => (
-                <Route key={item.key || item.path} path={item.path} component={item.component} />
-              ))}
-            </Switch>
-        </Layout>
+    <Layout
+      header={{
+        changeLocale: handleChangeLocale,
+        currentLocale
+      }}
+    >
+      <HelmetTemplate
+        title={intl.get('Homepage_Title')}
+        keywords={intl.get('Homepage_Keywords')}
+        description={intl.get('Homepage_Description')}
+      />
+      <Switch>
+        {getRoutes(admin).map(item => (
+          <Route key={item.key || item.path} path={item.path} component={item.component} />
+        ))}
+      </Switch>
+    </Layout>
   );
 }
 

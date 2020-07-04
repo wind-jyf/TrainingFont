@@ -11,9 +11,9 @@ import { Authorization } from '../pages/Authorization';
 
 interface IRouteData {
     [key: string]: any
-  }
+}
 
-export const routes:IRouteData = {
+export const routes: IRouteData = {
     riceQzWy: {
         path: "/dataSearch/riceQzWy",
         component: RiceQzWy

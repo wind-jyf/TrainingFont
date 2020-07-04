@@ -1,0 +1,28 @@
+.imgWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 800px;
+    padding: 16px;
+    margin-top: 10px;
+    border: 1px solid #e6e6e6;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    background: #fff;
+    overflow-y: scroll;
+
+    .imgItem {
+        width: 150px;
+        height: 140px;
+        margin: 10px;
+
+        img {
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
+
+.bigImg {
+    height: 450px;
+    width: 500px;
+}
