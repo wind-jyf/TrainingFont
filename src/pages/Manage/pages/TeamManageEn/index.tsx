@@ -3,17 +3,13 @@
  * @author: yangqianjun
  * @Date: 2020-07-03 18:46:49
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-05 15:49:27
+ * @LastEditTime: 2020-07-05 14:46:16
  */
-import React, { useEffect, useState, useCallback, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { Divider, Input, Table, Button, Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 
-import { getGroupList, deleteTeamById } from "../../../../api/team";
-
 import $style from "./style.module.scss";
-
-import axios from "axios";
 
 interface Iprops {
   [key: string]: any;
@@ -21,10 +17,10 @@ interface Iprops {
 
 const pageDefault = {
   page: 1,
-  page_size: 5,
+  page_size: 15,
 };
 
-export const TeamManage = (props: Iprops) => {
+export const TeamManageEn = (props: Iprops) => {
   const [data, setData] = useState([]);
 
   const [name, setName] = useState("");
@@ -32,51 +28,14 @@ export const TeamManage = (props: Iprops) => {
 
   const [page, setPage] = useState(pageDefault) as any;
 
-  const uploadImg = useRef(null);
-  const [file, setFile] = useState(null) as any;
-
-  const hanldePageInit = (res: any) => {
-    setData(res.groupList);
-    setPage(res.pagination);
-  };
-
-  const getData = useCallback(() => {
-    getGroupList(page).then((res) => {
-      hanldePageInit(res);
-    });
-  }, []);
-
-  useEffect(() => {
-    getData();
-  }, []);
-
   const handleToTeamEdit = () => {};
 
-  const handleToTeamDelete = (id: number) => {
-    deleteTeamById({ id, lan: "zh-CN" }).then((res) => getData());
-  };
-
-  const handleToTeamPost = () => {
-    const formdata = new FormData();
-    // formdata.append('file', uploadImg.current && uploadImg.current.files && uploadImg.current.files[0]);
-    formdata.append("avator", file);
-    formdata.append("lan", "zh-CN");
-    formdata.append("describe", description);
-    formdata.append("name", name);
-    //@ts-ignore
-    for (const value of formdata.values()) {
-      console.log(value);
-    }
-    var request = new XMLHttpRequest();
-    request.open("POST", "/api/crophe/group");
-    request.setRequestHeader("content-type", 'multipart/form-data;')
-    request.send(formdata);
-  };
+  const handleToTeamDelete = (id: number) => {};
 
   const handlePageChange = (page: number, pageSize?: number) => {
-    getGroupList({ page, page_size: pageSize }).then((res) => {
-      hanldePageInit(res);
-    });
+    // getNewsList({ page, page_size: pageSize }).then((res) => {
+    //   hanldePageInit(res);
+    // });
   };
 
   const columns = [
@@ -129,15 +88,9 @@ export const TeamManage = (props: Iprops) => {
         </div>
         <div>
           <div>导入图片</div>
-          <input
-            ref={uploadImg}
-            type="file"
-            onChange={(e) => {
-              console.log(e.target.files && e.target.files[0]);
-              e.target.files && setFile(e.target.files[0]);
-            }}
-          />
-          {/* <Button>点击上传</Button> */}
+          <input type="file" onChange={e => {console.log(e)}} />
+            {/* <Button>点击上传</Button> */}
+          
         </div>
         <div>
           <div>描述</div>
@@ -148,11 +101,8 @@ export const TeamManage = (props: Iprops) => {
           />
           {/* <Input value={name} onChange={(e) => setName(e.target.value)} /> */}
         </div>
-        <Button type="primary" onClick={handleToTeamPost}>
-          提交
-        </Button>
       </div>
-      <div style={{ paddingTop: "100px" }}>
+      <div>
         <div>修改/删除</div>
         <Divider />
         <Table

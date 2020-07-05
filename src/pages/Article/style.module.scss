@@ -1,7 +1,7 @@
 .articleWrapper {
     min-height: 1200px;
     .articleList {
-        width: 1400px;
+        width: 1600px;
         margin: 40px auto 40px auto;
         .articleItem {
             display: flex;
@@ -20,22 +20,7 @@
                     white-space:nowrap;
                     text-overflow:ellipsis;
                     overflow:hidden;
-                }
-                .date{
-                    width: 100px;
-                    height: 20px;
-                    font-size: 50px;
-                    color: #969696;
-                    font-family: MicrosoftYaHei;
-                }
-                // .articleContent {
-                //     width: 905px;
-                //     overflow: hidden;
-                //     text-overflow: ellipsis;
-                //     display: -webkit-box;
-                //     -webkit-line-clamp: 9;
-                //     -webkit-box-orient: vertical;
-                // }
+                }               
             }
             &:hover,
             &.dark {
@@ -47,5 +32,13 @@
         display: flex;
         justify-content: flex-end;
         margin-top: 10px;
+    }
+
+    .date{
+        // width: 700px;
+        // height: 20px;
+        font-size: 20px;
+        color: #969696;
+        font-family: MicrosoftYaHei;
     }
 }

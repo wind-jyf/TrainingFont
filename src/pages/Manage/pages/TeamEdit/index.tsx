@@ -3,7 +3,7 @@
  * @author: xinguangtai
  * @Date: 2020-07-03 23:43:37
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-05 14:49:29
+ * @LastEditTime: 2020-07-05 14:46:39
  */
 import React, { useContext, useState, useEffect, useRef } from "react";
 
@@ -11,7 +11,7 @@ import { postNews, getNewsById, putNews } from "../../../../api/news";
 
 import ReactQuill, { Quill } from "react-quill";
 
-// import ImageResize from 'quill-image-resize-module';
+
 import QuillResize from "quill-resize-module";
 import "react-quill/dist/quill.snow.css";
 import $style from "./style.module.scss";
@@ -69,7 +69,7 @@ const formats = [
   "image",
 ];
 
-export const NewsEdit = (props: any) => {
+export const TeamEdit = (props: any) => {
   const [editor, setEditor] = useState("");
   const [date, setDate] = useState("");
   const [name, setName] = useState("");

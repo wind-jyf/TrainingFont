@@ -3,7 +3,7 @@
  * @author: xinguangtai
  * @Date: 2020-07-03 21:10:41
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-05 09:56:04
+ * @LastEditTime: 2020-07-05 14:43:56
  */
 
 import React, { useContext } from "react";
@@ -61,6 +61,10 @@ export const Menus = (props: IProps) => {
       {
         name: "About CPC",
         path:routes.newsManageEn.path,
+      },
+      {
+        name: "Team",
+        path:routes.teamManageEn.path,
       }
     //   {
     //     name: "Maize",
