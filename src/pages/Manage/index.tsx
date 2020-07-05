@@ -3,7 +3,7 @@
  * @author: yangqianjun
  * @Date: 2020-07-03 14:47:16
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-04 00:00:52
+ * @LastEditTime: 2020-07-05 11:11:42
  */
 import React, { useEffect, useState, useRef } from "react";
 
@@ -44,6 +44,10 @@ export const Manage = (props: Iprops) => {
             component={routes.newsManage.component}
           ></Route>
           <Route
+            path={routes.newsManageEn.path}
+            component={routes.newsManageEn.component}
+          ></Route>
+          <Route
             path={routes.teamManage.path}
             component={routes.teamManage.component}
           ></Route>
@@ -62,6 +66,10 @@ export const Manage = (props: Iprops) => {
           <Route
             path={routes.newsEdit.path}
             component={routes.newsEdit.component}
+          ></Route>
+                  <Route
+            path={routes.newsEditEn.path}
+            component={routes.newsEditEn.component}
           ></Route>
           <Route
             path={routes.default.path}

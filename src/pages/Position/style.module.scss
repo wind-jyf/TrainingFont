@@ -42,10 +42,10 @@
     .position-map-card1{
         position: relative;
         .img1{
-            
+            width: 730px;
         }            
         .position-card1{
-            width: 727px;
+            width:  680px;
             height: 329px;
             background-color: #ffffff;
             box-shadow: 11px 9px 43px 0px rgba(0, 0, 0, 0.07);
@@ -63,17 +63,18 @@
         margin-top: 100px;
         .img2{
             // position: absolute;
-            margin-left:250px;
+            margin-left:560px;
+            width: 730px;
         }
         .position-card2{
-            width: 727px;
+            width:  680px;
             height: 329px;
             background-color: #ffffff;
             box-shadow: 11px 9px 43px 0px rgba(0, 0, 0, 0.07);
-            right: 0;
             position: absolute;
-            top: 51px;
-            left: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto 0; 
             
         }
     }
@@ -86,11 +87,10 @@
         position: relative;
         margin-top: 100px;
         .img3{
-            width: 60%;
-            height: 40%;
+           width: 730px;;
         }
         .position-card3{
-            width: 727px;
+            width:  680px;
             height: 329px;
             background-color: #ffffff;
             box-shadow: 11px 9px 43px 0px rgba(0, 0, 0, 0.07);
@@ -106,19 +106,23 @@
         position: relative;
         margin-top: 100px;
         .img4{
-            margin-left:250px;
+            margin-left:560px;
             //TODO:为什么设置宽度无效
-            // width: 652px;
+            width: 730px;
         }
         .position-card4{
-            width: 727px;
+            width: 680px;
             height: 329px;
             background-color: #ffffff;
             box-shadow: 11px 9px 43px 0px rgba(0, 0, 0, 0.07);
-            right: 0;
             position: absolute;
-            top: 51px;
-            left: 0;         
+            top: 0;
+            bottom: 0;
+            margin: auto 0;         
         }
+    }
+
+    img {
+        width: 100%;
     }
 }

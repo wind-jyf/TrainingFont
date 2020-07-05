@@ -3,7 +3,7 @@
  * @author: xinguangtai
  * @Date: 2020-07-03 21:10:41
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-04 00:04:07
+ * @LastEditTime: 2020-07-05 09:56:04
  */
 
 import React, { useContext } from "react";
@@ -57,6 +57,10 @@ export const Menus = (props: IProps) => {
       {
         name: "项目管理",
         path:routes.projectManage.path,
+      },
+      {
+        name: "About CPC",
+        path:routes.newsManageEn.path,
       }
     //   {
     //     name: "Maize",
