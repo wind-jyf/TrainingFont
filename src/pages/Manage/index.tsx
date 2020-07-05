@@ -3,7 +3,7 @@
  * @author: yangqianjun
  * @Date: 2020-07-03 14:47:16
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-05 16:57:15
+ * @LastEditTime: 2020-07-06 00:02:36
  */
 import React, { useEffect, useState, useRef } from "react";
 
@@ -17,9 +17,6 @@ import { Menus } from "./components/Menus/Menus";
 
 import $style from "./style.module.scss";
 import { LOCALES } from "../../constants/index";
-
-import ReactQuill, { Quill } from "react-quill";
-import "react-quill/dist/quill.snow.css";
 
 interface Iprops {
   [key: string]: any;

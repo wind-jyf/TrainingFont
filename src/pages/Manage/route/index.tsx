@@ -3,7 +3,7 @@
  * @author: yangqianjun
  * @Date: 2020-07-03 18:37:55
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-05 17:07:03
+ * @LastEditTime: 2020-07-05 23:52:55
  */
 import { RouteProps } from "react-router-dom";
 import { NewsManage } from '../pages/NewsManage';

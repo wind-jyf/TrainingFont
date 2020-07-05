@@ -121,22 +121,31 @@ export const NewsEdit = (props: any) => {
   return (
     <>
       <div>
-        <div style={{display: 'flex', alignItems: 'center', marginTop: '30px'}}>
-          <span style={{width: '70px'}}>新闻标题:</span>
+        <div
+          style={{ display: "flex", alignItems: "center", marginTop: "30px" }}
+        >
+          <span style={{ width: "70px" }}>新闻标题:</span>
           <Input
             placeholder="新闻标题"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
         </div>
-        <div style={{display: 'flex', alignItems: 'center', marginTop: '20px',marginBottom:'10px'}}>
-          <span style={{width: '70px'}}>上传日期：</span>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            marginTop: "20px",
+            marginBottom: "10px",
+          }}
+        >
+          <span style={{ width: "70px" }}>上传日期：</span>
           <DatePicker
-          format={dateFormat}
-          onChange={(value) => setDate(value ? value.format(dateFormat) : "")}
-        />
+            format={dateFormat}
+            onChange={(value) => setDate(value ? value.format(dateFormat) : "")}
+          />
         </div>
-        
+
         <ReactQuill
           className={$style["newsEditWrapper"]}
           theme="snow"

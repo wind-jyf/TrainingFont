@@ -3,7 +3,7 @@
  * @author: xinguangtai
  * @Date: 2020-07-03 21:10:41
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-05 21:28:30
+ * @LastEditTime: 2020-07-05 23:51:30
  */
 
 import React, { useContext } from "react";
@@ -38,9 +38,13 @@ export const Menus = (props: IProps) => {
 
   const getMenus = (admin: boolean) => {
     const MENUS: IMenuItem[] = [
+      // {
+      //   name: DEFAULT_ACTIVE_ITEM.name,
+      //   path: DEFAULT_ACTIVE_ITEM.path
+      // },
       {
-        name: DEFAULT_ACTIVE_ITEM.name,
-        path: DEFAULT_ACTIVE_ITEM.path
+        name: "新闻管理",
+        path: routes.newsManage.path,
       },
       {
         name: "团队管理",
