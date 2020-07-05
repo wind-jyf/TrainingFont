@@ -3,7 +3,7 @@
  * @author: yangqianjun
  * @Date: 2020-07-03 18:46:49
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-05 19:25:06
+ * @LastEditTime: 2020-07-05 21:54:49
  */
 import React, { useEffect, useState, useCallback } from "react";
 import {
@@ -58,7 +58,13 @@ export const TeamManageEn = (props: Iprops) => {
     getData();
   }, []);
 
-  const handleToTeamEdit = () => {};
+  const handleTeamAdd = () => {
+    props.history.push("/manage/teamEditEn");
+  };
+
+  const handleToTeamEdit = (id: number) => {
+    props.history.push(`/manage/teamEditEn?id=${id}`);
+  };
 
   const handleToTeamDelete = (id: number) => {
     deleteTeamById({ id, lan: "en-US" }).then((res) => getData());
@@ -70,45 +76,6 @@ export const TeamManageEn = (props: Iprops) => {
     });
   };
 
-  // const columns = [
-  //   {
-  //     title: "姓名",
-  //     dataIndex: "name",
-  //     key: "name",
-  //     render: (text: string, record: any) => (
-  //       <div
-  //         style={{
-  //           overflow: "hidden",
-  //           whiteSpace: "nowrap",
-  //           textOverflow: "ellipsis",
-  //         }}
-  //         // onClick={handleToNewsDetail(record.id)}
-  //       >
-  //         {text}
-  //       </div>
-  //     ),
-  //   },
-  //   {
-  //     title: "操作",
-  //     key: "action",
-  //     render: (record: any) => (
-  //       <>
-  //         <Button
-  //           // onClick={handleToTeamEdit(record.id)}
-  //           onClick={handleToTeamEdit}
-  //           type="primary"
-  //           style={{ marginRight: "20px" }}
-  //         >
-  //           编辑
-  //         </Button>
-  //         <Button onClick={() => handleToTeamDelete(record.id)} danger>
-  //           删除
-  //         </Button>
-  //       </>
-  //     ),
-  //   },
-  // ];
-
   const renderPersonData = (
     id: number,
     img: string,
@@ -117,8 +84,8 @@ export const TeamManageEn = (props: Iprops) => {
     foot: string
   ) => (
     <div>
-      <Button danger>删除</Button>
-      <Button type="primary">修改</Button>
+      <Button danger onClick={() => handleToTeamDelete(id)}>删除</Button>
+      <Button type="primary" onClick={() => handleToTeamEdit(id)}>修改</Button>
       <div>Person Data</div>
       <div
         className={$style[""]}
@@ -142,7 +109,9 @@ export const TeamManageEn = (props: Iprops) => {
 
   return (
     <div className={$style["team-manage"]}>
-      <Button type="primary">添加</Button>
+      <Button type="primary" onClick={handleTeamAdd}>
+        添加
+      </Button>
 
       {data.map((item: any) =>
         renderPersonData(item.id, item.img, item.left, item.content, item.foot)

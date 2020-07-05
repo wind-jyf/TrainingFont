@@ -3,131 +3,115 @@
  * @author: xinguangtai
  * @Date: 2020-07-03 23:43:37
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-05 14:46:30
+ * @LastEditTime: 2020-07-05 23:00:57
  */
 import React, { useContext, useState, useEffect, useRef } from "react";
 
-import { postNews, getNewsById, putNews } from "../../../../api/news";
+import { getGroupById } from "../../../../api/team";
 
 import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import $style from "./style.module.scss";
 
 import { Button, DatePicker, Input } from "antd";
-
-const modules = {
-  toolbar: [
-    [{ header: [1, 2, false] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [
-      { list: "ordered" },
-      { list: "bullet" },
-      { indent: "-1" },
-      { indent: "+1" },
-    ],
-    ["link", "image"],
-    ["clean"],
-  ],
-};
-
-const formats = [
-  "header",
-  "bold",
-  "italic",
-  "underline",
-  "strike",
-  "blockquote",
-  "list",
-  "bullet",
-  "indent",
-  "link",
-  "image",
-];
+import Axios from "axios";
 
 export const TeamEditEn = (props: any) => {
-  const [editor, setEditor] = useState("");
-  const [date, setDate] = useState("");
-  const [name, setName] = useState("");
+  const [content, setContent] = useState("");
+  const [foot, setFoot] = useState("");
+  const [img, setImg] = useState("");
+  const [left, setLeft] = useState("");
+  const [id, setId] = useState(-1);
 
-  // const [isAddNews, setIsAddNews] = useState(true);
-  const [newsId, setNewsId] = useState(-1);
+  const [file, setFile] = useState(null) as any;
 
-  const reactQuillRef = useRef(null);
+  const handleTeamEnPost = () => {
+    const formdata = new FormData();
+    formdata.append("content", content);
+    formdata.append("lan", "en-US");
+    formdata.append("foot", foot);
+    formdata.append("img", file);
+    formdata.append("left", left);
 
-  const handleNewsPost = () => {
-    const content = getHTML();
-    if(newsId === -1) {
-      postNews({ date, name, content, lan: "CH" })
+    if(id === -1) {
+      Axios({
+        method: 'post',
+        headers: {
+          "content-type": "multipart/form-data;",
+        },
+        url: "/api/crophe/group",
+        data: formdata,
+      })
     } else {
-      putNews({ id:newsId, date, name, content, lan: "CH" })
-    }
-  };
-
-  const getHTML = () => {
-    if (reactQuillRef && reactQuillRef.current) {
-      // @ts-ignore
-      const e = reactQuillRef.current.getEditor();
-      // @ts-ignore
-      const unprivilegedEditor = reactQuillRef.current.makeUnprivilegedEditor(
-        e
-      );
-      // You may now use the unprivilegedEditor proxy methods
-      // console.log(unprivilegedEditor.getHTML());
-      return unprivilegedEditor.getHTML();
+      formdata.append("id", id + '');
+      Axios({
+        method: 'put',
+        headers: {
+          "content-type": "multipart/form-data;",
+        },
+        url: "/api/crophe/group",
+        data: formdata,
+      })
     }
   };
 
   useEffect(() => {
     const search = props.history.location.search;
-    if(!search) {
+    if (!search) {
       return;
     }
-    const query = search.split('=');
-    query[1] && setNewsId(query[1]);
+    const query = search.split("=");
+    query[1] && setId(query[1]);
 
-    query[1] && getNewsById({id: query[1]}).then(res => {
-      setEditor(res.content)
-    })
+    query[1] &&
+      getGroupById({ id: query[1], lan: "en-US" }).then((res) => {
+        setFoot(res.foot);
+        setLeft(res.left);
+        setImg(res.img);
+        setContent(res.content);
+      });
   }, []);
-
-  const dateFormat = "YYYY-MM-DD";
 
   return (
     <>
-      <div>
-        <Input
-          placeholder="标题"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+      <div style={{width:'800px'}}>
+        <Input.TextArea
+          rows={10}
+          placeholder="left"
+          value={left}
+          onChange={(e) => setLeft(e.target.value)}
         />
-        <DatePicker
-          format={dateFormat}
-          onChange={(value) => setDate(value ? value.format(dateFormat) : "")}
-        />
-        <ReactQuill
-          className={$style["newsEditWrapper"]}
-          theme="snow"
-          modules={modules}
-          formats={formats}
-          ref={reactQuillRef}
-          value={editor}
-          onChange={(value) => {
-            setEditor(value);
-
-            // if (reactQuillRef && reactQuillRef.current) {
-            //   // @ts-ignore
-            //   const e = reactQuillRef.current.getEditor();
-            //   // @ts-ignore
-            //   const unprivilegedEditor = reactQuillRef.current.makeUnprivilegedEditor(
-            //     e
-            //   );
-            //   // You may now use the unprivilegedEditor proxy methods
-            //   console.log(unprivilegedEditor.getHTML());
-            // }
+      </div>
+      <div style={{}}>
+        <img src={img} width="100px" height="100px" />
+      </div>
+      <div style={{}}>
+        <input
+          type="file"
+          // value={file}
+          onChange={(e) => {
+            console.log(e.target.files && e.target.files[0]);
+            e.target.files && setFile(e.target.files[0]);
           }}
         />
       </div>
-      <Button type="primary" onClick={handleNewsPost}>
+      <div style={{marginTop:'30px'}}>
+        <Input.TextArea
+          rows={10}
+          placeholder="content"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+        />
+      </div>
+      <div style={{marginTop:'30px'}}>
+        <Input.TextArea
+          rows={10}
+          placeholder="foot"
+          value={foot}
+          onChange={(e) => setFoot(e.target.value)}
+        />
+      </div>
+      <Button type="primary" onClick={handleTeamEnPost} style={{marginTop:'20px'}}>
         提交
       </Button>
     </>

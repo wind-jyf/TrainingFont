@@ -3,7 +3,7 @@
  * @author: xinguangtai
  * @Date: 2020-07-03 21:10:41
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-05 17:04:59
+ * @LastEditTime: 2020-07-05 21:28:30
  */
 
 import React, { useContext } from "react";
@@ -63,7 +63,7 @@ export const Menus = (props: IProps) => {
         path:routes.newsManageEn.path,
       },
       {
-        name: "Team",
+        name: "Group",
         path:routes.teamManageEn.path,
       }
     //   {
