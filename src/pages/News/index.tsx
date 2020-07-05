@@ -3,7 +3,7 @@
  * @author: yangqianjun
  * @Date: 2020-07-02 17:45:07
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-04 23:44:16
+ * @LastEditTime: 2020-07-05 08:42:38
  */
 import React, { useEffect, useState } from "react";
 
@@ -54,7 +54,7 @@ export const News = (props: Iprops) => {
             result = result ? result.join(",") : "";
 
             const picSrc = res.content.match(/src=[\'\"]?([^\'\"]*)[\'\"]?/i);
-            picSrc[1] && newsImg === newsPic && setNewsImg(picSrc[1])
+            picSrc && picSrc[1] && newsImg === newsPic && setNewsImg(picSrc[1])
 
             news.subtitle = result.slice(0, 100);
             resolve(news);
