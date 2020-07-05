@@ -3,7 +3,7 @@
  * @author: yangqianjun
  * @Date: 2020-07-03 14:47:16
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-05 14:50:45
+ * @LastEditTime: 2020-07-05 16:57:15
  */
 import React, { useEffect, useState, useRef } from "react";
 
@@ -74,6 +74,10 @@ export const Manage = (props: Iprops) => {
                   <Route
             path={routes.newsEditEn.path}
             component={routes.newsEditEn.component}
+          ></Route>
+           <Route
+            path={routes.instrumentEdit.path}
+            component={routes.instrumentEdit.component}
           ></Route>
           <Route
             path={routes.teamEdit.path}

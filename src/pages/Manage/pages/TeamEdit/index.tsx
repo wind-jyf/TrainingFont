@@ -3,103 +3,46 @@
  * @author: xinguangtai
  * @Date: 2020-07-03 23:43:37
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-05 14:46:39
+ * @LastEditTime: 2020-07-05 21:16:20
  */
 import React, { useContext, useState, useEffect, useRef } from "react";
 
-import { postNews, getNewsById, putNews } from "../../../../api/news";
+import { getGroupById } from "../../../../api/team";
 
-import ReactQuill, { Quill } from "react-quill";
-
-
-import QuillResize from "quill-resize-module";
-import "react-quill/dist/quill.snow.css";
 import $style from "./style.module.scss";
 
-import { Button, DatePicker, Input } from "antd";
-
-// Quill.register("modules/imageResize", ImageResize);
-Quill.register("modules/resize", QuillResize);
-
-const modules = {
-  toolbar: [
-    // [{ header: [1, 2, false] }],
-    // ["bold", "italic", "underline", "strike", "blockquote"],
-    // [
-    //   { list: "ordered" },
-    //   { list: "bullet" },
-    //   { indent: "-1" },
-    //   { indent: "+1" },
-    // ],
-    ["link", "image"],
-    // ["clean"],
-    ["bold", "italic", "underline", "strike"], // toggled buttons
-    ["blockquote", "code-block"],
-
-    [{ header: 1 }, { header: 2 }], // custom button values
-    [{ list: "ordered" }, { list: "bullet" }],
-    [{ script: "sub" }, { script: "super" }], // superscript/subscript
-    [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
-    [{ direction: "rtl" }], // text direction
-
-    [{ size: ["small", false, "large", "huge"] }], // custom dropdown
-    [{ header: [1, 2, 3, 4, 5, 6, false] }],
-
-    [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-    [{ font: [] }],
-    [{ align: [] }],
-
-    ["clean"],
-  ],
-  // ImageResize: { modules: ["Resize", "DisplaySize", "Toolbar"] },
-  resize: { modules: ["Resize", "DisplaySize", "Toolbar"] },
-};
-
-const formats = [
-  "header",
-  "bold",
-  "italic",
-  "underline",
-  "strike",
-  "blockquote",
-  "list",
-  "bullet",
-  "indent",
-  "link",
-  "image",
-];
+import { Button, Input } from "antd";
+import axios from "axios";
 
 export const TeamEdit = (props: any) => {
-  const [editor, setEditor] = useState("");
-  const [date, setDate] = useState("");
   const [name, setName] = useState("");
+  const [id, setId] = useState(-1);
+  const [avator, setAvator] = useState("");
+  const [descripe, setDescripe] = useState("");
+  const [file, setFile] = useState(null) as any;
 
-  // const [isAddNews, setIsAddNews] = useState(true);
-  const [newsId, setNewsId] = useState(-1);
-
-  const reactQuillRef = useRef(null);
-
-  const handleNewsPost = () => {
-    const content = getHTML();
-    if (newsId === -1) {
-      postNews({ date, name, content, lan: "CH" });
-    } else {
-      putNews({ id: newsId, date, name, content, lan: "CH" });
+  const handleTeamPost = () => {
+    const formdata = new FormData();
+    formdata.append("name", name);
+    formdata.append("lan", "zh-CN");
+    formdata.append("descripe", descripe);
+    formdata.append("avator", file);
+    //@ts-ignore
+    for (const value of formdata.values()) {
+      console.log(value);
     }
-  };
-
-  const getHTML = () => {
-    if (reactQuillRef && reactQuillRef.current) {
-      // @ts-ignore
-      const e = reactQuillRef.current.getEditor();
-      // @ts-ignore
-      const unprivilegedEditor = reactQuillRef.current.makeUnprivilegedEditor(
-        e
-      );
-      // You may now use the unprivilegedEditor proxy methods
-      // console.log(unprivilegedEditor.getHTML());
-      return unprivilegedEditor.getHTML();
-    }
+    axios({
+      headers: {
+        "content-type": "multipart/form-data;",
+      },
+      method: "put",
+      // method: "post",
+      url: "/api/crophe/group",
+      data: formdata,
+    }).then((res) => {
+      // getData();
+      // 关闭页面
+    });
   };
 
   useEffect(() => {
@@ -108,60 +51,55 @@ export const TeamEdit = (props: any) => {
       return;
     }
     const query = search.split("=");
-    query[1] && setNewsId(query[1]);
+    query[1] && setId(query[1]);
 
     query[1] &&
-      getNewsById({ id: query[1] }).then((res) => {
-        setEditor(res.content);
+      getGroupById({ id: query[1] }).then((res) => {
+        setName(res.name);
+        setDescripe(res.descripe);
+        setAvator(res.img);
       });
   }, []);
-
-  const dateFormat = "YYYY-MM-DD";
 
   return (
     <>
       <div>
-        <div style={{display: 'flex', alignItems: 'center', marginTop: '30px'}}>
-          <span style={{width: '70px'}}>新闻标题:</span>
+        <div
+          style={{ display: "flex", alignItems: "center", marginTop: "30px" }}
+        >
+          <span style={{ width: "70px" }}>姓名:</span>
           <Input
             // className={$style["newsTitle"]}
-            placeholder="新闻标题"
+            placeholder="姓名"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
         </div>
-        <DatePicker
-          className={$style["newsDate"]}
-          format={dateFormat}
-          onChange={(value) => setDate(value ? value.format(dateFormat) : "")}
-        />
-        <ReactQuill
-          className={$style["newsEditWrapper"]}
-          theme="snow"
-          modules={modules}
-          formats={formats}
-          ref={reactQuillRef}
-          value={editor}
-          onChange={(value) => {
-            setEditor(value);
-
-            // if (reactQuillRef && reactQuillRef.current) {
-            //   // @ts-ignore
-            //   const e = reactQuillRef.current.getEditor();
-            //   // @ts-ignore
-            //   const unprivilegedEditor = reactQuillRef.current.makeUnprivilegedEditor(
-            //     e
-            //   );
-            //   // You may now use the unprivilegedEditor proxy methods
-            //   console.log(unprivilegedEditor.getHTML());
-            // }
-          }}
-        />
+        <div>
+          <img width="100px" height="100px" alt="人相" src={avator} />
+        </div>
+        <div>
+          {" "}
+          <input
+            type="file"
+            onChange={(e) => {
+              console.log(e.target.files && e.target.files[0]);
+              e.target.files && setFile(e.target.files[0]);
+            }}
+          />
+        </div>
+        <div>
+          <Input.TextArea
+            rows={15}
+            value={descripe}
+            onChange={(e) => setDescripe(e.target.value)}
+          />
+        </div>
       </div>
       <Button
         className={$style["submit"]}
         type="primary"
-        onClick={handleNewsPost}
+        onClick={handleTeamPost}
       >
         提交
       </Button>

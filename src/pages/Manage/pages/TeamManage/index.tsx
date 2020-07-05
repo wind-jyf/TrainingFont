@@ -3,9 +3,15 @@
  * @author: yangqianjun
  * @Date: 2020-07-03 18:46:49
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-05 15:49:27
+ * @LastEditTime: 2020-07-05 21:09:32
  */
-import React, { useEffect, useState, useCallback, useRef } from "react";
+import React, {
+  useEffect,
+  useState,
+  useCallback,
+  useRef,
+  createElement,
+} from "react";
 import { Divider, Input, Table, Button, Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 
@@ -50,14 +56,17 @@ export const TeamManage = (props: Iprops) => {
     getData();
   }, []);
 
-  const handleToTeamEdit = () => {};
+  const handleToTeamEdit = (id:number) => {
+    props.history.push(`/manage/teamEdit?id=${id}`)
+  };
 
   const handleToTeamDelete = (id: number) => {
     deleteTeamById({ id, lan: "zh-CN" }).then((res) => getData());
   };
 
   const handleToTeamPost = () => {
-    const formdata = new FormData();
+    const form = document.createElement("form");
+    const formdata = new FormData(form);
     // formdata.append('file', uploadImg.current && uploadImg.current.files && uploadImg.current.files[0]);
     formdata.append("avator", file);
     formdata.append("lan", "zh-CN");
@@ -67,10 +76,26 @@ export const TeamManage = (props: Iprops) => {
     for (const value of formdata.values()) {
       console.log(value);
     }
-    var request = new XMLHttpRequest();
-    request.open("POST", "/api/crophe/group");
-    request.setRequestHeader("content-type", 'multipart/form-data;')
-    request.send(formdata);
+    axios({
+      headers: {
+        "content-type": "multipart/form-data;",
+      },
+      method: "post",
+      url: "/api/crophe/group",
+      data: formdata,
+    }).then((res) => {
+      getData();
+    });
+    setFile(null);
+    setName("");
+    setDescription("");
+    // if (uploadImg.current) {
+    //   uploadImg.current.files = null;
+    // }
+    // let request = new XMLHttpRequest();
+    // request.open("POST", "/api/crophe/group");
+    // request.setRequestHeader("content-type", 'multipart/form-data;')
+    // request.send(formdata);
   };
 
   const handlePageChange = (page: number, pageSize?: number) => {
@@ -104,7 +129,7 @@ export const TeamManage = (props: Iprops) => {
         <>
           <Button
             // onClick={handleToTeamEdit(record.id)}
-            onClick={handleToTeamEdit}
+            onClick={() => handleToTeamEdit(record.id)}
             type="primary"
             style={{ marginRight: "20px" }}
           >
@@ -121,14 +146,24 @@ export const TeamManage = (props: Iprops) => {
   return (
     <div className={$style["team-manage"]}>
       <div>
-        <div>添加团队成员</div>
-        <Divider />
-        <div>
-          <div>姓名</div>
+        <div style={{ marginTop: "20px" }}>添加团队成员</div>
+        <Divider
+          style={{
+            marginTop: "10px",
+            marginBottom: "20px",
+            borderBottom: "1px solid #ddd",
+          }}
+        />
+        <div
+          style={{ display: "flex", alignItems: "center", marginTop: "20px" }}
+        >
+          <div style={{ width: "60px" }}>姓名:</div>
           <Input value={name} onChange={(e) => setName(e.target.value)} />
         </div>
-        <div>
-          <div>导入图片</div>
+        <div
+          style={{ display: "flex", alignItems: "center", marginTop: "20px" }}
+        >
+          <div style={{ marginTop: "8px", width: "70px" }}>导入图片:</div>
           <input
             ref={uploadImg}
             type="file"
@@ -139,22 +174,33 @@ export const TeamManage = (props: Iprops) => {
           />
           {/* <Button>点击上传</Button> */}
         </div>
-        <div>
-          <div>描述</div>
+        <div
+          style={{ display: "flex", alignItems: "center", marginTop: "20px" }}
+        >
+          <div style={{ marginTop: "20px", width: "60px" }}>描述:</div>
           <Input.TextArea
             rows={5}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
-          {/* <Input value={name} onChange={(e) => setName(e.target.value)} /> */}
         </div>
-        <Button type="primary" onClick={handleToTeamPost}>
+        <Button
+          type="primary"
+          onClick={handleToTeamPost}
+          style={{ marginTop: "20px", marginLeft: "60px" }}
+        >
           提交
         </Button>
       </div>
       <div style={{ paddingTop: "100px" }}>
         <div>修改/删除</div>
-        <Divider />
+        <Divider
+          style={{
+            marginTop: "10px",
+            marginBottom: "20px",
+            borderBottom: "1px solid #ddd",
+          }}
+        />
         <Table
           columns={columns}
           dataSource={data}

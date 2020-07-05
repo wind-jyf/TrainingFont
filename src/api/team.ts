@@ -3,7 +3,7 @@
  * @author: xinguangtai
  * @Date: 2020-07-02 17:45:07
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-05 15:32:45
+ * @LastEditTime: 2020-07-05 21:05:22
  */
 import { request } from "./http";
 
@@ -29,6 +29,20 @@ export async function deleteTeamById(data: {
 }) {
   const res: any = await request("/group", {
     method: "delete",
+    data,
+  });
+  return res.data;
+}
+
+export async function putTeamById(data: {
+  id: number;
+  lan: "en-US" | "zh-CN";
+  name: string;
+  descripe: string;
+  img: File | null;
+}) {
+  const res: any = await request("/group", {
+    method: "put",
     data,
   });
   return res.data;

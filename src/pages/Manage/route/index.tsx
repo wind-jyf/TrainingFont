@@ -3,7 +3,7 @@
  * @author: yangqianjun
  * @Date: 2020-07-03 18:37:55
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-05 14:39:45
+ * @LastEditTime: 2020-07-05 17:07:03
  */
 import { RouteProps } from "react-router-dom";
 import { NewsManage } from '../pages/NewsManage';
@@ -17,6 +17,7 @@ import { NewsEdit } from '../pages/NewsEdit';
 import { NewsEditEn } from '../pages/NewsEditEn';
 import { TeamEdit } from '../pages/TeamEdit';
 import { TeamEditEn } from '../pages/TeamEditEn';
+import { InstrumentEdit } from '../pages/InstrumentEdit';
 
 interface IRouteData {
     [key: string]: any
@@ -66,6 +67,10 @@ export const routes:IRouteData = {
     teamEditEn: {
         path: '/manage/teamEditEn',
         component: TeamEditEn
+    },
+    instrumentEdit: {
+        path: '/manage/instrumentEdit',
+        component: InstrumentEdit
     },
     default: {
         path: '/manage',

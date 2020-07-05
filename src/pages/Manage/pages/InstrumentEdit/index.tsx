@@ -3,11 +3,11 @@
  * @author: xinguangtai
  * @Date: 2020-07-03 23:43:37
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-05 15:55:39
+ * @LastEditTime: 2020-07-05 17:16:49
  */
 import React, { useContext, useState, useEffect, useRef } from "react";
 
-import { postNews, getNewsById, putNews } from "../../../../api/news";
+import { postiInstrument } from "../../../../api/instrument";
 
 import ReactQuill, { Quill } from "react-quill";
 
@@ -69,23 +69,22 @@ const formats = [
   "image",
 ];
 
-export const NewsEdit = (props: any) => {
+export const InstrumentEdit = (props: any) => {
   const [editor, setEditor] = useState("");
-  const [date, setDate] = useState("");
   const [name, setName] = useState("");
-
-  // const [isAddNews, setIsAddNews] = useState(true);
-  const [newsId, setNewsId] = useState(-1);
 
   const reactQuillRef = useRef(null);
 
-  const handleNewsPost = () => {
+  const [lan, setLan] = useState("zh-CN");
+
+  const handleInstrumentPost = () => {
     const content = getHTML();
-    if (newsId === -1) {
-      postNews({ date, name, content, lan: "CH" });
-    } else {
-      putNews({ id: newsId, date, name, content, lan: "CH" });
-    }
+    postiInstrument({ name, content, lan });
+    // if (newsId === -1) {
+    //   postNews({ date, name, content, lan: "CH" });
+    // } else {
+    //   putNews({ id: newsId, date, name, content, lan: "CH" });
+    // }
   };
 
   const getHTML = () => {
@@ -108,35 +107,24 @@ export const NewsEdit = (props: any) => {
       return;
     }
     const query = search.split("=");
-    query[1] && setNewsId(query[1]);
-
-    query[1] &&
-      getNewsById({ id: query[1] }).then((res) => {
-        setEditor(res.content);
-      });
+    query[1] && setLan(query[1]);
+    console.log(query[1]);
   }, []);
-
-  const dateFormat = "YYYY-MM-DD";
 
   return (
     <>
       <div>
-        <div style={{display: 'flex', alignItems: 'center', marginTop: '30px'}}>
-          <span style={{width: '70px'}}>新闻标题:</span>
+        <div
+          style={{ display: "flex", alignItems: "center", marginTop: "30px" }}
+        >
+          <span style={{ width: "70px" }}>仪器名称:</span>
           <Input
-            placeholder="新闻标题"
+            placeholder="仪器名称"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
         </div>
-        <div style={{display: 'flex', alignItems: 'center', marginTop: '20px',marginBottom:'10px'}}>
-          <span style={{width: '70px'}}>上传日期：</span>
-          <DatePicker
-          format={dateFormat}
-          onChange={(value) => setDate(value ? value.format(dateFormat) : "")}
-        />
-        </div>
-        
+        <div>介绍如下:</div>
         <ReactQuill
           className={$style["newsEditWrapper"]}
           theme="snow"
@@ -163,7 +151,7 @@ export const NewsEdit = (props: any) => {
       <Button
         className={$style["submit"]}
         type="primary"
-        onClick={handleNewsPost}
+        onClick={handleInstrumentPost}
       >
         提交
       </Button>
