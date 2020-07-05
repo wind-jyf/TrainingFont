@@ -3,7 +3,7 @@
  * @author: xinguangtai
  * @Date: 2020-07-03 21:44:22
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-05 00:58:42
+ * @LastEditTime: 2020-07-05 09:09:59
  */
 
 import React, { useContext, useState, useEffect } from "react";
@@ -55,7 +55,11 @@ export const NewsManage = (props: any) => {
 
   const handleToNewsDelete = (id: number) => {
     return () => {
-      deleteNews({id, lan: 'CH'})
+      deleteNews({id, lan: 'CH'}).then(res => {
+        getNewsList({ page: page.page, page_size: page.page_size }).then((res) => {
+          hanldePageInit(res);
+        });
+      })
     }
   }
 
