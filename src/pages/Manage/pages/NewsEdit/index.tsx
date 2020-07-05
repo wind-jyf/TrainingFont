@@ -3,7 +3,7 @@
  * @author: xinguangtai
  * @Date: 2020-07-03 23:43:37
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-05 00:52:46
+ * @LastEditTime: 2020-07-05 08:58:09
  */
 import React, { useContext, useState, useEffect, useRef } from "react";
 
@@ -56,7 +56,11 @@ export const NewsEdit = (props: any) => {
 
   const handleNewsPost = () => {
     const content = getHTML();
-    newsId ? putNews({ id:newsId, date, name, content, lan: "CH" }) : postNews({ date, name, content, lan: "CH" });
+    if(newsId === -1) {
+      postNews({ date, name, content, lan: "CH" })
+    } else {
+      putNews({ id:newsId, date, name, content, lan: "CH" })
+    }
   };
 
   const getHTML = () => {
