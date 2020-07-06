@@ -1,0 +1,64 @@
+.downlaodWrapper {
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    background: #fff;
+    font-size: 18px;
+    padding: 10px;
+
+    .table-data {
+        width: 100%;
+        line-height: 25px;
+        display: flex;
+        font-size: 16px;
+        margin: 10px 0 15px 0;
+    }
+
+    .table-title {
+        width: 100%;
+        height: 40px;
+        display: flex;
+
+        .table-title-long {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .table-title-color {
+            justify-content: center;
+            background: #f5fafe;
+            border: 1px solid skyblue;
+        }
+    }
+
+    .table-item-long {
+        flex: 1;
+        text-align: center;
+
+        a:hover {
+            color: blue;
+            text-decoration: underline;
+        }
+    }
+
+    .table-item-short {
+        width: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            cursor: pointer;
+        }
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 20px;
+    }
+}

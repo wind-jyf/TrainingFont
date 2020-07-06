@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ReactEcharts from 'echarts-for-react';
 import $style from './style.module.scss';
 
@@ -27,9 +27,6 @@ export const LineMarkerEcharts = (props: IProps) => {
             tooltip: {
                 trigger: 'axis'
             },
-            /*             legend: {
-                            data: ['最高气温', '最低气温']
-                        }, */
             toolbox: {
                 show: true,
                 feature: {

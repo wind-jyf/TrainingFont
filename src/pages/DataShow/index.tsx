@@ -10,24 +10,25 @@ interface Iprops {
     [key: string]: any;
 }
 
-/* const mySearchData = {
+const mySearchData = {
     'type': 'rice',
     'Year_item': '2013-drought',
     'Accession_ID': '001(W062)',
     'Condition': 'all'
 }
- */
 
-const mySearchData = {
+
+/* const mySearchData = {
     'type': 'rice',
     'Year_item': '2013-drought',
     'Accession_ID': '001(W062)',
     'Trait': 'E'
-}
+} */
 
 export const DataShow = (props: Iprops) => {
 
     const isImage = props.match.params.type === 'image' ? true : false;
+    console.log(props.location);
 
     const [img, setImg] = useState([]) as any;
     const [data, setData] = useState([]) as any;
@@ -65,33 +66,33 @@ export const DataShow = (props: Iprops) => {
                 setYData(yArr);
                 setValueData(valueArr);
             })
-            //const tableData = [{ LNL_T1: "187.05", LNL_T2: "203.99", LNL_T3: "203.99", LNL_T4: "203.99", LNL_T5: "203.99", LNL_T6: "203.99", LNL_T7: "203.99", LNL_T8: "203.99", LNL_T9: "203.99", LNL_T10: "203.99", LNL_T11: "103.99", LNL_T12: "103.99", LNL_T13: "303.99", LNL_T14: "153.99", LNL_T15: "143.99" }];
-
         }
     }, []);
 
-    if (isImage) {
-        return (
-            <div className={$style['pictureShow']}>
-                <ImgDisplayer
-                    data={img}
-                    rotate={'rotate(-90deg)'}
-                />
-            </div>
-        )
-    } else {
-        return (
-            <div className={$style['dataShow']}>
-                <DataDisplayer
-                    data={data}
-                />
-                <LineMarkerEcharts
-                    xData={xData}
-                    yData={yData}
-                    valueData={valueData}
-                />
-            </div>
-        )
-    }
+    return (
+        <div>
+            <p className={$style['data-title']}>{mySearchData.type}-{mySearchData.Year_item}</p>
+            {
+                isImage
+                    ? <div className={$style['pictureShow']}>
+                        <ImgDisplayer
+                            data={img}
+                            rotate={'rotate(-90deg)'}
+                        />
+                    </div>
+                    : <div className={$style['dataShow']}>
+                        <DataDisplayer
+                            data={data}
+                        />
+                        <LineMarkerEcharts
+                            xData={xData}
+                            yData={yData}
+                            valueData={valueData}
+                        />
+                    </div>
+            }
+        </div>
+
+    )
 
 }

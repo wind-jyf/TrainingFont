@@ -19,6 +19,7 @@ import { InstrumentDetailEn } from './pages/instrumentDetailEn';
 import { Data } from './pages/Data';
 import { Layout } from './pages/layout';
 import { DataShow } from './pages/DataShow';
+import { Download } from './pages/Download';
 
 import { Context } from './context';
 
@@ -40,6 +41,8 @@ const getRoutes = (admin: boolean) => {
     { path: '/instrumentDetail', component: isZhCN() ? InstrumentDetail : InstrumentDetailEn },
     { path: '/dataSearch', component: Data },
     { path: '/dataShow/:type', component: DataShow },
+    { path: '/download', component: Download },
+
     { key: 'default', component: News } // 兜底页面
   ];
   return routes.filter((item: any) => !item.hide);
