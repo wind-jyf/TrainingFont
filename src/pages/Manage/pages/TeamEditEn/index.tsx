@@ -3,7 +3,7 @@
  * @author: xinguangtai
  * @Date: 2020-07-03 23:43:37
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-05 23:00:57
+ * @LastEditTime: 2020-07-06 11:23:40
  */
 import React, { useContext, useState, useEffect, useRef } from "react";
 
@@ -74,28 +74,37 @@ export const TeamEditEn = (props: any) => {
 
   return (
     <>
-      <div style={{width:'800px'}}>
-        <Input.TextArea
-          rows={10}
-          placeholder="left"
-          value={left}
-          onChange={(e) => setLeft(e.target.value)}
-        />
+      <div className={$style['wrapper']}>
+        <div style={{width:'800px'}}>
+          <div style={{marginTop:'20px'}}>添加Name, Gender, Telephone, Email</div>
+          <Input.TextArea
+            rows={10}
+            placeholder="left"
+            value={left}
+            onChange={(e) => setLeft(e.target.value)}
+          />
+        </div>
+        <div className={$style['img-wrapper']}>
+          <div style={{marginLeft:'40px',marginTop:'40px'}}>
+            <img src={img} width="100px" height="100px" />
+          </div>
+          <div style={{marginTop:'60px',display:'flex'}}>
+            <div>导入照片</div>
+            <input
+              type="file"
+              // value={file}
+              onChange={(e) => {
+                console.log(e.target.files && e.target.files[0]);
+                e.target.files && setFile(e.target.files[0]);
+              }}
+            />
+          </div>
+        </div>
       </div>
-      <div style={{}}>
-        <img src={img} width="100px" height="100px" />
-      </div>
-      <div style={{}}>
-        <input
-          type="file"
-          // value={file}
-          onChange={(e) => {
-            console.log(e.target.files && e.target.files[0]);
-            e.target.files && setFile(e.target.files[0]);
-          }}
-        />
-      </div>
+      
+     
       <div style={{marginTop:'30px'}}>
+        <div style={{marginTop:'20px'}}>添加Institution, Adress(可以为空)</div>
         <Input.TextArea
           rows={10}
           placeholder="content"
@@ -104,6 +113,7 @@ export const TeamEditEn = (props: any) => {
         />
       </div>
       <div style={{marginTop:'30px'}}>
+        <div style={{marginTop:'20px'}}>添加Education, Position Held, Current Research Interests, Current Research Activities, Current Research Programs, Honors and Rewards等信息</div>
         <Input.TextArea
           rows={10}
           placeholder="foot"

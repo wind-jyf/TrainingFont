@@ -3,13 +3,34 @@
     margin: 0 auto;
     margin-top: 10px;
     
-}
+    .personData{
+        font-size: 24px;
+        font-family: Times New Roman;
+    }
 
-.personData{
-    // text-align: left;
-    // margin-right: 50px;
-    // margin-left: 30px;
-    font-size: 14px;
-    font-family: Times New Roman;
-}
+    .imgWrapper {
+        display: flex;
+    }
 
+    .pagination{
+        margin: 40px 50px;
+    }
+
+    // .personImg{
+    //     margin-left: 50px;
+    
+    // }
+    // .left{
+    //     margin-top: 10px;
+    
+    
+    // }
+    // .content{
+    //     margin-top: 10px;
+    
+    // }
+    
+    // .foot{
+    //     margin-top: 10px;
+    // }
+}

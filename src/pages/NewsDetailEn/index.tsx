@@ -2,8 +2,8 @@
  * @file: description
  * @author: yangqianjun
  * @Date: 2020-07-02 17:45:07
- * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-06 11:33:19
+ * @LastEditors: yangqianjun
+ * @LastEditTime: 2020-07-03 19:45:59
  */
 import React, { useEffect, useState } from 'react';
 import { Spin } from 'antd';
@@ -17,7 +17,7 @@ import $style from "./style.module.scss";
 
 import { getNewsById } from '../../api/news';
 
-export const NewsDetail = () => {
+export const NewsDetailEn = () => {
     const searchQuerys = queryString.parse(window.location.search);
     const [newsInfo, setNewsInfo] = useState({}) as any;
     const [editorState, setEditorState] = useState({}) as any;

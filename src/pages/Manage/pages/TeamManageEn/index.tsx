@@ -3,7 +3,7 @@
  * @author: yangqianjun
  * @Date: 2020-07-03 18:46:49
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-06 09:59:11
+ * @LastEditTime: 2020-07-06 11:00:05
  */
 import React, { useEffect, useState, useCallback } from "react";
 import {
@@ -86,13 +86,16 @@ export const TeamManageEn = (props: Iprops) => {
     <div>
       <Button style={{marginTop:'10px'}} danger onClick={() => handleToTeamDelete(id)}>删除</Button>
       <Button style={{marginLeft:'10px'}} type="primary" onClick={() => handleToTeamEdit(id)}>修改</Button>
-      <div style={{marginTop:'10px',fontSize:'19px',fontWeight:'bolder'}}>Person Data</div>
+      <div className={$style["personData"]}>Person Data</div>
+      <div className={$style["imgWrapper"]}>
+
       <div
-        className={$style["personData"]}
+        className={$style["left"]}
         dangerouslySetInnerHTML={{ __html: left }}
       ></div>
-      <div>
+      <div className={$style["personImg"]}>
         <img src={img} />
+      </div>
       </div>
       <DropdownAndPickUp>
         <div
