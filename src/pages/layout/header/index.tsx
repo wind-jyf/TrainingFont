@@ -43,7 +43,7 @@ const getMenus = (admin:boolean) => {
       title: 'data', route: '/dataSearch'
     },
     {
-      title: 'manage', route: '/manage'
+      title: 'manage', route: '/manage', hide: !admin,
     },
     {
       title: 'position', route: '/position'

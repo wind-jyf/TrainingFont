@@ -3,7 +3,7 @@
  * @author: yangqianjun
  * @Date: 2020-07-02 17:45:07
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-04 14:16:12
+ * @LastEditTime: 2020-07-06 10:23:34
  */
 import React, { useContext } from 'react';
 import intl, { isZhCN } from './utils/intlSafe';
@@ -45,7 +45,7 @@ const getRoutes = (admin:boolean) => {
     { path: '/project', component: Project, hide:!isZhCN() },
     { path: '/teamDetail', component: isZhCN() ? TeamDetail : TeamDetailEn },
     { path: '/instrument', component: isZhCN() ? Instrument : InstrumentEn },
-    { path: '/manage', component: Manage},
+    { path: '/manage', component: Manage, hide: !admin},
     { path: '/position', component: Position},
     { path: '/instrumentDetail', component: isZhCN() ? InstrumentDetail : InstrumentDetailEn },
     { path: '/dataSearch', component: Data},

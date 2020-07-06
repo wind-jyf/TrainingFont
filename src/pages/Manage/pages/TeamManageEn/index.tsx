@@ -3,7 +3,7 @@
  * @author: yangqianjun
  * @Date: 2020-07-03 18:46:49
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-05 21:54:49
+ * @LastEditTime: 2020-07-06 09:59:11
  */
 import React, { useEffect, useState, useCallback } from "react";
 import {
@@ -84,11 +84,11 @@ export const TeamManageEn = (props: Iprops) => {
     foot: string
   ) => (
     <div>
-      <Button danger onClick={() => handleToTeamDelete(id)}>删除</Button>
-      <Button type="primary" onClick={() => handleToTeamEdit(id)}>修改</Button>
-      <div>Person Data</div>
+      <Button style={{marginTop:'10px'}} danger onClick={() => handleToTeamDelete(id)}>删除</Button>
+      <Button style={{marginLeft:'10px'}} type="primary" onClick={() => handleToTeamEdit(id)}>修改</Button>
+      <div style={{marginTop:'10px',fontSize:'19px',fontWeight:'bolder'}}>Person Data</div>
       <div
-        className={$style[""]}
+        className={$style["personData"]}
         dangerouslySetInnerHTML={{ __html: left }}
       ></div>
       <div>
@@ -96,11 +96,11 @@ export const TeamManageEn = (props: Iprops) => {
       </div>
       <DropdownAndPickUp>
         <div
-          className={$style[""]}
+          className={$style["content"]}
           dangerouslySetInnerHTML={{ __html: content }}
         ></div>
         <div
-          className={$style[""]}
+          className={$style["foot"]}
           dangerouslySetInnerHTML={{ __html: foot }}
         ></div>
       </DropdownAndPickUp>

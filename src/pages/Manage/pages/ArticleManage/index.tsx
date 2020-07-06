@@ -3,7 +3,7 @@
  * @author: xinguangtai
  * @Date: 2020-07-03 20:07:23
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-05 23:46:25
+ * @LastEditTime: 2020-07-06 08:48:41
  */
 /**
  * @file: description
@@ -154,7 +154,7 @@ export const ArticleManage = (props: Iprops) => {
   return (
     <div className={$style["article-manage"]}>
       <div>
-        <div style={{ marginTop: "20px" }}>添加文章</div>
+        <div style={{ marginTop: "20px" }}>添加</div>
         <Divider
           style={{
             marginTop: "10px",
@@ -213,7 +213,7 @@ export const ArticleManage = (props: Iprops) => {
         </Button>
       </div>
       <div style={{ paddingTop: "100px" }}>
-        <div>修改/删除</div>
+        <div>操作</div>
         <Divider
           style={{
             marginTop: "10px",

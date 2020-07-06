@@ -3,7 +3,7 @@
  * @author: yangqianjun
  * @Date: 2020-07-03 18:46:49
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-05 20:38:42
+ * @LastEditTime: 2020-07-06 08:56:26
  */
 import React, {
   useEffect,
@@ -150,19 +150,30 @@ export const ProjectManage = (props: Iprops) => {
       </Modal>
       <div>
         <div
-          style={{ display: "flex", alignItems: "center", marginTop: "20px" }}
+          // style={{ display: "flex", alignItems: "center", marginTop: "20px" }}
         >
-          <div style={{ marginTop: "20px", width: "120px" }}>项目介绍:</div>
-          <Input.TextArea
-            rows={5}
-            value={projectname}
-            onChange={(e) => setProjectName(e.target.value)}
+          <div style={{ marginTop: "20px" ,width:'50px'}}>添加</div>
+          <Divider
+            style={{
+              marginTop: "10px",
+              marginBottom: "20px",
+              borderBottom: "1px solid #ddd",
+            }}
           />
+          <div style={{  display: "flex", alignItems: "center",marginTop: "20px"}}>
+            <div style={{ width: "80px" }}>项目介绍:</div>
+            <Input.TextArea
+              rows={5}
+              value={projectname}
+              onChange={(e) => setProjectName(e.target.value)}
+            />
+          </div>
+          
         </div>
         <Button
           type="primary"
           onClick={handleToProjectPost}
-          style={{ marginTop: "20px", marginLeft: "60px" }}
+          style={{ marginTop: "20px", marginLeft: "80px" }}
         >
           提交
         </Button>
