@@ -3,7 +3,7 @@
  * @author: xinguangtai
  * @Date: 2020-07-02 17:45:07
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-04 14:05:45
+ * @LastEditTime: 2020-07-06 12:42:46
  */
 export const en = {
     'news': 'News',

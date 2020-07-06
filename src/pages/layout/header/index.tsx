@@ -46,7 +46,7 @@ const getMenus = (admin:boolean) => {
       title: 'manage', route: '/manage', hide: !admin,
     },
     {
-      title: 'position', route: '/position'
+      title: 'position', route: '/position',hide: !isZhCN()
     }
   ];
   return MENUS.filter(item => !item.hide)
