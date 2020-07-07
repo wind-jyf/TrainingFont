@@ -3,7 +3,7 @@
  * @author: xinguangtai
  * @Date: 2020-07-03 23:43:37
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-05 15:55:39
+ * @LastEditTime: 2020-07-06 19:03:45
  */
 import React, { useContext, useState, useEffect, useRef } from "react";
 
@@ -16,7 +16,7 @@ import QuillResize from "quill-resize-module";
 import "react-quill/dist/quill.snow.css";
 import $style from "./style.module.scss";
 
-import { Button, DatePicker, Input } from "antd";
+import { Button, DatePicker, Input,message } from "antd";
 
 // Quill.register("modules/imageResize", ImageResize);
 Quill.register("modules/resize", QuillResize);
@@ -82,7 +82,9 @@ export const NewsEdit = (props: any) => {
   const handleNewsPost = () => {
     const content = getHTML();
     if (newsId === -1) {
-      postNews({ date, name, content, lan: "CH" });
+      postNews({ date, name, content, lan: "CH" }).then(res => {
+        res.code === 0 ? message.success('新增成功', 3) : message.error(res.message, 3)
+      })
     } else {
       putNews({ id: newsId, date, name, content, lan: "CH" });
     }
@@ -169,13 +171,23 @@ export const NewsEdit = (props: any) => {
           }}
         />
       </div>
+      
+
+
+
       <Button
         className={$style["submit"]}
         type="primary"
         onClick={handleNewsPost}
+        // onClick={success}
+
       >
+        
         提交
       </Button>
+
+      
+      
 
       {/* <Button
         className={$style["preview"]}
