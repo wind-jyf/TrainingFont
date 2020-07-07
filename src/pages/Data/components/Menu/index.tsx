@@ -23,8 +23,8 @@ export const Menus = (props: IProps) => {
   const { state: { admin } } = useContext(Context);
 
   const DEFAULT_ACTIVE_ITEM = {
-    name: "Qifa Zhang & Wanneng Yang",
-    path: routes.riceQzWy.path
+    name: "Rice(Images)",
+    path: routes.riceImages.path
   }
 
 
@@ -37,48 +37,12 @@ export const Menus = (props: IProps) => {
             name: DEFAULT_ACTIVE_ITEM.name,
             path: DEFAULT_ACTIVE_ITEM.path
           }, {
-            name: 'Lizhong Xiong & Wanneng Yang',
-            path: routes.riceRlxWy.path
-          }, {
-            name: 'Rice Data',
+            name: "Rice(Data)",
             path: routes.riceData.path
           }
         ]
-      }, {
-        name: "Maize",
-        subMenu: [
-          {
-            name: 'Mingqiu Dai & Wanneng Yang',
-            path: routes.maizeMqd.path
-          }, {
-            name: 'Maize_Jianbing Yan & Wanneng Yang',
-            path: routes.maizeJby.path
-          }, {
-            name: 'Maize Data',
-            path: routes.maizeData.path
-          }
-        ]
-      }, {
-        name: "Rape",
-        subMenu: [
-          {
-            name: 'Rape img',
-            path: routes.rapeImg.path
-          }
-        ]
-      }, {
-        name: "Cotton",
-        subMenu: [
-          {
-            name: 'Cotton img',
-            path: routes.cottonImg.path
-          }
-        ]
-      }, {
-        name: "数据授权管理",
-        path: routes.authorization.path,
-        hide: !admin
-      }
+      },
+
     ];
     return MENUS.filter(item => !item.hide)
   }
