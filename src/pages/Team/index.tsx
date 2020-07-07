@@ -79,8 +79,8 @@ export const Team = (props:Iprops) => {
                                 {/* <img src={item.img} width='187' height='245'/> */}
                                 <div className={$style['group']}>
                                     <div className={$style['group-img-wrapper']}>
-                                        {/* <img src={item.img} alt="" /> */}
-                                        <img src={teamPic}  alt="" />
+                                        <img src={item.img} alt="" />
+                                        {/*<img src={teamPic}  alt="" />*/}
                                     </div>
                                     <h2 className={$style['group-title']}>{item.name}</h2>
                                     <span></span>

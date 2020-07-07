@@ -84,7 +84,7 @@
 
   button {
     display: inline-block;
-    background-color: transparent;
+    //background-color: transparent;
     border: none;
     outline: none;
     text-align: center;
@@ -106,16 +106,16 @@
 
     &.language-btn {
       color: #5A1A8B;
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      //border: 1px solid rgba(255, 255, 255, 0.14);
       background: #fff;
       font-size: 15px;
       .triangle {
         display: inline-block;
         margin-left: 5px;
-        border-top: 4px solid rgba(255, 255, 255, 0.6);
-        border-left: 4px solid transparent;
-        border-bottom: 4px solid transparent;
-        border-right: 4px solid transparent;
+        //border-top: 4px solid rgba(255, 255, 255, 0.6);
+        //border-left: 4px solid transparent;
+        //border-bottom: 4px solid transparent;
+        //border-right: 4px solid transparent;
       }
     }
   }

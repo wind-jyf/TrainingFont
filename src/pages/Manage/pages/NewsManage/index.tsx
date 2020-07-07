@@ -69,7 +69,7 @@ export const NewsManage = (props: any) => {
       title: "新闻",
       dataIndex: "name",
       key: "name",
-      width: 800,
+      width:'800px',
       render: (text: string, record: any) => (
         <div
           style={{
@@ -88,6 +88,7 @@ export const NewsManage = (props: any) => {
       title: "时间",
       dataIndex: "date",
       key: "date",
+      width:120,
     },
     {
       title: "操作",
