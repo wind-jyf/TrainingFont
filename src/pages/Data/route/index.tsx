@@ -57,43 +57,43 @@ export const routes: IRouteData = {
   },
   addRiceImages: {
     path: '/data/adminRice/addRiceImages'
-    
+
   },
   addRiceData: {
     path: '/data/adminRice/addRiceData'
-    
+
   },
   maizeImagesData: {
     path: '/data/adminMaize/maizeImagesData'
-    
+
   },
   addMaizeImages: {
     path: '/data/adminMaize/addMaizeImages'
-    
+
   },
   addMaizeData: {
     path: '/data/adminMaize/addMaizeData'
-    
+
   },
   rapeImagesData: {
     path: '/data/adminRape/rapeImagesData'
-    
+
   },
   addRapeImages: {
     path: '/data/adminRape/addRapeImages'
-    
+
   },
   addRapeData: {
     path: '/data/adminRape/addRapeData'
-    
+
   },
   cottonImagesData: {
     path: '/data/adminCotton/cottonImagesData'
-    
+
   },
   addCottonImages: {
     path: '/data/adminCotton/addCottonImages'
-    
+
   },
   addCottonData: {
     path: '/data/adminCotton/addCottonData'

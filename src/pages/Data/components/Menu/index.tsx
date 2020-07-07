@@ -30,57 +30,7 @@ export const Menus = (props: IProps) => {
 
   const getMenus = (admin: boolean) => {
     const MENUS: IMenuItem[] = [
-      // {
-      //   name: "Rice",
-      //   subMenu: [
-      //     {
-      //       name: DEFAULT_ACTIVE_ITEM.name,
-      //       path: DEFAULT_ACTIVE_ITEM.path
-      //     },{
-      //       name: 'Lizhong Xiong & Wanneng Yang',
-      //       path: routes.riceRlxWy.path
-      //     },{
-      //       name: 'Rice Data',
-      //       path: routes.riceData.path
-      //     }
-      //   ]
-      // },
-      // {
-      //   name: "Maize",
-      //   subMenu: [
-      //     {
-      //       name: 'Mingqiu Dai & Wanneng Yang',
-      //       path: routes.maizeMqd.path
-      //     }, {
-      //       name: 'Maize_Jianbing Yan & Wanneng Yang',
-      //       path: routes.maizeJby.path
-      //     }, {
-      //       name: 'Maize Data',
-      //       path: routes.maizeData.path
-      //     }
-      //   ]
-      // }, {
-      //   name: "Rape",
-      //   subMenu: [
-      //     {
-      //       name: 'Rape img',
-      //       path: routes.rapeImg.path
-      //     }
-      //   ]
-      // }, {
-      //   name: "Cotton",
-      //   subMenu: [
-      //     {
-      //       name: 'Cotton img',
-      //       path: routes.cottonImg.path
-      //     }
-      //   ]
-      // }, {
-      //   name: "数据授权管理",
-      //   path: routes.authorization.path,
-      //   hide: !admin
-      // },
-       {
+      {
         name: "Rice",
         subMenu: [
           {

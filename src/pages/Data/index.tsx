@@ -187,7 +187,7 @@ const getRoutes = (admin: boolean) => {
       component: AddCottonData,
       hide: !admin
     },
-    {key:'default',component:Index}
+    { key: 'default', component: Index }
   ]
 
   return routes.filter((item: any) => !item.hide);
@@ -199,12 +199,12 @@ export const Data = (props: IProps) => {
   return (
     <div >
       <IndexContainer>
-      <Switch>
-        <Route exact path={routes.data.path} component={Index}></Route>
-        {getRoutes(admin).map((item:any) => (
+        <Switch>
+          <Route exact path={routes.data.path} component={Index}></Route>
+          {getRoutes(admin).map((item: any) => (
             <Route exact path={item.path} component={item.component} />
           ))}
-      </Switch>
+        </Switch>
       </IndexContainer>
     </div>
   );
