@@ -57,11 +57,11 @@ const Menu_left = (props: IProps) => {
   return (
     <Menu
       mode="inline"
-      defaultOpenKeys={['Maize(Images):', 'Maize(Data):']}
+      defaultOpenKeys={['Maize(Data):']}
       selectedKeys={[currentMenuItem]}
     // onClick={handleClick}
     >
-      <SubMenu key="Maize(Images):" title="Maize(Images):">
+      <SubMenu key="Maize(Data):" title="Maize(Data):">
         {/* {yearImages.map((item: any, index: any) => <Menu.Item key={'images:' + item} >{item}</Menu.Item>)} */}
         {/* <Menu.Item key={YearKey} >{YearKey}</Menu.Item> */}
       </SubMenu>
@@ -283,13 +283,13 @@ export const AddMaizeData = (props: IProps) => {
           </Form.Item>
         </Form>
 
-        <Button type="primary" className={$style['firstQueryDirectory_right']} onClick={handleAddDirectory}>新增查询目录</Button>
+        <Button type="primary" className={$style['firstQueryDirectory_right']} onClick={handleAddDirectory}>新增查询类别</Button>
       </div>
 
       <div>
         <Form form={form} layout='inline' >
           {categoryItemArray.map((item: any, index: number) =>
-            <Form.Item className={$style['QueryDirectories']} key={index} label={isDataOrImages ? '请输入查询目录' : '请输入查询类别'} >
+            <Form.Item className={$style['QueryDirectories']} key={index} label='请输入查询类别' >
               <Input defaultValue={item} onChange={(e) => handleCategoryItemArray(index, e)} />
             </Form.Item>
           )}

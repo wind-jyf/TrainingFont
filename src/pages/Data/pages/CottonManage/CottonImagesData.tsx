@@ -291,6 +291,8 @@ export const CottonImagesData = (year: string) => {
           <Button type="primary" onClick={handleDelete}>删除</Button>
           {isDataOrImages && <Button type="primary" ><Link to={ImagePath}>新增图片</Link></Button>}
           {!isDataOrImages && <Button type="primary" ><Link to={DataPath}>新增数据</Link></Button>}
+          {/* 下面这个判断是为了在左边data菜单年份为空时也能显示出新增数据按钮 */}
+          {!dataCategory[0] && <Button type="primary" ><Link to={DataPath}>新增数据</Link></Button>}
           <Modal
             title="提示"
             visible={visible}

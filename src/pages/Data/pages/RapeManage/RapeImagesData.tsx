@@ -18,19 +18,19 @@ let categoryArray: any = []
 let keywords = ''   //如果不是因为textarea那里面的defaultValue不能设置表达式，谁又愿意设置这个变量呢
 let DataPath = {
   pathname: 'adminRape/addRapeData',
-  query: {key:'',itemObject:{}},
+  query: { key: '', itemObject: {} },
 }
 let ImagePath = {
   pathname: 'adminRape/addRapeImages',
-  query: {key:'',itemObject:{}},
+  query: { key: '', itemObject: {} },
 }
 let ChangeImagePath = {
   pathname: 'adminRape/changeRapeImages',
-  query: {key:'',itemObject:{}},
+  query: { key: '', itemObject: {} },
 }
 let ChangeDataPath = {
   pathname: 'adminRape/changeRapeData',
-  query: {key:'',itemObject:{}},
+  query: { key: '', itemObject: {} },
 }
 
 const Menu_left = (props: IProps) => {
@@ -100,8 +100,8 @@ const Menu_left = (props: IProps) => {
     console.log("yearImages:", yearImages);
     if (yearImages && yearImages[0]) {
       setCurrentMenuItem('images:' + String(yearImages[0]))
-      ImagePath.query.key ='images:'+String(yearImages[0])
-      ChangeImagePath.query.key ='images:'+String(yearImages[0])
+      ImagePath.query.key = 'images:' + String(yearImages[0])
+      ChangeImagePath.query.key = 'images:' + String(yearImages[0])
     }
   }, [yearImages]);
 
@@ -166,7 +166,7 @@ export const RapeImagesData = (year: string) => {
       ImagePath.query.itemObject = category
       ChangeImagePath.query.itemObject = category
       console.log("初始目录:", category);
-      keywords = category&&category.key_name + ':' + category&&category.key_type
+      keywords = category && category.key_name + ':' + category && category.key_type
       setItemObject(category)
       for (let key in category) {
         if (category[key] !== null && key.includes('category')) {
@@ -253,7 +253,7 @@ export const RapeImagesData = (year: string) => {
     <div className={$style['rightWrapper']}>
       <Form form={form} layout='inline'>
         <Form.Item label='请输入说明:' rules={[{ required: true, message: 'Year is required' }]} >
-          <textarea rows={4} cols={50} disabled defaultValue={itemObject&&itemObject.note}></textarea>
+          <textarea rows={4} cols={50} disabled defaultValue={itemObject && itemObject.note}></textarea>
         </Form.Item>
       </Form>
 
@@ -261,7 +261,7 @@ export const RapeImagesData = (year: string) => {
       <div className={$style['firstQueryDirectory']}>
         <Form form={form} layout='inline'>
           <Form.Item label='请输入年份和类别' rules={[{ required: true, message: 'Year is required' }]} >
-            <Input value={itemObject&&itemObject.Year_item} disabled />
+            <Input value={itemObject && itemObject.Year_item} disabled />
           </Form.Item>
         </Form>
 
@@ -291,13 +291,15 @@ export const RapeImagesData = (year: string) => {
           <Button type="primary" onClick={handleDelete}>删除</Button>
           {isDataOrImages && <Button type="primary" ><Link to={ImagePath}>新增图片</Link></Button>}
           {!isDataOrImages && <Button type="primary" ><Link to={DataPath}>新增数据</Link></Button>}
+          {/* 下面这个判断是为了在左边data菜单年份为空时也能显示出新增数据按钮 */}
+          {!dataCategory[0] && <Button type="primary" ><Link to={DataPath}>新增数据</Link></Button>}
           <Modal
             title="提示"
             visible={visible}
-            onOk={() => handleOK(itemObject&&itemObject.id, isDataOrImages)}
+            onOk={() => handleOK(itemObject && itemObject.id, isDataOrImages)}
             onCancel={handleCancel}
           >
-            <p>确认要删除{itemObject&&itemObject.Year_item}的条目?</p>
+            <p>确认要删除{itemObject && itemObject.Year_item}的条目?</p>
           </Modal>
         </div>
       </div>
