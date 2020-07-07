@@ -23,6 +23,7 @@ export async function getGroupById(data: any) {
   return res.data;
 }
 
+
 export async function deleteTeamById(data: {
   id: number;
   lan: "en-US" | "zh-CN";
@@ -31,7 +32,7 @@ export async function deleteTeamById(data: {
     method: "delete",
     data,
   });
-  return res.data;
+  return res;
 }
 
 // export async function putTeamById(data: {

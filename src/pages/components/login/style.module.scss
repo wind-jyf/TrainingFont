@@ -12,16 +12,17 @@
       cursor: pointer;
       width: 88px;
       height: 34px;
-      margin-left: 16px;
+      //margin-left: 16px;
       border-radius: 17px;
   
       &.active {
-        color: rgba(255, 255, 255, 1);
-        background: $button-red;
+        font-size: 16px;
+        color:#5A1A8B ;
+        background: #fff;
       }
   
       &.default {
-        color: #f23340;
+        //color: #f23340;
         border: 1px solid $theme-red;
       }
     }
@@ -53,7 +54,7 @@
 }
 
   .userName {
-    color: white;
+    color: #4bb344;
   }
 
   :global {

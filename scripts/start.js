@@ -89,7 +89,7 @@ checkBrowsers(paths.appPath, isInteractive)
     };
 
     // const PROXY_URL =  'http://ve4fa2.natappfree.cc';
-    const PROXY_URL = process.env.EMPOWER_PROXY || 'http://localhost:3001';
+    const PROXY_URL = process.env.EMPOWER_PROXY || 'http://localhost:8081';
 
 
     // Create a webpack compiler that is configured with custom messages.

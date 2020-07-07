@@ -13,7 +13,7 @@ import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import $style from "./style.module.scss";
 
-import { Button, DatePicker, Input } from "antd";
+import { Button, DatePicker, Input ,message} from "antd";
 import Axios from "axios";
 
 export const TeamEditEn = (props: any) => {
@@ -30,17 +30,20 @@ export const TeamEditEn = (props: any) => {
     formdata.append("content", content);
     formdata.append("lan", "en-US");
     formdata.append("foot", foot);
-    formdata.append("img", file);
+    formdata.append("avator", file);
     formdata.append("left", left);
 
     if(id === -1) {
       Axios({
         method: 'post',
         headers: {
-          "content-type": "multipart/form-data;",
+          "content-type": "multipart/form-data",
         },
         url: "/api/crophe/group",
         data: formdata,
+      }).then(res=>{
+        console.log(res);
+        res.data.code === 0? message.success(res.data.data,3):message.error(res.data.data,3)
       })
     } else {
       formdata.append("id", id + '');
@@ -51,6 +54,8 @@ export const TeamEditEn = (props: any) => {
         },
         url: "/api/crophe/group",
         data: formdata,
+      }).then(res=>{
+        res.data.code === 0? message.success(res.data.data,3):message.error(res.data.data,3)
       })
     }
   };

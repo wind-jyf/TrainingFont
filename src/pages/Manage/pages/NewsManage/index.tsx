@@ -12,7 +12,7 @@ import { routes } from "../../route";
 import { Link } from "react-router-dom";
 
 import { Context } from "../../../../context";
-import { Table, Tag, Space, Button } from "antd";
+import { Table, Tag, Space, Button, message } from "antd";
 import { homedir } from "os";
 
 import { getNewsList, deleteNews } from "../../../../api/news";
@@ -59,6 +59,7 @@ export const NewsManage = (props: any) => {
         getNewsList({ page: page.page, page_size: page.page_size }).then((res) => {
           hanldePageInit(res);
         });
+        res.code === 0? message.success(res.data,3):message.error(res.data,3)
       })
     }
   }

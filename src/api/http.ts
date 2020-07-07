@@ -14,7 +14,7 @@ interface IRequestOptions {
 }
 
 export const http = axios.create({
-  timeout: 3000,
+  timeout: 10000,
   baseURL: '/api/crophe',
   headers: {
     Accept: 'application/json'

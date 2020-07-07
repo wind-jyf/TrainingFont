@@ -13,7 +13,7 @@
  * @LastEditTime: 2020-07-05 23:28:23
  */
 import React, { useEffect, useState, useCallback, useRef } from "react";
-import { Divider, Input, Table, Button, Upload, DatePicker, Radio } from "antd";
+import { Divider, Input, Table, Button, Upload, DatePicker, Radio,message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 
 import { getArticleList, deleteArticle } from "../../../../api/article";
@@ -28,13 +28,13 @@ interface Iprops {
 
 const pageDefault = {
   page: 1,
-  page_size: 5,
+  page_size: 10,
 };
 
 export const ArticleManage = (props: Iprops) => {
   const [data, setData] = useState([]);
   const [date, setDate] = useState("");
-  const [lan, setLan] = useState("CN");
+  const [lan, setLan] = useState("CH");
 
   const [name, setName] = useState("");
 
@@ -63,7 +63,7 @@ export const ArticleManage = (props: Iprops) => {
   //   };
 
   const handleToArticleDelete = (id: number) => {
-    deleteArticle({ id }).then((res) => getData());
+    deleteArticle({ id }).then((res) => {getData();res.code === 0? message.success(res.data,3):message.error(res.data,3)});
   };
 
   const handleToTeamPost = () => {
@@ -86,7 +86,9 @@ export const ArticleManage = (props: Iprops) => {
       url: "/api/crophe/article",
       data: formdata,
     }).then((res) => {
+      res.data.code === 0? message.success(res.data.data,3):message.error(res.data.data,3)
       getData();
+      
     });
     setName("");
     // if (uploadImg.current) {
@@ -187,7 +189,7 @@ export const ArticleManage = (props: Iprops) => {
         <div>
           <Radio.Group onChange={(e) => setLan(e.target.value)} value={lan}>
             <Radio value={"EN"}>English</Radio>
-            <Radio value={"CN"}>Chinese</Radio>
+            <Radio value={"CH"}>Chinese</Radio>
           </Radio.Group>
         </div>
 

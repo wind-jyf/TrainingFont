@@ -12,7 +12,7 @@ import { routes } from "../../route";
 import { Link } from "react-router-dom";
 
 import { Context } from "../../../../context";
-import { Table, Tag, Space, Button, Modal, Input } from "antd";
+import { Table, Tag, Space, Button, Modal, Input ,message } from "antd";
 import { homedir } from "os";
 
 import { getNewsList, deleteNews, putNews } from "../../../../api/news";
@@ -87,6 +87,7 @@ export const NewsManageEn = (props: any) => {
   const handleToNewsDelete = (id: number) => {
     return () => {
       deleteNews({ id, lan: "en-US" }).then((res) => {
+        res.code === 0? message.success(res.data,3):message.error(res.data,3)
         getNewsList({
           page: page.page,
           page_size: page.page_size,
@@ -101,8 +102,8 @@ export const NewsManageEn = (props: any) => {
   const columns = [
     {
       title: "标题",
-      dataIndex: "name",
-      key: "name",
+      dataIndex: "title",
+      key: "title",
       // width: 800,
       render: (text: string, record: any) => (
         <div
@@ -130,7 +131,7 @@ export const NewsManageEn = (props: any) => {
       render: (record: any) => (
         <>
           <Button
-            onClick={handleToNewsEdit(record.id, record.name, record.content)}
+            onClick={handleToNewsEdit(record.id, record.title, record.content)}
             type="primary"
             style={{ marginRight: "20px" }}
           >
@@ -148,6 +149,7 @@ export const NewsManageEn = (props: any) => {
     if (newsId === -1) {
       postNews({ name: newsTitle, content: newsContent, lan: "en-US" }).then(
         (res) => {
+          res.code === 0? message.success(res.data,3):message.error(res.data,3)
           getNewsList({
             page: page.page,
             page_size: page.page_size,
@@ -157,7 +159,9 @@ export const NewsManageEn = (props: any) => {
           });
           setNewsContent("");
           setNewsTitle("");
+          
         }
+
       );
     } else {
       putNews({
@@ -166,6 +170,7 @@ export const NewsManageEn = (props: any) => {
         content: newsContent,
         lan: "en-US",
       }).then((res) => {
+        res.code === 0? message.success(res.data,3):message.error(res.data,3)
         getNewsList({
           page: page.page,
           page_size: page.page_size,

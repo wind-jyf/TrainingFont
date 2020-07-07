@@ -12,7 +12,7 @@ import React, {
   useRef,
   createElement,
 } from "react";
-import { Divider, Input, Table, Button, Upload, Modal } from "antd";
+import { Divider, Input, Table, Button, Upload, Modal ,message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 
 import {
@@ -32,7 +32,7 @@ interface Iprops {
 
 const pageDefault = {
   page: 1,
-  page_size: 5,
+  page_size: 10,
 };
 
 export const ProjectManage = (props: Iprops) => {
@@ -64,11 +64,11 @@ export const ProjectManage = (props: Iprops) => {
   }, []);
 
   const handleToProjectDelete = (id: number) => {
-    deleteProjectById({ id }).then((res) => getData());
+    deleteProjectById({ id }).then((res) => {getData();res.code === 0? message.success(res.data,3):message.error(res.data,3)});
   };
 
   const handleToProjectPost = () => {
-    postProject({ projectname }).then((res) => getData());
+    postProject({ projectname }).then((res) => {getData();res.code === 0? message.success(res.data,3):message.error(res.data,3)});
   };
 
   const handleToProjectEdit = (id: number, projectname: string) => {
@@ -131,6 +131,7 @@ export const ProjectManage = (props: Iprops) => {
     putProject({ id: ModalId, projectname: modalProjectname }).then((res) => {
       getData();
       setModalProjectname("");
+      res.code === 0? message.success(res.data,3):message.error(res.data,3)
     });
   };
 
@@ -142,7 +143,7 @@ export const ProjectManage = (props: Iprops) => {
         onCancel={() => setIsModalVisible(false)}
       >
         <Input.TextArea
-          rows={5}
+          rows={4}
           value={modalProjectname}
           onChange={(e) => setModalProjectname(e.target.value)}
           //   placeholder=""

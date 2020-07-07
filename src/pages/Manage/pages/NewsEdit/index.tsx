@@ -3,7 +3,7 @@
  * @author: xinguangtai
  * @Date: 2020-07-03 23:43:37
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-06 19:03:45
+ * @LastEditTime: 2020-07-07 09:18:40
  */
 import React, { useContext, useState, useEffect, useRef } from "react";
 
@@ -17,6 +17,7 @@ import "react-quill/dist/quill.snow.css";
 import $style from "./style.module.scss";
 
 import { Button, DatePicker, Input,message } from "antd";
+import { RSA_NO_PADDING } from "constants";
 
 // Quill.register("modules/imageResize", ImageResize);
 Quill.register("modules/resize", QuillResize);
@@ -82,11 +83,14 @@ export const NewsEdit = (props: any) => {
   const handleNewsPost = () => {
     const content = getHTML();
     if (newsId === -1) {
-      postNews({ date, name, content, lan: "CH" }).then(res => {
-        res.code === 0 ? message.success('新增成功', 3) : message.error(res.message, 3)
-      })
+      postNews({ date, name, content, lan: "CH" }).then(res=>{
+        console.log(res);
+        res.code === 0? message.success(res.data,3):message.error(res.data,3)
+      });
     } else {
-      putNews({ id: newsId, date, name, content, lan: "CH" });
+      putNews({ id: newsId, date, name, content, lan: "CH" }).then(res=>{
+        res.code === 0? message.success(res.data,3):message.error(res.data,3)
+      });
     }
   };
 
@@ -122,7 +126,7 @@ export const NewsEdit = (props: any) => {
 
   return (
     <>
-      <div>
+      <div id="news">
         <div
           style={{ display: "flex", alignItems: "center", marginTop: "30px" }}
         >
@@ -176,6 +180,7 @@ export const NewsEdit = (props: any) => {
 
 
       <Button
+        style={{marginTop:'90px'}}
         className={$style["submit"]}
         type="primary"
         onClick={handleNewsPost}

@@ -11,7 +11,7 @@ import { getGroupById } from "../../../../api/team";
 
 import $style from "./style.module.scss";
 
-import { Button, Input } from "antd";
+import { Button, Input ,message } from "antd";
 import axios from "axios";
 
 export const TeamEdit = (props: any) => {
@@ -40,6 +40,8 @@ export const TeamEdit = (props: any) => {
       url: "/api/crophe/group",
       data: formdata,
     }).then((res) => {
+      console.log(res);
+      res.data.code === 0? message.success(res.data.data,3):message.error(res.data.data,3)
       // getData();
       // 关闭页面
     });

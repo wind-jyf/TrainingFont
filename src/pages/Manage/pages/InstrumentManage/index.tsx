@@ -6,7 +6,7 @@
  * @LastEditTime: 2020-07-05 17:17:03
  */
 import React, { useEffect, useState, useCallback, useRef } from "react";
-import { Divider, Input, Table, Button, Upload } from "antd";
+import { Divider, Input, Table, Button, Upload ,message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 
 import {
@@ -66,7 +66,7 @@ export const InstrumentManage = (props: Iprops) => {
   const handleToTeamEdit = () => {};
 
   const handleToInstrumentDelete = (id: number, lan: "en-US" | "zh-CN") => {
-    deleteInstrumentById({ id, lan }).then((res) => getData());
+    deleteInstrumentById({ id, lan }).then((res) => {getData();res.code === 0? message.success(res.data,3):message.error(res.data,3)});
   };
 
 //   const handleToTeamPost = () => {

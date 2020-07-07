@@ -12,7 +12,7 @@ export async function postNews(data:any) {
     method: "post",
     data
   });
-  return res.data;
+  return res;
 }
 
 export async function getNewsById(data:any) {
