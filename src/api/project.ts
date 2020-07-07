@@ -20,7 +20,7 @@ export async function deleteProjectById(data:{id: number}) {
     method: "delete",
     data
   });
-  return res.data;
+  return res;
 }
 
 export async function postProject(data:{projectname: string}) {
@@ -28,7 +28,7 @@ export async function postProject(data:{projectname: string}) {
     method: "post",
     data
   });
-  return res.data;
+  return res;
 }
 
 export async function putProject(data:{id: number, projectname: string}) {
@@ -36,5 +36,5 @@ export async function putProject(data:{id: number, projectname: string}) {
     method: "put",
     data
   });
-  return res.data;
+  return res;
 }

@@ -20,5 +20,5 @@ export async function deleteArticle(data: { id: number }) {
     method: "delete",
     data,
   });
-  return res.data;
+  return res;
 }

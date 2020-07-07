@@ -16,7 +16,7 @@ import QuillResize from "quill-resize-module";
 import "react-quill/dist/quill.snow.css";
 import $style from "./style.module.scss";
 
-import { Button, DatePicker, Input } from "antd";
+import { Button, DatePicker, Input ,message } from "antd";
 
 // Quill.register("modules/imageResize", ImageResize);
 Quill.register("modules/resize", QuillResize);
@@ -79,7 +79,9 @@ export const InstrumentEdit = (props: any) => {
 
   const handleInstrumentPost = () => {
     const content = getHTML();
-    postiInstrument({ name, content, lan });
+    postiInstrument({ name, content, lan }).then(res=>{
+      res.code === 0? message.success(res.data,3):message.error(res.data,3)
+    });
     // if (newsId === -1) {
     //   postNews({ date, name, content, lan: "CH" });
     // } else {

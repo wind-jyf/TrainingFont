@@ -14,6 +14,7 @@ import {
   Upload,
   Pagination,
   Collapse,
+  message
 } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 
@@ -67,7 +68,7 @@ export const TeamManageEn = (props: Iprops) => {
   };
 
   const handleToTeamDelete = (id: number) => {
-    deleteTeamById({ id, lan: "en-US" }).then((res) => getData());
+    deleteTeamById({ id, lan: "en-US" }).then((res) => {getData();res.code === 0? message.success(res.data,3):message.error(res.data,3)});
   };
 
   const handlePageChange = (page: number, pageSize?: number) => {

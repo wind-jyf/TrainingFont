@@ -13,7 +13,7 @@ import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import $style from "./style.module.scss";
 
-import { Button, DatePicker, Input } from "antd";
+import { Button, DatePicker, Input ,message} from "antd";
 
 const modules = {
   toolbar: [
@@ -57,9 +57,13 @@ export const NewsEditEn = (props: any) => {
   const handleNewsPost = () => {
     const content = getHTML();
     if(newsId === -1) {
-      postNews({ date, name, content, lan: "CH" })
+      postNews({ date, name, content, lan: "CH" }).then(res=>{
+        res.code === 0? message.success(res.data,3):message.error(res.data,3)
+      })
     } else {
-      putNews({ id:newsId, date, name, content, lan: "CH" })
+      putNews({ id:newsId, date, name, content, lan: "CH" }).then(res=>{
+        res.code === 0? message.success(res.data,3):message.error(res.data,3)
+      })
     }
   };
 

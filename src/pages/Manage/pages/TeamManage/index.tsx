@@ -12,7 +12,7 @@ import React, {
   useRef,
   createElement,
 } from "react";
-import { Divider, Input, Table, Button, Upload } from "antd";
+import { Divider, Input, Table, Button, Upload ,message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 
 import { getGroupList, deleteTeamById } from "../../../../api/team";
@@ -61,7 +61,7 @@ export const TeamManage = (props: Iprops) => {
   };
 
   const handleToTeamDelete = (id: number) => {
-    deleteTeamById({ id, lan: "zh-CN" }).then((res) => getData());
+    deleteTeamById({ id, lan: "zh-CN" }).then((res) => {getData();res.code === 0? message.success(res.data,3):message.error(res.data,3)});
   };
 
   const handleToTeamPost = () => {
@@ -73,6 +73,8 @@ export const TeamManage = (props: Iprops) => {
     formdata.append("describe", description);
     formdata.append("name", name);
     //@ts-ignore
+    
+    
     for (const value of formdata.values()) {
       console.log(value);
     }
@@ -85,6 +87,7 @@ export const TeamManage = (props: Iprops) => {
       data: formdata,
     }).then((res) => {
       getData();
+      res.data.code === 0? message.success(res.data.data,3):message.error(res.data.data,3)
     });
     setFile(null);
     setName("");

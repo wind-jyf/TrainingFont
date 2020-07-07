@@ -6,6 +6,7 @@
  * @LastEditTime: 2020-07-04 23:33:34
  */
 import { request } from './http';
+import { resolve } from 'path';
 
 export async function getNewsList(data:any) {
   const res: any = await request('/newsList', {
@@ -28,7 +29,7 @@ export async function postNews(data:any) {
     method: "post",
     data
   });
-  return res.data;
+  return res;
 }
 
 export async function putNews(data:any) {
@@ -36,7 +37,7 @@ export async function putNews(data:any) {
     method: "put",
     data
   });
-  return res.data;
+  return res;
 }
 
 export async function deleteNews(data:any) {
@@ -44,5 +45,5 @@ export async function deleteNews(data:any) {
     method: "delete",
     data
   });
-  return res.data;
+  return res;
 }

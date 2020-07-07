@@ -32,7 +32,7 @@ export async function postiInstrument(data: {
     method: "post",
     data,
   });
-  return res.data;
+  return res;
 }
 
 export async function deleteInstrumentById(data: {
@@ -43,5 +43,5 @@ export async function deleteInstrumentById(data: {
     method: "delete",
     data,
   });
-  return res.data;
+  return res;
 }
