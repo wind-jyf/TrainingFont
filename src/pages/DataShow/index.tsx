@@ -10,20 +10,20 @@ interface Iprops {
     [key: string]: any;
 }
 
-const mySearchData = {
-    'type': 'rice',
-    'Year_item': '2013-drought',
-    'Accession_ID': '001(W062)',
-    'Condition': 'all'
-}
-
-
 /* const mySearchData = {
     'type': 'rice',
     'Year_item': '2013-drought',
     'Accession_ID': '001(W062)',
-    'Trait': 'E'
+    'Condition': 'all'
 } */
+
+
+const mySearchData = {
+    'type': 'rice',
+    'Year_item': '2013-drought',
+    'Acession_ID': '001(W062)',
+    'Trait': 'all'
+}
 
 export const DataShow = (props: Iprops) => {
 
