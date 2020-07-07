@@ -19,6 +19,10 @@ export const Upload = (props: Iprops) => {
     const [name, setName] = useState('');
     const [date, setDate] = useState('');
     const [file, setFile] = useState(new Blob());
+    const [loading2, setLoading2] = useState(false) as any;
+
+    const loading = fileList.length === 0;
+
 
     const handlePageInit = (res: any) => {
         const { fileList, pagination } = res;
@@ -58,7 +62,9 @@ export const Upload = (props: Iprops) => {
         form.append('name', name);
         form.append('date', date);
         form.append('file', file);
+        setLoading2(true);
         uploadFile(form).then((res) => {
+            setLoading2(false);
             if (res.code === 0) {
                 alert('上传成功');
             } else {
@@ -88,16 +94,16 @@ export const Upload = (props: Iprops) => {
         })
     }
 
-    const loading = fileList.length === 0;
-
     return (
         <div className={$style['downlaodWrapper']}>
-            <div className={$style['fileWrapper']}>
-                <label>数据简介: <input type="text" value={name} onChange={e => nameChanged(e)} /></label>
-                <label>上传日期: <input type="text" placeholder="例：2020-01-01" value={date} onChange={e => dateChanged(e)} /></label>
-                <label><input id="file" type="file" onChange={e => fileChanged(e)} /></label>
-                <button onClick={() => { submit() }}> 上传 </button>
-            </div>
+            <Spin spinning={loading2} tip="正在上传中...">
+                <div className={$style['fileWrapper']}>
+                    <label>数据简介: <input type="text" value={name} onChange={e => nameChanged(e)} /></label>
+                    <label>上传日期: <input type="text" placeholder="例：2020-01-01" value={date} onChange={e => dateChanged(e)} /></label>
+                    <label className={$style['fileButton']} > <input id="file" type="file" onChange={e => fileChanged(e)} /></label>
+                    <button onClick={() => { submit() }}> 上传 </button>
+                </div>
+            </Spin>
             <Spin spinning={loading}>
                 <div className={$style['table-title']}>
                     <div className={`${$style['table-title-long']} ${$style['table-title-color']}`}>data</div>
@@ -130,6 +136,6 @@ export const Upload = (props: Iprops) => {
                     onChange={handlePageChange}
                 />
             </Spin>
-        </div>
+        </div >
     )
 }
