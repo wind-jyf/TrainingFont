@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Menus } from "../Menu";
+// import { Menus } from "../Menu";
 import $style from "./style.module.scss";
 
 interface IProps {
@@ -11,7 +11,7 @@ export const Layout = (props:IProps) => {
   return (
     <div className={$style["layoutContainer"]}>
       <div className={$style["menuContainer"]}>
-        <Menus/>
+        {/* <Menus/> */}
       </div>
       <div className={$style["mainContainer"]}>
         {props.children}
