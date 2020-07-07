@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Select, Input, Button, Menu, Typography} from 'antd';
+import { Form, Select, Input, Button, Menu, Typography } from 'antd';
 import { Link } from "react-router-dom";
 import $style from "./style.module.scss";
 import { Note } from '../../components/Note';
 
 import { SearchPanel } from '../../components/SearchPanel';
 import { getCategory } from '../../../../api/admin';
-import { getImgCategory , getDataCategory} from '../../../../api/userDataPart';
+import { getImgCategory, getDataCategory } from '../../../../api/userDataPart';
+import ColumnGroup from 'antd/lib/table/ColumnGroup';
 
 const { Option } = Select;
 const { TextArea } = Input;
 const { SubMenu } = Menu;
-const { Title } = Typography;  
+const { Title } = Typography;
 
 interface IProps {
   [key: string]: any;
@@ -19,70 +20,109 @@ interface IProps {
 let category: any = []
 let categoryArray: any = []
 let keywords = ''   //如果不是因为textarea那里面的defaultValue不能设置表达式，谁又愿意设置这个变量呢
-let DataPath = {
-  pathname: 'adminRice/addRiceData',
-  query: {key:'',itemObject:{}},
+let DataPath: any = {
+  pathname: '/dataShow/data',
+  query: {},
 }
-let ImagePath = {
-  pathname: 'adminRice/addRiceImages',
-  query: {key:'',itemObject:{}},
+let ImagePath: any = {
+  pathname: '/dataShow/image',
+  query: {},
+}
+let DataPathCopy: any = {
+  pathname: '/dataShow/data',
+  query: [],
+}
+let ImagePathCopy: any = {
+  pathname: '/dataShow/image',
+  query: [],
 }
 
+DataPath.query.type = 'rice'
+ImagePath.query.type = 'rice'
+
+let ImagePathQueryArray: any = []
+let DataPathQueryArray: any = []
 const Menu_left = (props: IProps) => {
-  const { yearImages, yearData, dataCategory, imageCategory, handleCategory, handleIsDataOrImages,handleDirectoryList } = props;
+  const { yearImages, yearData, dataCategory, imageCategory, handleCategory, handleIsDataOrImages, handleDirectoryList } = props;
   console.log("handleCategory:", handleCategory);
 
   const [currentMenuItem, setCurrentMenuItem] = useState('') as any
 
-  console.log("yearImages123:", yearImages);
-  console.log("dataCategory123:", dataCategory);
-  console.log("imgCategory123:", imageCategory);
 
   const handleClick = (e: any) => {
     setCurrentMenuItem(e.key)
 
-    let Year_item=e.key.split(':')[1]
-    console.log('e.key.split[0] :>> ', e.key.split(':')[0],e.key.split(':')[0]=='images',e.key.split(':')[0]=='data');
-    if(e.key.split(':')[0]=='images'){
+    let Year_item = e.key.split(':')[1]
+    console.log('e.key.split[1] :>> ', e.key.split(':')[1], e.key.split(':')[0] == 'images', e.key.split(':')[0] == 'data');
+    if (e.key.split(':')[0] == 'images') {
+      ImagePathQueryArray = []
+      ImagePathQueryArray.push({ type: 'rice' })
 
-      getImgCategory({type:'rice',Year_item:Year_item}).then(res=>{
+      ImagePath.query['Year_item'] = Year_item
+      ImagePathQueryArray.push({ 'Year_item': Year_item })
+
+      handleIsDataOrImages(true)
+
+      imageCategory && imageCategory.forEach((item: any) => {
+        if (e.key.includes(item.Year_item)) {
+          category = item
+          keywords = category.key_name + ':' + category.key_type
+          handleCategory(category)
+        }
+      })
+
+      getImgCategory({ type: 'rice', Year_item: Year_item }).then(res => {
         console.log('getImgCategory :>> ', res);
         handleDirectoryList(res)
+        res.forEach((item: any) => {
+          ImagePath.query[item.title] = item.array[0]
+          // let title = item.title
+          // let value = item.array[0]
+          let obj: any = {}
+          obj[item.title] = item.array[0]
+          ImagePathQueryArray.push(obj)
+        })
+        ImagePathCopy.query = ImagePathQueryArray
+        console.log('ImagePathCopy2 :>> ', ImagePathCopy.query);
       })
-    }else{
-      getDataCategory({type:'rice',Year_item:Year_item}).then(res=>{
-        console.log('getDataCategory :>> ', res);
-        handleDirectoryList(res)
-      })
-    }
+    } else {
 
+      DataPathQueryArray = []
+      DataPathQueryArray.push({ type: 'rice' })
 
-    console.log("e:", e);
-    if (e.key.includes('data')) {
-      DataPath.query.key = e.key
+      DataPath.query['Year_item'] = Year_item
+      DataPathQueryArray.push({ 'Year_item': Year_item })
+
       handleIsDataOrImages(false)
       dataCategory && dataCategory.forEach((item: any) => {
         if (e.key.includes(item.Year_item)) {
           category = item
-          DataPath.query.itemObject = category
-
           keywords = category.key_name + ':' + category.key_type
           handleCategory(category)
           console.log("categorydata:", category);
         }
       })
-    } else {
-      ImagePath.query.key = e.key
-      handleIsDataOrImages(true)
-      imageCategory && imageCategory.forEach((item: any) => {
-        if (e.key.includes(item.Year_item)) {
-          category = item
-          ImagePath.query.itemObject = category
-          keywords = category.key_name + ':' + category.key_type
-          handleCategory(category)
-          console.log("categoryImage:", category);
-        }
+      getDataCategory({ type: 'rice', Year_item: Year_item }).then(res => {
+        console.log('getDataCategory :>> ', res);
+        handleDirectoryList(res)
+        res.forEach((item: any) => {
+          DataPath.query[item.title] = item.array[0]
+          // let title = item.title
+          // let value = item.array[0]
+          let obj: any = {}
+          obj[item.title] = item.array[0]
+          DataPathQueryArray.push(obj)
+        })
+        DataPathCopy.query = DataPathQueryArray
+        console.log('DataPathCopy2 :>> ', DataPathCopy.query);
       })
+    }
+
+
+    if (e.key.includes('data')) {
+
+    } else {
+
     }
   }
 
@@ -90,7 +130,6 @@ const Menu_left = (props: IProps) => {
     console.log("yearImages:", yearImages);
     if (yearImages && yearImages[0]) {
       setCurrentMenuItem('images:' + String(yearImages[0]))
-      ImagePath.query.key ='images:'+String(yearImages[0])
     }
   }, [yearImages]);
 
@@ -152,13 +191,28 @@ export const Rice = (year: string) => {
       setImageCategory(res.image);
 
       category = res.image[0]   //初始目录
-      getImgCategory({type:'rice',Year_item:category.Year_item}).then(res=>{
+      getImgCategory({ type: 'rice', Year_item: category.Year_item }).then(res => {
         console.log('getImgCategory :>> ', res);
         setDirectoryList(res)
+        ImagePathQueryArray = []
+        ImagePathQueryArray.push({ 'type': 'rice' })
+        ImagePathQueryArray.push({ 'Year_item': category.Year_item })
+        res.forEach((item: any) => {
+          console.log('res 6666:>> ', res);
+          ImagePath.query[item.title] = item.array[0]
+          ImagePath.query['Year_item'] = category.Year_item
+          // let title = item.title
+          // let value = item.array[0]
+          let obj:any={}
+          obj[item.title]=item.array[0]
+          ImagePathQueryArray.push(obj)
+        })
+        ImagePathCopy.query = ImagePathQueryArray
+        console.log('ImagePathCopyFirst :>> ', ImagePathCopy.query);
       })
-      ImagePath.query.itemObject = category
+
       console.log("初始目录:", category);
-      keywords = category&&category.key_name + ':' + category&&category.key_type
+      keywords = category && category.key_name + ':' + category && category.key_type
       setItemObject(category)
       for (let key in category) {
         if (category[key] !== null && key.includes('category')) {
@@ -182,13 +236,23 @@ export const Rice = (year: string) => {
   const handleCategory = (item: any) => {
     setItemObject(item)
   }
-  const handleDirectoryList = (item:any) =>{
+  const handleDirectoryList = (item: any) => {
     setDirectoryList(item)
   }
   const handleIsDataOrImages = (isImage: boolean) => {
     setIsDataOrImages(isImage)
-  }
 
+  }
+  const handleSelect = (e: any, title: any) => {
+    console.log('handleSelect :>> ', e.target.value, title);
+    if (isDataOrImages) {
+      ImagePath.query[title] = e.target.value
+      console.log('ImagePath :>> ', ImagePath.query);
+    } else {
+      DataPath.query[title] = e.target.value
+      console.log('DataPath :>> ', DataPath.query);
+    }
+  }
 
   // const handleAddDirectory = () => {
   //   let temdirectoryList = directoryList.slice()
@@ -203,36 +267,41 @@ export const Rice = (year: string) => {
 
   useEffect(() => {
     getCategoryData()
+    console.log('DataPath :>> ', DataPath.query);
+    console.log('ImagePath :>> ', ImagePath.query);
   }, []);
 
   const formContent = (
     <div className={$style['leftWrapper']}>
       <Menu_left yearImages={imageYear} yearData={dataYear} dataCategory={dataCategory} imageCategory={imageCategory} handleCategory={handleCategory} handleIsDataOrImages={handleIsDataOrImages} handleDirectoryList={handleDirectoryList} >
       </Menu_left>
+      <Button type="primary"><Link to={'/download'}>下载</Link></Button>
     </div>
   )
 
   const rightContent = (
     <div className={$style['rightWrapper']}>
-    <Note html={itemObject&&itemObject.note}></Note>
+      <Note html={itemObject && itemObject.note}></Note>
 
-    <div className={$style['directories']}>
-      {directoryList.map((items: any, index: number) =>
-        <div className={$style['QueryDirectories']}>
-          <Title level={4}>{items.title}</Title>
-          <select name="directory" size={10} >
-            {items.array.map((item_each: any) => <option value={item_each}>{item_each}</option>)}
-          </select>
-        </div>
-      )}
+      <div className={$style['directories']}>
+        {directoryList.map((items: any, index: number) =>
+          <div className={$style['QueryDirectories']}>
+            <Title level={4}>{items.title}</Title>
+            <select name="directory" size={10} onChange={(e) => handleSelect(e, items.title)}>
+              {items.array.map((item_each: any, indexEach: any) => <option value={item_each} selected={indexEach == 0 ? true : false}>{item_each}</option>)}
+            </select>
+          </div>
+        )}
 
-    </div>
+      </div>
 
-    <div className={$style['buttons']}>
-      <Button type="primary" >Search images</Button>
-      <Button type="primary" >Search data</Button>
-    </div>
-  </div >
+      <div className={$style['buttons']}>
+        {isDataOrImages && <Button type="primary" ><Link to={ImagePathCopy}>Search images</Link></Button>}
+        {!isDataOrImages && <Button type="primary" ><Link to={DataPathCopy}>Search data</Link></Button>}
+        {/* 下面这个判断是为了在左边data菜单年份为空时也能显示出新增数据按钮 */}
+        {!dataCategory[0] && <Button type="primary" ><Link to={DataPathCopy}>Search data</Link></Button>}
+      </div>
+    </div >
   )
 
 
