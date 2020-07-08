@@ -64,7 +64,7 @@ const Menu_left = (props: IProps) => {
     >
       <SubMenu key="Maize(Data)" title="Maize(Data)" className={$style['subMenu']}>
         {/* {yearImages.map((item: any, index: any) => <Menu.Item key={'images:' + item} >{item}</Menu.Item>)} */}
-        <Menu.Item key={YearKey}  className={$style['menuItem']}>{YearKey}</Menu.Item>
+        <Menu.Item key={YearKey} className={$style['menuItem']}>{YearKey}</Menu.Item>
       </SubMenu>
     </Menu>
   )
@@ -223,7 +223,7 @@ export const ChangeMaizeData = (props: IProps) => {
           window.localStorage.setItem('category', JSON.stringify(condition))
           window.localStorage.setItem('categoryArray', JSON.stringify(categoryArray))
           window.localStorage.setItem('YearKey', JSON.stringify(condition.Year_item))
-          window.location.reload()
+          // window.location.reload()
         } else {
           message.error('修改失败')
         }
@@ -254,7 +254,7 @@ export const ChangeMaizeData = (props: IProps) => {
     } else {
       let tempCategory = window.localStorage.getItem('category');
       let tempCategoryArray = window.localStorage.getItem('categoryArray');
- 
+
       console.log('categoryArray :>> ', tempCategoryArray);
       if (tempCategory != null && tempCategoryArray != null) {
         setItemObject(JSON.parse(tempCategory));

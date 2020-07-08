@@ -223,7 +223,7 @@ export const ChangeCottonData = (props: IProps) => {
           window.localStorage.setItem('category', JSON.stringify(condition))
           window.localStorage.setItem('categoryArray', JSON.stringify(categoryArray))
           window.localStorage.setItem('YearKey', JSON.stringify(condition.Year_item))
-          window.location.reload()
+          // window.location.reload()
         } else {
           message.error('修改失败')
         }
@@ -254,7 +254,7 @@ export const ChangeCottonData = (props: IProps) => {
     } else {
       let tempCategory = window.localStorage.getItem('category');
       let tempCategoryArray = window.localStorage.getItem('categoryArray');
- 
+
       console.log('categoryArray :>> ', tempCategoryArray);
       if (tempCategory != null && tempCategoryArray != null) {
         setItemObject(JSON.parse(tempCategory));

@@ -64,7 +64,7 @@ const Menu_left = (props: IProps) => {
     >
       <SubMenu key="Rape(Data)" title="Rape(Data)" className={$style['subMenu']}>
         {/* {yearImages.map((item: any, index: any) => <Menu.Item key={'images:' + item} >{item}</Menu.Item>)} */}
-        <Menu.Item key={YearKey}  className={$style['menuItem']}>{YearKey}</Menu.Item>
+        <Menu.Item key={YearKey} className={$style['menuItem']}>{YearKey}</Menu.Item>
       </SubMenu>
     </Menu>
   )
@@ -223,7 +223,7 @@ export const ChangeRapeData = (props: IProps) => {
           window.localStorage.setItem('category', JSON.stringify(condition))
           window.localStorage.setItem('categoryArray', JSON.stringify(categoryArray))
           window.localStorage.setItem('YearKey', JSON.stringify(condition.Year_item))
-          window.location.reload()
+          // window.location.reload()
         } else {
           message.error('修改失败')
         }
@@ -254,7 +254,7 @@ export const ChangeRapeData = (props: IProps) => {
     } else {
       let tempCategory = window.localStorage.getItem('category');
       let tempCategoryArray = window.localStorage.getItem('categoryArray');
- 
+
       console.log('categoryArray :>> ', tempCategoryArray);
       if (tempCategory != null && tempCategoryArray != null) {
         setItemObject(JSON.parse(tempCategory));
@@ -277,7 +277,7 @@ export const ChangeRapeData = (props: IProps) => {
       <Form form={form} layout='inline'>
         <Form.Item label='请输入说明:' rules={[{ required: true, message: 'Year is required' }]} >
           {/* <textarea rows={4} cols={50} defaultValue={itemObject.note} onChange={handleNote}></textarea> */}
-          <TextArea rows={4} cols={50}  value={itemObject.note} onChange={handleNote} />
+          <TextArea rows={4} cols={50} value={itemObject.note} onChange={handleNote} />
         </Form.Item>
       </Form>
 
@@ -305,7 +305,7 @@ export const ChangeRapeData = (props: IProps) => {
           <Form form={form} layout='inline' className={$style['firstQueryDirectory_left']} >
             <Form.Item label='请输入查询列的关键字:' rules={[{ required: true, message: '关键字不能为空' }]} >
               {/* <textarea rows={2} cols={20} defaultValue={keywords} onChange={handleKeyWords}></textarea> */}
-              <TextArea rows={2} cols={20}  value={itemObject.key_name + ':' + itemObject.key_type} onChange={handleKeyWords} />
+              <TextArea rows={2} cols={20} value={itemObject.key_name + ':' + itemObject.key_type} onChange={handleKeyWords} />
             </Form.Item>
           </Form>
         </div>
