@@ -53,7 +53,7 @@ export const DataShow = (props: Iprops) => {
       getDataData({
         searchData: mySearchData
       }).then(res => {
-        const xArr = [], yArr = [], valueArr = [];
+        const xArr:any = [], yArr:any = [], valueArr:any = [];
         setData(res);
         const dataObj: any = res[0];
         let index = 0;
