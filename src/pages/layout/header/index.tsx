@@ -186,8 +186,10 @@ export const Header = (props: Iprops) => {
                     <span className={$style["triangle"]} />
                   </p>
                 </Dropdown>
+                <div style={{marginLeft:'30%'}}>
+                <Login/>
+                </div>
             </div>
-              <Login/>
           </div>
         </div>
         <div className={$style['header']}>
