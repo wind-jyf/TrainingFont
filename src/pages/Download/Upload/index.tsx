@@ -3,6 +3,7 @@ import $style from './style.module.scss';
 
 import { Pagination, Spin, message } from 'antd';
 import { getDownloadList, uploadFile, deleteFileById } from '../../../api/data';
+import { Back } from '../../components/Back';
 
 interface Iprops {
   [key: string]: any;
@@ -99,8 +100,13 @@ export const Upload = (props: Iprops) => {
     })
   }
 
+  const backClick: any = () => {
+    window.history.go(-1);
+  }
+
   return (
     <div className={$style['downlaodWrapper']}>
+      <Back />
       <Spin spinning={loading2} tip="正在上传中...">
         <div className={$style['fileWrapper']}>
           <label>数据简介: <input type="text" value={name} onChange={e => nameChanged(e)} /></label>
@@ -109,10 +115,11 @@ export const Upload = (props: Iprops) => {
           <button onClick={() => submit()}> 上传 </button>
         </div>
       </Spin>
+
       <Spin spinning={loading}>
         <div className={$style['table-title']}>
-          <div className={`${$style['table-title-long']} ${$style['table-title-color']}`}>data</div>
-          <div className={`${$style['table-item-short']} ${$style['table-title-color']}`}>date</div>
+          <div className={`${$style['table-title-long']} ${$style['table-title-color']}`}>Data</div>
+          <div className={`${$style['table-item-short']} ${$style['table-title-color']}`}>Date</div>
           <div className={`${$style['table-item-short']} ${$style['table-title-color']}`}>操作</div>
         </div>
         {

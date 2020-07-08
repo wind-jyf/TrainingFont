@@ -1,0 +1,17 @@
+.backButton {
+    position: absolute;
+    top: 600px;
+    left: 20px;
+    color: white;
+    font-size: 18px;
+
+    button {
+        cursor: pointer;
+        background: #4bb344;
+        border-radius: 5px;
+        border: 1px solid #4bb344;
+        line-height: 35px;
+        width: 150px;
+        text-align: center;
+    }
+}

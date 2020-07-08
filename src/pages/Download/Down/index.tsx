@@ -4,7 +4,7 @@ import $style from './style.module.scss';
 import { Pagination, Spin } from 'antd';
 import { getDownloadList } from '../../../api/data';
 import download from '../../../img/download.png';
-
+import { Back } from '../../components/Back';
 
 interface Iprops {
     [key: string]: any;
@@ -41,15 +41,20 @@ export const Down = (props: Iprops) => {
         })
     }
 
+    const backClick: any = () => {
+        window.history.go(-1);
+    }
+
     const loading = fileList.length === 0;
 
     return (
         <div className={$style['downlaodWrapper']}>
+            <Back />
             <Spin spinning={loading}>
                 <div className={$style['table-title']}>
-                    <div className={`${$style['table-title-long']} ${$style['table-title-color']}`}>data</div>
-                    <div className={`${$style['table-item-short']} ${$style['table-title-color']}`}>date</div>
-                    <div className={`${$style['table-item-short']} ${$style['table-title-color']}`}>download</div>
+                    <div className={`${$style['table-title-long']} ${$style['table-title-color']}`}>Data</div>
+                    <div className={`${$style['table-item-short']} ${$style['table-title-color']}`}>Date</div>
+                    <div className={`${$style['table-item-short']} ${$style['table-title-color']}`}>Download</div>
                 </div>
                 {
                     loading ? null :

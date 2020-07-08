@@ -5,26 +5,11 @@ import { getImgData, getDataData } from '../../api/data';
 import { ImgDisplayer } from './components/ImgDisplayer';
 import { DataDisplayer } from './components/dataDisplayer';
 import { LineMarkerEcharts } from './components/dataEcharts';
+import { Back } from '../components/Back';
 
 interface Iprops {
   [key: string]: any;
 }
-
-/* const mySearchData = [
-  { 'type': 'rice' },
-  { 'Year_item': '2013-drought' },
-  { 'Accession_ID': '001(W062)' },
-  { 'Condition': 'before stress' },
-  { 'Trait': 'C' }
-] */
-
-
-// const mySearchData = {
-//     'type': 'rice',
-//     'Year_item': '2013-drought',
-//     'Acession_ID': '001(W062)',
-//     'Trait': 'all'
-// }
 
 export const DataShow = (props: Iprops) => {
 
@@ -34,7 +19,7 @@ export const DataShow = (props: Iprops) => {
   console.log('locationQuery :>> ', location);
   if (!location.query) {
     window.location.href = '/'
-  }   
+  }
   const mySearchData = location.query
   const [img, setImg] = useState([]) as any;
   const [data, setData] = useState([]) as any;
@@ -54,7 +39,7 @@ export const DataShow = (props: Iprops) => {
       getDataData({
         searchData: mySearchData
       }).then(res => {
-        const xArr:any = [], yArr:any = [], valueArr:any = [];
+        const xArr: any = [], yArr: any = [], valueArr: any = [];
         setData(res);
         const dataObj: any = res[0];
         let index = 0;
@@ -78,13 +63,14 @@ export const DataShow = (props: Iprops) => {
 
   return (
     <div>
+      <Back />
       <p className={$style['data-title']}>{mySearchData[0].type}-{mySearchData[1].Year_item}</p>
       {
         isImage
           ? <div className={$style['pictureShow']}>
             <ImgDisplayer
               data={img}
-              rotate={'rotate(-90deg)'}
+              rotate={'rotate(0)'}
             />
           </div>
           : <div className={$style['dataShow']}>
