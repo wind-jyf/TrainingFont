@@ -112,11 +112,11 @@ const Menu_left = (props: IProps) => {
       selectedKeys={[currentMenuItem]}
       onClick={handleClick}
     >
-      <SubMenu key="Rice(Images):" title="Rice(Images):">
-        {yearImages.map((item: any, index: any) => <Menu.Item key={'images:' + item} >{item}</Menu.Item>)}
+      <SubMenu key="Rice(Images):" title="Rice(Images):" className={$style['subMenu']}>
+        {yearImages.map((item: any, index: any) => <Menu.Item key={'images:' + item}  className={$style['menuItem']}>{item}</Menu.Item>)}
       </SubMenu>
-      <SubMenu key="Rice(Data):" title="Rice(Data):">
-        {yearData.map((item: any, index: any) => <Menu.Item key={'data:' + item} >{item}</Menu.Item>)}
+      <SubMenu key="Rice(Data):" title="Rice(Data):" className={$style['subMenu']}>
+        {yearData.map((item: any, index: any) => <Menu.Item key={'data:' + item}  className={$style['menuItem']}>{item}</Menu.Item>)}
       </SubMenu>
     </Menu>
   )

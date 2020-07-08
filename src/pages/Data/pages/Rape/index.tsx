@@ -56,11 +56,11 @@ const Menu_left = (props: IProps) => {
       selectedKeys={[currentMenuItem]}
       onClick={handleClick}
     >
-      <SubMenu key="Rape(Images):" title="Rape(Images):">
-        {yearImages.map((item: any, index: any) => <Menu.Item key={item.s_id+5} >{item.s_year}</Menu.Item>)}
+      <SubMenu key="Rape(Images):" title="Rape(Images):" className={$style['subMenu']}>
+        {yearImages.map((item: any, index: any) => <Menu.Item key={item.s_id+5}  className={$style['menuItem']}>{item.s_year}</Menu.Item>)}
       </SubMenu>
-      <SubMenu key="Rape(Data):" title="Rape(Data):">
-        {yearData.map((item: any, index: any) => <Menu.Item key={item.s_id} >{item.s_year}</Menu.Item>)}
+      <SubMenu key="Rape(Data):" title="Rape(Data):" className={$style['subMenu']}>
+        {yearData.map((item: any, index: any) => <Menu.Item key={item.s_id}  className={$style['menuItem']}>{item.s_year}</Menu.Item>)}
       </SubMenu>
     </Menu>
   )
@@ -119,8 +119,8 @@ export const Rape = (type: string) => {
       <div className={$style['directories']}>
         {directoryList.map((items: any, index: number) =>
           <div className={$style['QueryDirectories']}>
-            <Title level={4}>目录{index}</Title>
-            <select name="directory" size={10} >
+            <Title level={4} className={$style['category']}>目录{index}</Title>
+            <select name="directory" size={5} >
               { items.map((item_each: any) => <option value={item_each}>{item_each}</option>) }
             </select>
           </div>

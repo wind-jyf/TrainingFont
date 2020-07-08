@@ -5,6 +5,7 @@ import $style from "./style.module.scss";
 
 import { SearchPanel } from '../../components/SearchPanel';
 import { getCategory, addDataCategory } from '../../../../api/admin';
+import { PresetColorTypes } from 'antd/lib/_util/colors';
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -61,7 +62,7 @@ const Menu_left = (props: IProps) => {
       selectedKeys={[currentMenuItem]}
     // onClick={handleClick}
     >
-      <SubMenu key="Cotton(Images):" title="Cotton(Images):">
+      <SubMenu key="Cotton(Images):" title="Cotton(Images):" className={$style['subMenu']}>
         {/* {yearImages.map((item: any, index: any) => <Menu.Item key={'images:' + item} >{item}</Menu.Item>)} */}
         {/* <Menu.Item key={YearKey} >{YearKey}</Menu.Item> */}
       </SubMenu>

@@ -13,11 +13,13 @@
 }
 
 .rightWrapper{
-  flex:7;
+  flex:6;
   margin-left: 50px;
   .directories{
     display: flex;
     flex-wrap: wrap;
+    padding: 16px;
+    margin-right: 250px;
     .firstQueryDirectory{
       display: flex;  
       width: 30%;
@@ -26,7 +28,29 @@
     .QueryDirectories{
       width: 20%;
       select{
-        width: 50%;
+        width: 85%;
+        border: none;
+        font-size: 16px;
+        overflow: auto;
+        outline: none;
+      }
+      .category{
+        width: 85%;
+        background-color: #43b344;
+        color: #fff;
+        font-size: 20px;
+        padding: 1px 0 1px 5px;
+        &::after{
+          content: "";
+          width: 15px;
+          height: 15px;
+          margin: 2px 8px 0 0;
+          display: block;
+          border-top: 2px solid #fff;
+          border-left: 2px solid #fff;
+          transform: rotate(-135deg);
+          float: right;
+        }
       }
     }
     
@@ -38,6 +62,30 @@
     align-items: center;
     button{
       margin: 10px;
+      background-color: #43b344;
+      color: #fff;
+      font-size: 16px;
+      outline: none;
+      border-color: #fff;
+      border-radius: 3px;
+    }
+  }
+}
+.subMenu{
+  border-radius: 0;
+  background-color: #43b344;
+  color: #fff;
+  font-size: 16px;
+  .menuItem{
+    color: #000;
+    font-size: 14px;
+  }
+  :global{
+    .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected{
+      background-color: rgb(197, 253, 214);
+      &::after{
+        border-right: 3px solid #43b343;
+      }
     }
   }
 }

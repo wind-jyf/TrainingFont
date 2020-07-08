@@ -56,11 +56,11 @@ const Menu_left = (props: IProps) => {
       selectedKeys={[currentMenuItem]}
       onClick={handleClick}
     >
-      <SubMenu key="Cotton(Images):" title="Cotton(Images):">
-        {yearImages.map((item: any, index: any) => <Menu.Item key={item.s_id+5} >{item.s_year}</Menu.Item>)}
+      <SubMenu key="Cotton(Images):" title="Cotton(Images):" className={$style['subMenu']}>
+        {yearImages.map((item: any, index: any) => <Menu.Item key={item.s_id+5}  className={$style['menuItem']}>{item.s_year}</Menu.Item>)}
       </SubMenu>
-      <SubMenu key="Cotton(Data):" title="Cotton(Data):">
-        {yearData.map((item: any, index: any) => <Menu.Item key={item.s_id} >{item.s_year}</Menu.Item>)}
+      <SubMenu key="Cotton(Data):" title="Cotton(Data):" className={$style['subMenu']}>
+        {yearData.map((item: any, index: any) => <Menu.Item key={item.s_id}  className={$style['menuItem']}>{item.s_year}</Menu.Item>)}
       </SubMenu>
     </Menu>
   )
@@ -119,8 +119,8 @@ export const Cotton = (type: string) => {
       <div className={$style['directories']}>
         {directoryList.map((items: any, index: number) =>
           <div className={$style['QueryDirectories']}>
-            <Title level={4}>目录{index}</Title>
-            <select name="directory" size={10} >
+            <Title level={4} className={$style['category']}>Accession ID</Title>
+            <select name="directory" size={5} >
               { items.map((item_each: any) => <option value={item_each}>{item_each}</option>) }
             </select>
           </div>
@@ -144,8 +144,8 @@ export const Cotton = (type: string) => {
       </div>
 
       <div className={$style['buttons']}>
-        <Button type="primary" >Search images</Button>
-        <Button type="primary" >Search data</Button>
+        <Button type="primary" className={$style['botton']}>Search images</Button>
+        <Button type="primary" className={$style['botton']}>Search data</Button>
       </div>
     </div >
   )
