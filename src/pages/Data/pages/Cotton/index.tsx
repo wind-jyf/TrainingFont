@@ -141,10 +141,10 @@ const Menu_left = (props: IProps) => {
       onClick={handleClick}
     >
       <SubMenu key="Cotton(Images):" title="Cotton(Images):" className={$style['subMenu']}>
-        {yearImages.map((item: any, index: any) => <Menu.Item key={item.s_id + 5} className={$style['menuItem']}>{item.s_year}</Menu.Item>)}
+        {yearImages.map((item: any, index: any) => <Menu.Item key={'images:' + item} className={$style['menuItem']}>{item}</Menu.Item>)}
       </SubMenu>
       <SubMenu key="Cotton(Data):" title="Cotton(Data):" className={$style['subMenu']}>
-        {yearData.map((item: any, index: any) => <Menu.Item key={item.s_id} className={$style['menuItem']}>{item.s_year}</Menu.Item>)}
+        {yearData.map((item: any, index: any) => <Menu.Item key={'data:' + item} className={$style['menuItem']}>{item}</Menu.Item>)}
       </SubMenu>
     </Menu>
   )
@@ -287,7 +287,7 @@ export const Cotton = (year: string) => {
         {directoryList.map((items: any, index: number) =>
           <div className={$style['QueryDirectories']}>
             <Title level={4} className={$style['category']}>{items.title}</Title>
-            <select name="directory" size={10} onChange={(e) => handleSelect(e, items.title)}>
+            <select name="directory" size={5} onChange={(e) => handleSelect(e, items.title)}>
               {items.array.map((item_each: any, indexEach: any) => <option value={item_each} selected={indexEach == 0 ? true : false}>{item_each}</option>)}
             </select>
           </div>

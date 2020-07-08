@@ -1,48 +1,62 @@
-.ManageWrapper{
+.ManageWrapper {
   display: flex;
   background: #fff;
   border: 1px solid #e6e6e6;
-  box-shadow: 0 1px 4px 0 rgba(0,0,0,.1);
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .1);
   border-radius: 6px;
   padding: 16px;
 }
 
-.leftWrapper{
-  flex:3;
-  button{
+.leftWrapper {
+  flex: 3;
+
+  button {
     width: 100%;
+    background-color: #43b344;
+    border-color: #fff;
+
+    &:hover {
+      background-color: #43b344;
+      border-color: #fff;
+    }
   }
 }
 
-.rightWrapper{
-  flex:6;
+.rightWrapper {
+  flex: 6;
   margin-left: 50px;
-  .directories{
+
+  .directories {
     display: flex;
     flex-wrap: wrap;
     padding: 16px;
     margin-right: 250px;
-    .firstQueryDirectory{
-      display: flex;  
+
+    .firstQueryDirectory {
+      display: flex;
       width: 30%;
       height: 100px;
     }
-    .QueryDirectories{
+
+    .QueryDirectories {
       width: 20%;
-      select{
+
+      select {
         width: 85%;
         border: none;
         font-size: 16px;
         overflow: auto;
         outline: none;
       }
-      .category{
+
+      .category {
         width: 85%;
         background-color: #43b344;
         color: #fff;
         font-size: 20px;
         padding: 1px 0 1px 5px;
-        &::after{
+
+        &::after {
           content: "";
           width: 15px;
           height: 15px;
@@ -55,14 +69,16 @@
         }
       }
     }
-    
+
   }
-  .buttons{
+
+  .buttons {
     display: flex;
     margin: 20px;
-    justify-content:flex-start;
+    justify-content: flex-start;
     align-items: center;
-    button{
+
+    button {
       margin: 10px;
       background-color: #43b344;
       color: #fff;
@@ -73,19 +89,23 @@
     }
   }
 }
-.subMenu{
+
+.subMenu {
   border-radius: 0;
   background-color: #43b344;
   color: #fff;
   font-size: 16px;
-  .menuItem{
+
+  .menuItem {
     color: #000;
     font-size: 14px;
   }
-  :global{
-    .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected{
+
+  :global {
+    .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
       background-color: rgb(197, 253, 214);
-      &::after{
+
+      &::after {
         border-right: 3px solid #43b343;
       }
     }

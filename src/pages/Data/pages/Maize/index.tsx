@@ -287,7 +287,7 @@ export const Maize = (year: string) => {
         {directoryList.map((items: any, index: number) =>
           <div className={$style['QueryDirectories']}>
             <Title level={4} className={$style['category']}>{items.title}</Title>
-            <select name="directory" size={10} onChange={(e) => handleSelect(e, items.title)}>
+            <select name="directory" size={5} onChange={(e) => handleSelect(e, items.title)}>
               {items.array.map((item_each: any, indexEach: any) => <option value={item_each} selected={indexEach == 0 ? true : false}>{item_each}</option>)}
             </select>
           </div>
