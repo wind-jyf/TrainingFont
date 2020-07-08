@@ -56,7 +56,7 @@ const Menu_left = (props: IProps) => {
           category = item
           DataPath.query.itemObject = category
           ChangeDataPath.query.itemObject = category
-          let categoryArrayCopy = []
+          let categoryArrayCopy:any = []
           for (let key in category) {
             if (category[key] !== null && key.includes('category')) {
               categoryArrayCopy.push(category[key])
@@ -79,7 +79,7 @@ const Menu_left = (props: IProps) => {
           category = item
           ImagePath.query.itemObject = category
           ChangeImagePath.query.itemObject = category
-          let categoryArrayCopy = []
+          let categoryArrayCopy: any = []
           for (let key in category) {
             if (category[key] !== null && key.includes('category')) {
               categoryArrayCopy.push(category[key])
