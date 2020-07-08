@@ -11,6 +11,13 @@
   flex:3;
   button{
     width: 100%;
+    background-color: #43b344;
+    border-color: #fff;
+
+    &:hover {
+      background-color: #43b344;
+      border-color: #fff;
+    }
   }
 }
 

@@ -29,10 +29,11 @@ export const DataShow = (props: Iprops) => {
 
   const isImage = props.match.params.type === 'image' ? true : false;
   const { location } = props
-  console.log('locationQuery :>> ', location.query);
+
+  console.log('locationQuery :>> ', location);
   if (!location.query) {
     window.location.href = '/'
-  }
+  }   
   const mySearchData = location.query
   const [img, setImg] = useState([]) as any;
   const [data, setData] = useState([]) as any;

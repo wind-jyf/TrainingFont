@@ -57,11 +57,11 @@ const Menu_left = (props: IProps) => {
   return (
     <Menu
       mode="inline"
-      defaultOpenKeys={['Rape(Data):']}
+      defaultOpenKeys={['Rape(Data)']}
       selectedKeys={[currentMenuItem]}
     // onClick={handleClick}
     >
-      <SubMenu key="Rape(Data):" title="Rape(Data):" className={$style['subMenu']}>
+      <SubMenu key="Rape(Data)" title="Rape(Data)" className={$style['subMenu']}>
         {/* {yearImages.map((item: any, index: any) => <Menu.Item key={'images:' + item} >{item}</Menu.Item>)} */}
         {/* <Menu.Item key={YearKey} >{YearKey}</Menu.Item> */}
       </SubMenu>
@@ -159,23 +159,22 @@ export const AddRapeData = (props: IProps) => {
     let value = e.target.value
     console.log('value.split[0] :>> ', value.split(':')[0]);
     console.log('value.split[1] :>> ', value.split(':')[1]);
-    timer && clearTimeout(timer)
-    timer = setTimeout(() => {
-      condition.key_name = value.split(':')[0]
-      condition.key_type = value.split(':')[1]
 
-      console.log('key_name :>> ', condition.key_name);
-      console.log('key_type :>> ', condition.key_type);
-      if (!condition.key_name || !condition.key_type) {
-        message.error("请检查关键字格式和内容")
+    condition.key_name = value.split(':')[0]
+    condition.key_type = value.split(':')[1]
+
+    console.log('key_name :>> ', condition.key_name);
+    console.log("condition.handleKeyWords:", condition);
+    //不要让undefined显示在用户的上面
+    if (condition.key_name == undefined) condition.key_name = ' '
+    if (condition.key_type == undefined) {
+      if (!condition.key_name.includes(' ')) {
+        condition.key_name += ' '
       }
-      console.log("condition.handleKeyWords:", condition);
-      //不要让undefined显示在用户的上面
-      if (condition.key_name == undefined) condition.key_name = ''
-      if (condition.key_type == undefined) condition.key_type = ''
-      let data = Object.assign({}, itemObject, { 'key_name': condition.key_name, 'key_type': condition.key_type })
-      setItemObject(data)
-    }, 0)
+      condition.key_type = ''
+    }
+    let data = Object.assign({}, itemObject, { 'key_name': condition.key_name, 'key_type': condition.key_type })
+    setItemObject(data)
   }
   const onAddItem = () => {
     let flag = true;

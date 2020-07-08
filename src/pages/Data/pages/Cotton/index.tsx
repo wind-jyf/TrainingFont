@@ -7,7 +7,6 @@ import { Note } from '../../components/Note';
 import { SearchPanel } from '../../components/SearchPanel';
 import { getCategory } from '../../../../api/admin';
 import { getImgCategory, getDataCategory } from '../../../../api/userDataPart';
-import ColumnGroup from 'antd/lib/table/ColumnGroup';
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -136,14 +135,14 @@ const Menu_left = (props: IProps) => {
   return (
     <Menu
       mode="inline"
-      defaultOpenKeys={['Cotton(Images):', 'Cotton(Data):']}
+      defaultOpenKeys={['Cotton(Images)', 'Cotton(Data)']}
       selectedKeys={[currentMenuItem]}
       onClick={handleClick}
     >
-      <SubMenu key="Cotton(Images):" title="Cotton(Images):" className={$style['subMenu']}>
+      <SubMenu key="Cotton(Images)" title="Cotton(Images)" className={$style['subMenu']}>
         {yearImages.map((item: any, index: any) => <Menu.Item key={'images:' + item} className={$style['menuItem']}>{item}</Menu.Item>)}
       </SubMenu>
-      <SubMenu key="Cotton(Data):" title="Cotton(Data):" className={$style['subMenu']}>
+      <SubMenu key="Cotton(Data)" title="Cotton(Data)" className={$style['subMenu']}>
         {yearData.map((item: any, index: any) => <Menu.Item key={'data:' + item} className={$style['menuItem']}>{item}</Menu.Item>)}
       </SubMenu>
     </Menu>
