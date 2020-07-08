@@ -191,7 +191,7 @@ export const Cotton = (year: string) => {
       setImageCategory(res.image);
 
       category = res.image[0]   //初始目录
-      getImgCategory({ type: 'cotton', Year_item: category.Year_item }).then(res => {
+      category&&getImgCategory({ type: 'cotton', Year_item: category.Year_item }).then(res => {
         console.log('getImgCategory :>> ', res);
         setDirectoryList(res)
         ImagePathQueryArray = []
