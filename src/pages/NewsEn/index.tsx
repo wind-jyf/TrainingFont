@@ -72,7 +72,7 @@ export const NewsEn = (props: Iprops) => {
             <>
               {
                 newsList.map((item: any) => <div>
-                  <div className={$style['news-name']}>{item.name}</div>
+                  <div className={$style['news-name']}>{item.title}</div>
                   <div className={$style['news-content']}>{item.content}</div>
                 </div>)
               }
