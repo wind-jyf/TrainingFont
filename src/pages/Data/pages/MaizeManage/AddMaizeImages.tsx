@@ -272,7 +272,7 @@ export const AddMaizeImages = (props: IProps) => {
       <Form form={form} layout='inline'>
         <Form.Item label='请输入说明:' rules={[{ required: true, message: 'Year is required' }]} >
           {/* <textarea rows={4} cols={50} defaultValue={itemObject.note} onChange={handleNote}></textarea> */}
-          <TextArea rows={4} cols={50} value={itemObject.note} onChange={handleNote} />
+          <TextArea rows={4} cols={50} placeholder='这里如果要展示文件：例如<a href="http://plantphenomics.hzau.edu.cn/data/explaination/test.pdf">点我去百度</a>'  value={itemObject.note} onChange={handleNote} />
         </Form.Item>
       </Form>
 
@@ -300,7 +300,7 @@ export const AddMaizeImages = (props: IProps) => {
           <Form form={form} layout='inline' className={$style['firstQueryDirectory_left']} >
             <Form.Item label='请输入查询列的关键字:' rules={[{ required: true, message: '关键字不能为空' }]} >
               {/* <textarea rows={2} cols={20} defaultValue={keywords} onChange={handleKeyWords}></textarea> */}
-              <TextArea rows={2} cols={20} value={itemObject.key_name ? (itemObject.key_name+ ':' + itemObject.key_type) : ''} onChange={handleKeyWords} />
+              <TextArea rows={4} cols={40} placeholder='关键字规则为关键字标题加上英文冒号再加各项,各项间以英文逗号间隔，例如Trait:all,1,2,3,4'  value={itemObject.key_name ? (itemObject.key_name+ ':' + itemObject.key_type) : ''} onChange={handleKeyWords} />
             </Form.Item>
           </Form>
         </div>

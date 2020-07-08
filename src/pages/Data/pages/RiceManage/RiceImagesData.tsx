@@ -168,6 +168,7 @@ export const RiceImagesData = (year: string) => {
       console.log("初始目录:", category);
       keywords = category && category.key_name + ':' + category && category.key_type
       setItemObject(category)
+      categoryArray=[]
       for (let key in category) {
         if (category[key] !== null && key.includes('category')) {
           categoryArray.push(category[key])
@@ -246,6 +247,7 @@ export const RiceImagesData = (year: string) => {
     <div className={$style['leftWrapper']}>
       <Menu_left yearImages={imageYear} yearData={dataYear} dataCategory={dataCategory} imageCategory={imageCategory} handleCategory={handleCategory} handleIsDataOrImages={handleIsDataOrImages} >
       </Menu_left>
+      <Button type="primary"><Link to={'/download'}>下载</Link></Button>
     </div>
   )
 
@@ -281,7 +283,7 @@ export const RiceImagesData = (year: string) => {
         <div className={$style['firstQueryDirectory']}>
           <Form form={form} layout='inline' className={$style['firstQueryDirectory_left']} >
             <Form.Item label='请输入查询列的关键字:'  >
-              <textarea rows={2} cols={20} disabled defaultValue={keywords}></textarea>
+              <textarea rows={2} cols={20} disabled value={keywords}></textarea>
             </Form.Item>
           </Form>
         </div>

@@ -203,8 +203,8 @@ export const Rice = (year: string) => {
           ImagePath.query['Year_item'] = category.Year_item
           // let title = item.title
           // let value = item.array[0]
-          let obj:any={}
-          obj[item.title]=item.array[0]
+          let obj: any = {}
+          obj[item.title] = item.array[0]
           ImagePathQueryArray.push(obj)
         })
         ImagePathCopy.query = ImagePathQueryArray
@@ -247,10 +247,20 @@ export const Rice = (year: string) => {
     console.log('handleSelect :>> ', e.target.value, title);
     if (isDataOrImages) {
       ImagePath.query[title] = e.target.value
-      console.log('ImagePath :>> ', ImagePath.query);
+      ImagePathQueryArray.forEach((item: any, index: any) => {
+        if (title in item) {
+          ImagePathQueryArray[index][title]=e.target.value
+        }
+      })
+      console.log('ImagePathQueryArray :>> ', ImagePathQueryArray);
     } else {
       DataPath.query[title] = e.target.value
-      console.log('DataPath :>> ', DataPath.query);
+      DataPathQueryArray.forEach((item: any, index: any) => {
+        if (title in item) {
+          DataPathQueryArray[index][title]=e.target.value
+        }
+      })
+      console.log('DataPathQueryArray :>> ', DataPathQueryArray);
     }
   }
 
@@ -288,7 +298,7 @@ export const Rice = (year: string) => {
           <div className={$style['QueryDirectories']}>
             <Title level={4}>{items.title}</Title>
             <select name="directory" size={10} onChange={(e) => handleSelect(e, items.title)}>
-              {items.array.map((item_each: any, indexEach: any) => <option value={item_each} selected={indexEach == 0 ? true : false}>{item_each}</option>)}
+              {items.array.map((item_each: any, indexEach: any) => <option value={item_each} >{item_each}</option>)}
             </select>
           </div>
         )}

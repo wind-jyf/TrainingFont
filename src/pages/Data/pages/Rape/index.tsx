@@ -1,51 +1,135 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Select, Input, Button, Menu, Typography, Divider } from 'antd';
+import { Form, Select, Input, Button, Menu, Typography } from 'antd';
 import { Link } from "react-router-dom";
 import $style from "./style.module.scss";
+import { Note } from '../../components/Note';
 
 import { SearchPanel } from '../../components/SearchPanel';
-import { Note } from '../../components/Note';
-import { getAccessionIdJbyList } from '../../../../api/maize';
-import { getPermission } from '../../../../api/permission';
+import { getCategory } from '../../../../api/admin';
+import { getImgCategory, getDataCategory } from '../../../../api/userDataPart';
+import ColumnGroup from 'antd/lib/table/ColumnGroup';
 
 const { Option } = Select;
 const { TextArea } = Input;
 const { SubMenu } = Menu;
 const { Title } = Typography;
-//借用下这个接口看效果
-const defaultPermissionQuery = {
-  s_tp: 'maize',
-  s_user: 'JbYWnY',
-  s_img_data: 'data'
-}
 
 interface IProps {
   [key: string]: any;
 }
-
-const options: any = [];
-for (let i = 0; i < 100000; i++) {
-  const value = `${i.toString(36)}${i}`;
-  options.push({
-    value,
-    disabled: i === 10,
-  });
+let category: any = []
+let categoryArray: any = []
+let keywords = ''   //如果不是因为textarea那里面的defaultValue不能设置表达式，谁又愿意设置这个变量呢
+let DataPath: any = {
+  pathname: '/dataShow/data',
+  query: {},
+}
+let ImagePath: any = {
+  pathname: '/dataShow/image',
+  query: {},
+}
+let DataPathCopy: any = {
+  pathname: '/dataShow/data',
+  query: [],
+}
+let ImagePathCopy: any = {
+  pathname: '/dataShow/image',
+  query: [],
 }
 
+DataPath.query.type = 'rape'
+ImagePath.query.type = 'rape'
+
+let ImagePathQueryArray: any = []
+let DataPathQueryArray: any = []
 const Menu_left = (props: IProps) => {
-  const { yearImages, yearData } = props;
+  const { yearImages, yearData, dataCategory, imageCategory, handleCategory, handleIsDataOrImages, handleDirectoryList } = props;
+  console.log("handleCategory:", handleCategory);
 
-  const [currentMenuItem, setCurrentMenuItem ] = useState('') as any
+  const [currentMenuItem, setCurrentMenuItem] = useState('') as any
 
-  console.log("yearImages123:",yearImages);
 
-  const handleClick = (e:any) =>{
+  const handleClick = (e: any) => {
     setCurrentMenuItem(e.key)
+
+    let Year_item = e.key.split(':')[1]
+    console.log('e.key.split[1] :>> ', e.key.split(':')[1], e.key.split(':')[0] == 'images', e.key.split(':')[0] == 'data');
+    if (e.key.split(':')[0] == 'images') {
+      ImagePathQueryArray = []
+      ImagePathQueryArray.push({ type: 'rape' })
+
+      ImagePath.query['Year_item'] = Year_item
+      ImagePathQueryArray.push({ 'Year_item': Year_item })
+
+      handleIsDataOrImages(true)
+
+      imageCategory && imageCategory.forEach((item: any) => {
+        if (e.key.includes(item.Year_item)) {
+          category = item
+          keywords = category.key_name + ':' + category.key_type
+          handleCategory(category)
+        }
+      })
+
+      getImgCategory({ type: 'rape', Year_item: Year_item }).then(res => {
+        console.log('getImgCategory :>> ', res);
+        handleDirectoryList(res)
+        res.forEach((item: any) => {
+          ImagePath.query[item.title] = item.array[0]
+          // let title = item.title
+          // let value = item.array[0]
+          let obj: any = {}
+          obj[item.title] = item.array[0]
+          ImagePathQueryArray.push(obj)
+        })
+        ImagePathCopy.query = ImagePathQueryArray
+        console.log('ImagePathCopy2 :>> ', ImagePathCopy.query);
+      })
+    } else {
+
+      DataPathQueryArray = []
+      DataPathQueryArray.push({ type: 'rape' })
+
+      DataPath.query['Year_item'] = Year_item
+      DataPathQueryArray.push({ 'Year_item': Year_item })
+
+      handleIsDataOrImages(false)
+      dataCategory && dataCategory.forEach((item: any) => {
+        if (e.key.includes(item.Year_item)) {
+          category = item
+          keywords = category.key_name + ':' + category.key_type
+          handleCategory(category)
+          console.log("categorydata:", category);
+        }
+      })
+      getDataCategory({ type: 'rape', Year_item: Year_item }).then(res => {
+        console.log('getDataCategory :>> ', res);
+        handleDirectoryList(res)
+        res.forEach((item: any) => {
+          DataPath.query[item.title] = item.array[0]
+          // let title = item.title
+          // let value = item.array[0]
+          let obj: any = {}
+          obj[item.title] = item.array[0]
+          DataPathQueryArray.push(obj)
+        })
+        DataPathCopy.query = DataPathQueryArray
+        console.log('DataPathCopy2 :>> ', DataPathCopy.query);
+      })
+    }
+
+
+    if (e.key.includes('data')) {
+
+    } else {
+
+    }
   }
 
   useEffect(() => {
-    if(yearImages&&yearImages[0]) {
-      setCurrentMenuItem(String(yearImages[0].s_id+5))
+    console.log("yearImages:", yearImages);
+    if (yearImages && yearImages[0]) {
+      setCurrentMenuItem('images:' + String(yearImages[0]))
     }
   }, [yearImages]);
 
@@ -57,102 +141,172 @@ const Menu_left = (props: IProps) => {
       onClick={handleClick}
     >
       <SubMenu key="Rape(Images):" title="Rape(Images):">
-        {yearImages.map((item: any, index: any) => <Menu.Item key={item.s_id+5} >{item.s_year}</Menu.Item>)}
+        {yearImages.map((item: any, index: any) => <Menu.Item key={'images:' + item} >{item}</Menu.Item>)}
       </SubMenu>
       <SubMenu key="Rape(Data):" title="Rape(Data):">
-        {yearData.map((item: any, index: any) => <Menu.Item key={item.s_id} >{item.s_year}</Menu.Item>)}
+        {yearData.map((item: any, index: any) => <Menu.Item key={'data:' + item} >{item}</Menu.Item>)}
       </SubMenu>
     </Menu>
   )
 }
-export const Rape = (type: string) => {
-  const [year, setYear] = useState([]) as any;
+export const Rape = (year: string) => {
+  const [dataYear, setDataYear] = useState([]) as any;
+  const [imageYear, setImageYear] = useState([]) as any;
+
   const [directoryList, setDirectoryList] = useState([]) as any;
+
+  const [dataCategory, setDataCategory] = useState([]) as any;
+  const [imageCategory, setImageCategory] = useState([]) as any;
+  const [categoryItemArray, setCategoryItemArray] = useState([]) as any;
+  const [itemObject, setItemObject] = useState({}) as any;
+  const [isDataOrImages, setIsDataOrImages] = useState(true) as any;
+  const [visible, setVisible] = useState(false) as any;
+
+  const [condition, setCondition] = useState({
+    id: null,
+    type: '',
+    Year_item: '',
+    note: '',
+    key_name: '',
+    key_type: '',
+    category_name1: null,
+    category_name2: null,
+    category_name3: null,
+    category_name4: null,
+    category_name5: null,
+    category_name6: null,
+    category_name7: null,
+    category_name8: null,
+    category_name9: null,
+    category_name10: null,
+  }) as any;
+
   const [query, setQuery] = useState([]) as any;
 
   const [form] = Form.useForm();
+  const getCategoryData = () => {
+    getCategory({ condition: { type: 'rape' } }).then(res => {
+      console.log("res111222333:", res);
+      setDataCategory(res.data);
+      setImageCategory(res.image);
 
-  const handleGetAccessionId = (year: any) => {
-    console.log("6666666");
-    return getAccessionIdJbyList({ year }).then((result) => {
-      // setDirectoryList(result);//从这里读取到对应year下的的目录二维数组对象列表
-    }).then(() => {
-      form.resetFields(['id']);
-    }).catch((err) => console.log(err));
-  }
+      category = res.image[0]   //初始目录
+      getImgCategory({ type: 'rape', Year_item: category.Year_item }).then(res => {
+        console.log('getImgCategory :>> ', res);
+        setDirectoryList(res)
+        ImagePathQueryArray = []
+        ImagePathQueryArray.push({ 'type': 'rape' })
+        ImagePathQueryArray.push({ 'Year_item': category.Year_item })
+        res.forEach((item: any) => {
+          console.log('res 6666:>> ', res);
+          ImagePath.query[item.title] = item.array[0]
+          ImagePath.query['Year_item'] = category.Year_item
+          // let title = item.title
+          // let value = item.array[0]
+          let obj:any={}
+          obj[item.title]=item.array[0]
+          ImagePathQueryArray.push(obj)
+        })
+        ImagePathCopy.query = ImagePathQueryArray
+        console.log('ImagePathCopyFirst :>> ', ImagePathCopy.query);
+      })
 
-
-  const handleGetNextDirectory = (currentDirectory: any) => {
-    // return getAccessionIdJbyList({ year }).then((result) => {
-    //   let result1=[1,2,3,4,5];
-    //   setDirectoryList(result1);//从这里读取到对应year下的的目录对象数组列表
-    // }).then(() => {
-    //   form.resetFields(['id']);
-    // }).catch((err) => console.log(err));
-  }
-  useEffect(() => {
-    getPermission(defaultPermissionQuery).then((res) => {
-      setYear(res);  //从这里读取到year的数组列表，每个项是一个对象
-      let result1 = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16, 17, 18], [19, 20, 21, 22, 23]];
-      setDirectoryList(result1);//从这里读取到对应year下的的目录二维数组对象列表
-      // setSelectedValue(result1);
-      console.log("directoryList:", directoryList);
-      if (res.length !== 0) {
-        handleGetAccessionId(res[0].s_year).then(() => {
-          form.resetFields();
-        }).catch((err) => console.log(err));
+      console.log("初始目录:", category);
+      keywords = category && category.key_name + ':' + category && category.key_type
+      setItemObject(category)
+      for (let key in category) {
+        if (category[key] !== null && key.includes('category')) {
+          categoryArray.push(category[key])
+        }
       }
-    }).catch((err) => console.log(err));
+      setCategoryItemArray(categoryArray)
+
+      console.log("category_first:", category);
+      let tempDataYear: any = [], tempImageYear: any = []
+      res.data.forEach((item: any) => {
+        tempDataYear.push(item.Year_item)
+      })
+      res.image.forEach((item: any) => {
+        tempImageYear.push(item.Year_item)
+      })
+      setDataYear(tempDataYear)
+      setImageYear(tempImageYear)
+    })
+  }
+  const handleCategory = (item: any) => {
+    setItemObject(item)
+  }
+  const handleDirectoryList = (item: any) => {
+    setDirectoryList(item)
+  }
+  const handleIsDataOrImages = (isImage: boolean) => {
+    setIsDataOrImages(isImage)
+
+  }
+  const handleSelect = (e: any, title: any) => {
+    console.log('handleSelect :>> ', e.target.value, title);
+    if (isDataOrImages) {
+      ImagePath.query[title] = e.target.value
+      console.log('ImagePath :>> ', ImagePath.query);
+    } else {
+      DataPath.query[title] = e.target.value
+      console.log('DataPath :>> ', DataPath.query);
+    }
+  }
+
+  // const handleAddDirectory = () => {
+  //   let temdirectoryList = directoryList.slice()
+  //   temdirectoryList.push([24, 25, 26, 27, 28])
+  //   setDirectoryList(temdirectoryList);
+  //   form.resetFields();
+  // }
+  const handleYearChange = (title: any, e: any) => {
+    let value = e.target.value
+    let data = Object.assign({},)
+  }
+
+  useEffect(() => {
+    getCategoryData()
+    console.log('DataPath :>> ', DataPath.query);
+    console.log('ImagePath :>> ', ImagePath.query);
   }, []);
 
   const formContent = (
     <div className={$style['leftWrapper']}>
-      <Menu_left yearImages={year} yearData={year}>
+      <Menu_left yearImages={imageYear} yearData={dataYear} dataCategory={dataCategory} imageCategory={imageCategory} handleCategory={handleCategory} handleIsDataOrImages={handleIsDataOrImages} handleDirectoryList={handleDirectoryList} >
       </Menu_left>
+      <Button type="primary"><Link to={'/download'}>下载</Link></Button>
     </div>
   )
 
   const rightContent = (
     <div className={$style['rightWrapper']}>
-      <Note html={"welcome"}></Note>
+      <Note html={itemObject && itemObject.note}></Note>
 
       <div className={$style['directories']}>
         {directoryList.map((items: any, index: number) =>
           <div className={$style['QueryDirectories']}>
-            <Title level={4}>目录{index}</Title>
-            <select name="directory" size={10} >
-              { items.map((item_each: any) => <option value={item_each}>{item_each}</option>) }
+            <Title level={4}>{items.title}</Title>
+            <select name="directory" size={10} onChange={(e) => handleSelect(e, items.title)}>
+              {items.array.map((item_each: any, indexEach: any) => <option value={item_each} selected={indexEach == 0 ? true : false}>{item_each}</option>)}
             </select>
           </div>
-
         )}
 
-
-        {/* <div className={$style['firstQueryDirectory']}>
-          <Form form={form} layout='inline' className={$style['firstQueryDirectory_left']} >
-            <Form.Item name="KeyWords" label='请输入查询列的关键字:'  >
-              <TextArea rows={2} cols={20} >
-              </TextArea>
-            </Form.Item>
-          </Form>
-        </div> */}
-        {/* <div className={$style['QueryDirectories']}>
-          <Title level={4}>关键字目录</Title>
-          <Select style={{ width: 200 }} showSearch placeholder={items[0]} options={options} />
-          <Divider />
-        </div> */}
       </div>
 
       <div className={$style['buttons']}>
-        <Button type="primary" >Search images</Button>
-        <Button type="primary" >Search data</Button>
+        {isDataOrImages && <Button type="primary" ><Link to={ImagePathCopy}>Search images</Link></Button>}
+        {!isDataOrImages && <Button type="primary" ><Link to={DataPathCopy}>Search data</Link></Button>}
+        {/* 下面这个判断是为了在左边data菜单年份为空时也能显示出新增数据按钮 */}
+        {!dataCategory[0] && <Button type="primary" ><Link to={DataPathCopy}>Search data</Link></Button>}
       </div>
     </div >
   )
 
 
   return (
-    <div className={$style['userWrapper']}>
+    <div className={$style['ManageWrapper']}>
       <SearchPanel
         formContent={formContent}
       />

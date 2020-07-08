@@ -168,6 +168,7 @@ export const MaizeImagesData = (year: string) => {
       console.log("初始目录:", category);
       keywords = category && category.key_name + ':' + category && category.key_type
       setItemObject(category)
+      categoryArray=[]
       for (let key in category) {
         if (category[key] !== null && key.includes('category')) {
           categoryArray.push(category[key])
@@ -246,6 +247,7 @@ export const MaizeImagesData = (year: string) => {
     <div className={$style['leftWrapper']}>
       <Menu_left yearImages={imageYear} yearData={dataYear} dataCategory={dataCategory} imageCategory={imageCategory} handleCategory={handleCategory} handleIsDataOrImages={handleIsDataOrImages} >
       </Menu_left>
+      <Button type="primary"><Link to={'/download'}>下载</Link></Button>
     </div>
   )
 

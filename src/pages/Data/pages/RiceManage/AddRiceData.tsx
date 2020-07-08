@@ -38,7 +38,7 @@ let condition: any = {
 }
 let YearKey = ''
 const Menu_left = (props: IProps) => {
-  const { handleCategory, handleIsDataOrImages,  category } = props;
+  const { handleCategory, handleIsDataOrImages, category } = props;
   console.log("handleCategory:", handleCategory);
 
   const [currentMenuItem, setCurrentMenuItem] = useState('') as any
@@ -158,22 +158,27 @@ export const AddRiceData = (props: IProps) => {
     console.log('value.split[0] :>> ', value.split(':')[0]);
     console.log('value.split[1] :>> ', value.split(':')[1]);
     timer && clearTimeout(timer)
-    timer = setTimeout(() => {
-      condition.key_name = value.split(':')[0]
-      condition.key_type = value.split(':')[1]
+    // timer = setTimeout(() => {
+    condition.key_name = value.split(':')[0]
+    condition.key_type = value.split(':')[1]
 
-      console.log('key_name :>> ', condition.key_name);
-      console.log('key_type :>> ', condition.key_type);
-      if (!condition.key_name || !condition.key_type) {
-        message.error("请检查关键字格式和内容")
+    console.log('key_name :>> ', condition.key_name);
+    console.log('key_type :>> ', condition.key_type);
+    // if (!condition.key_name || !condition.key_type) {
+    //   message.error("请检查关键字格式和内容")
+    // } 
+    console.log("condition.handleKeyWords:", condition);
+    //不要让undefined显示在用户的上面
+    if (condition.key_name == undefined) condition.key_name = ' '
+    if (condition.key_type == undefined) {
+      if (!condition.key_name.includes(' ')) {
+        condition.key_name += ' '
       }
-      console.log("condition.handleKeyWords:", condition);
-      //不要让undefined显示在用户的上面
-      if (condition.key_name == undefined) condition.key_name = ''
-      if (condition.key_type == undefined) condition.key_type = ''
-      let data = Object.assign({}, itemObject, { 'key_name': condition.key_name, 'key_type': condition.key_type })
-      setItemObject(data)
-    }, 0)
+      condition.key_type = ''
+    }
+    let data = Object.assign({}, itemObject, { 'key_name': condition.key_name, 'key_type': condition.key_type })
+    setItemObject(data)
+    // }, 0)
   }
   const onAddItem = () => {
     let flag = true;
@@ -216,7 +221,7 @@ export const AddRiceData = (props: IProps) => {
           window.localStorage.setItem('category', JSON.stringify(condition))
           window.localStorage.setItem('categoryArray', JSON.stringify(categoryArray))
           window.localStorage.setItem('YearKey', JSON.stringify(condition.Year_item))
-          window.history.go(-1); 
+          window.history.go(-1);
         } else {
           message.error('增加失败')
         }
@@ -245,7 +250,7 @@ export const AddRiceData = (props: IProps) => {
     // } else {
     //   let tempCategory = window.localStorage.getItem('category');
     //   let tempCategoryArray = window.localStorage.getItem('categoryArray');
- 
+
     //   console.log('categoryArray :>> ', tempCategoryArray);
     //   if (tempCategory != null && tempCategoryArray != null) {
     //     setItemObject(JSON.parse(tempCategory));
@@ -267,7 +272,7 @@ export const AddRiceData = (props: IProps) => {
       <Form form={form} layout='inline'>
         <Form.Item label='请输入说明:' rules={[{ required: true, message: 'Year is required' }]} >
           {/* <textarea rows={4} cols={50} defaultValue={itemObject.note} onChange={handleNote}></textarea> */}
-          <TextArea rows={4} cols={50} value={itemObject.note} onChange={handleNote} />
+          <TextArea rows={4} cols={50} placeholder='这里如果要展示文件：例如<a href="http://plantphenomics.hzau.edu.cn/data/explaination/test.pdf">点我去百度</a>' value={itemObject.note} onChange={handleNote} />
         </Form.Item>
       </Form>
 
@@ -295,7 +300,7 @@ export const AddRiceData = (props: IProps) => {
           <Form form={form} layout='inline' className={$style['firstQueryDirectory_left']} >
             <Form.Item label='请输入查询列的关键字:' rules={[{ required: true, message: '关键字不能为空' }]} >
               {/* <textarea rows={2} cols={20} defaultValue={keywords} onChange={handleKeyWords}></textarea> */}
-              <TextArea rows={2} cols={20} value={itemObject.key_name ? (itemObject.key_name+ ':' + itemObject.key_type) : ''} onChange={handleKeyWords} />
+              <TextArea rows={4} cols={40} placeholder='关键字规则为关键字标题加上英文冒号再加各项,各项间以英文逗号间隔，例如Trait:all,1,2,3,4' value={itemObject.key_name ? (itemObject.key_name + ':' + itemObject.key_type) : ''} onChange={handleKeyWords} />
             </Form.Item>
           </Form>
         </div>
