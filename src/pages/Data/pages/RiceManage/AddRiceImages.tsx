@@ -60,7 +60,7 @@ const Menu_left = (props: IProps) => {
       selectedKeys={[currentMenuItem]}
     // onClick={handleClick}
     >
-      <SubMenu key="Rice(Images):" title="Rice(Images):">
+      <SubMenu key="Rice(Images):" title="Rice(Images):" className={$style['subMenu']}>
         {/* {yearImages.map((item: any, index: any) => <Menu.Item key={'images:' + item} >{item}</Menu.Item>)} */}
         {/* <Menu.Item key={YearKey} >{YearKey}</Menu.Item> */}
       </SubMenu>

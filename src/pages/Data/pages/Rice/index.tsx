@@ -140,11 +140,11 @@ const Menu_left = (props: IProps) => {
       selectedKeys={[currentMenuItem]}
       onClick={handleClick}
     >
-      <SubMenu key="Rice(Images):" title="Rice(Images):">
-        {yearImages.map((item: any, index: any) => <Menu.Item key={'images:' + item} >{item}</Menu.Item>)}
+      <SubMenu key="Rice(Images):" title="Rice(Images):" className={$style['subMenu']}>
+        {yearImages.map((item: any, index: any) => <Menu.Item key={'images:' + item} className={$style['menuItem']}>{item}</Menu.Item>)}
       </SubMenu>
-      <SubMenu key="Rice(Data):" title="Rice(Data):">
-        {yearData.map((item: any, index: any) => <Menu.Item key={'data:' + item} >{item}</Menu.Item>)}
+      <SubMenu key="Rice(Data):" title="Rice(Data):" className={$style['subMenu']}>
+        {yearData.map((item: any, index: any) => <Menu.Item key={'data:' + item} className={$style['menuItem']}>{item}</Menu.Item>)}
       </SubMenu>
     </Menu>
   )
@@ -249,7 +249,7 @@ export const Rice = (year: string) => {
       ImagePath.query[title] = e.target.value
       ImagePathQueryArray.forEach((item: any, index: any) => {
         if (title in item) {
-          ImagePathQueryArray[index][title]=e.target.value
+          ImagePathQueryArray[index][title] = e.target.value
         }
       })
       console.log('ImagePathQueryArray :>> ', ImagePathQueryArray);
@@ -257,7 +257,7 @@ export const Rice = (year: string) => {
       DataPath.query[title] = e.target.value
       DataPathQueryArray.forEach((item: any, index: any) => {
         if (title in item) {
-          DataPathQueryArray[index][title]=e.target.value
+          DataPathQueryArray[index][title] = e.target.value
         }
       })
       console.log('DataPathQueryArray :>> ', DataPathQueryArray);
@@ -296,7 +296,7 @@ export const Rice = (year: string) => {
       <div className={$style['directories']}>
         {directoryList.map((items: any, index: number) =>
           <div className={$style['QueryDirectories']}>
-            <Title level={4}>{items.title}</Title>
+            <Title level={4} className={$style['category']}>{items.title}</Title>
             <select name="directory" size={10} onChange={(e) => handleSelect(e, items.title)}>
               {items.array.map((item_each: any, indexEach: any) => <option value={item_each} >{item_each}</option>)}
             </select>

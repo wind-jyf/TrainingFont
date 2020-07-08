@@ -140,11 +140,11 @@ const Menu_left = (props: IProps) => {
       selectedKeys={[currentMenuItem]}
       onClick={handleClick}
     >
-      <SubMenu key="Maize(Images):" title="Maize(Images):">
-        {yearImages.map((item: any, index: any) => <Menu.Item key={'images:' + item} >{item}</Menu.Item>)}
+      <SubMenu key="Maize(Images):" title="Maize(Images):" className={$style['subMenu']}>
+        {yearImages.map((item: any, index: any) => <Menu.Item key={'images:' + item} className={$style['menuItem']}>{item}</Menu.Item>)}
       </SubMenu>
-      <SubMenu key="Maize(Data):" title="Maize(Data):">
-        {yearData.map((item: any, index: any) => <Menu.Item key={'data:' + item} >{item}</Menu.Item>)}
+      <SubMenu key="Maize(Data):" title="Maize(Data):" className={$style['subMenu']}>
+        {yearData.map((item: any, index: any) => <Menu.Item key={'data:' + item} className={$style['menuItem']}>{item}</Menu.Item>)}
       </SubMenu>
     </Menu>
   )
@@ -203,8 +203,8 @@ export const Maize = (year: string) => {
           ImagePath.query['Year_item'] = category.Year_item
           // let title = item.title
           // let value = item.array[0]
-          let obj:any={}
-          obj[item.title]=item.array[0]
+          let obj: any = {}
+          obj[item.title] = item.array[0]
           ImagePathQueryArray.push(obj)
         })
         ImagePathCopy.query = ImagePathQueryArray
@@ -286,7 +286,7 @@ export const Maize = (year: string) => {
       <div className={$style['directories']}>
         {directoryList.map((items: any, index: number) =>
           <div className={$style['QueryDirectories']}>
-            <Title level={4}>{items.title}</Title>
+            <Title level={4} className={$style['category']}>{items.title}</Title>
             <select name="directory" size={10} onChange={(e) => handleSelect(e, items.title)}>
               {items.array.map((item_each: any, indexEach: any) => <option value={item_each} selected={indexEach == 0 ? true : false}>{item_each}</option>)}
             </select>
