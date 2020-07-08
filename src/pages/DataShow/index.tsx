@@ -10,12 +10,13 @@ interface Iprops {
   [key: string]: any;
 }
 
-/* const mySearchData = {
-    'type': 'rice',
-    'Year_item': '2013-drought',
-    'Accession_ID': '001(W062)',
-    'Condition': 'all'
-} */
+/* const mySearchData = [
+  { 'type': 'rice' },
+  { 'Year_item': '2013-drought' },
+  { 'Accession_ID': '001(W062)' },
+  { 'Condition': 'before stress' },
+  { 'Trait': 'C' }
+] */
 
 
 // const mySearchData = {
