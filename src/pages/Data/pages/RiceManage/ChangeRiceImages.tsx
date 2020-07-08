@@ -63,7 +63,7 @@ const Menu_left = (props: IProps) => {
     >
       <SubMenu key="Rice(Images)" title="Rice(Images)" className={$style['subMenu']}>
         {/* {yearImages.map((item: any, index: any) => <Menu.Item key={'images:' + item} >{item}</Menu.Item>)} */}
-        <Menu.Item key={YearKey}  className={$style['menuItem']}>{YearKey}</Menu.Item>
+        <Menu.Item key={YearKey} className={$style['menuItem']}>{YearKey}</Menu.Item>
       </SubMenu>
     </Menu>
   )
@@ -250,7 +250,7 @@ export const ChangeRiceImages = (props: IProps) => {
     } else {
       let tempCategory = window.localStorage.getItem('category');
       let tempCategoryArray = window.localStorage.getItem('categoryArray');
- 
+
       console.log('categoryArray :>> ', tempCategoryArray);
       if (tempCategory != null && tempCategoryArray != null) {
         setItemObject(JSON.parse(tempCategory));
