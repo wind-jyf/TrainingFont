@@ -18,12 +18,19 @@ interface Iprops {
 } */
 
 
-const mySearchData = {
+/* const mySearchData = {
     'type': 'rice',
     'Year_item': '2013-drought',
     'Acession_ID': '001(W062)',
     'Trait': 'all'
-}
+} */
+
+const mySearchData = [
+    { type: 'rice' },
+    { Year_item: '2013-drought' },
+    { Acession_ID: '001(W062)' },
+    { Trait: 'all' }
+]
 
 export const DataShow = (props: Iprops) => {
 
@@ -71,7 +78,7 @@ export const DataShow = (props: Iprops) => {
 
     return (
         <div>
-            <p className={$style['data-title']}>{mySearchData.type}-{mySearchData.Year_item}</p>
+            <p className={$style['data-title']}>{mySearchData[0].type}-{mySearchData[1].Year_item}</p>
             {
                 isImage
                     ? <div className={$style['pictureShow']}>

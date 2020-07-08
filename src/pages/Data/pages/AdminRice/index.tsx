@@ -12,7 +12,7 @@ export const AdminRice = (props: IProps) => {
   return (
     <div >
       <Switch>
-          <Route exact path={routes.adminRice.path} component={RiceImagesData}></Route>
+        <Route exact path={routes.adminRice.path} component={RiceImagesData}></Route>
       </Switch>
     </div>
   );
