@@ -18,19 +18,19 @@ let categoryArray: any = []
 let keywords = ''   //如果不是因为textarea那里面的defaultValue不能设置表达式，谁又愿意设置这个变量呢
 let DataPath = {
   pathname: 'adminRice/addRiceData',
-  query: {key:'',itemObject:{}},
+  query: { key: '', itemObject: {} },
 }
 let ImagePath = {
   pathname: 'adminRice/addRiceImages',
-  query: {key:'',itemObject:{}},
+  query: { key: '', itemObject: {} },
 }
 let ChangeImagePath = {
   pathname: 'adminRice/changeRiceImages',
-  query: {key:'',itemObject:{}},
+  query: { key: '', itemObject: {} },
 }
 let ChangeDataPath = {
   pathname: 'adminRice/changeRiceData',
-  query: {key:'',itemObject:{}},
+  query: { key: '', itemObject: {} },
 }
 
 const Menu_left = (props: IProps) => {
@@ -100,8 +100,8 @@ const Menu_left = (props: IProps) => {
     console.log("yearImages:", yearImages);
     if (yearImages && yearImages[0]) {
       setCurrentMenuItem('images:' + String(yearImages[0]))
-      ImagePath.query.key ='images:'+String(yearImages[0])
-      ChangeImagePath.query.key ='images:'+String(yearImages[0])
+      ImagePath.query.key = 'images:' + String(yearImages[0])
+      ChangeImagePath.query.key = 'images:' + String(yearImages[0])
     }
   }, [yearImages]);
 
@@ -112,11 +112,11 @@ const Menu_left = (props: IProps) => {
       selectedKeys={[currentMenuItem]}
       onClick={handleClick}
     >
-      <SubMenu key="Rice(Images):" title="Rice(Images):">
-        {yearImages.map((item: any, index: any) => <Menu.Item key={'images:' + item} >{item}</Menu.Item>)}
+      <SubMenu key="Rice(Images):" title="Rice(Images):" className={$style['subMenu']}>
+        {yearImages.map((item: any, index: any) => <Menu.Item key={'images:' + item}  className={$style['menuItem']}>{item}</Menu.Item>)}
       </SubMenu>
-      <SubMenu key="Rice(Data):" title="Rice(Data):">
-        {yearData.map((item: any, index: any) => <Menu.Item key={'data:' + item} >{item}</Menu.Item>)}
+      <SubMenu key="Rice(Data):" title="Rice(Data):" className={$style['subMenu']}>
+        {yearData.map((item: any, index: any) => <Menu.Item key={'data:' + item}  className={$style['menuItem']}>{item}</Menu.Item>)}
       </SubMenu>
     </Menu>
   )
@@ -166,8 +166,9 @@ export const RiceImagesData = (year: string) => {
       ImagePath.query.itemObject = category
       ChangeImagePath.query.itemObject = category
       console.log("初始目录:", category);
-      keywords = category&&category.key_name + ':' + category&&category.key_type
+      keywords = category && category.key_name + ':' + category && category.key_type
       setItemObject(category)
+      categoryArray=[]
       for (let key in category) {
         if (category[key] !== null && key.includes('category')) {
           categoryArray.push(category[key])
@@ -246,6 +247,7 @@ export const RiceImagesData = (year: string) => {
     <div className={$style['leftWrapper']}>
       <Menu_left yearImages={imageYear} yearData={dataYear} dataCategory={dataCategory} imageCategory={imageCategory} handleCategory={handleCategory} handleIsDataOrImages={handleIsDataOrImages} >
       </Menu_left>
+      <Button type="primary"><Link to={'/download'}>下载</Link></Button>
     </div>
   )
 
@@ -253,7 +255,7 @@ export const RiceImagesData = (year: string) => {
     <div className={$style['rightWrapper']}>
       <Form form={form} layout='inline'>
         <Form.Item label='请输入说明:' rules={[{ required: true, message: 'Year is required' }]} >
-          <textarea rows={4} cols={50} disabled defaultValue={itemObject&&itemObject.note}></textarea>
+          <textarea rows={4} cols={50} disabled defaultValue={itemObject && itemObject.note}></textarea>
         </Form.Item>
       </Form>
 
@@ -261,7 +263,7 @@ export const RiceImagesData = (year: string) => {
       <div className={$style['firstQueryDirectory']}>
         <Form form={form} layout='inline'>
           <Form.Item label='请输入年份和类别' rules={[{ required: true, message: 'Year is required' }]} >
-            <Input value={itemObject&&itemObject.Year_item} disabled />
+            <Input value={itemObject && itemObject.Year_item} disabled />
           </Form.Item>
         </Form>
 
@@ -281,7 +283,7 @@ export const RiceImagesData = (year: string) => {
         <div className={$style['firstQueryDirectory']}>
           <Form form={form} layout='inline' className={$style['firstQueryDirectory_left']} >
             <Form.Item label='请输入查询列的关键字:'  >
-              <textarea rows={2} cols={20} disabled defaultValue={keywords}></textarea>
+              <textarea rows={2} cols={20} disabled value={keywords}></textarea>
             </Form.Item>
           </Form>
         </div>
@@ -291,13 +293,15 @@ export const RiceImagesData = (year: string) => {
           <Button type="primary" onClick={handleDelete}>删除</Button>
           {isDataOrImages && <Button type="primary" ><Link to={ImagePath}>新增图片</Link></Button>}
           {!isDataOrImages && <Button type="primary" ><Link to={DataPath}>新增数据</Link></Button>}
+          {/* 下面这个判断是为了在左边data菜单年份为空时也能显示出新增数据按钮 */}
+          {!dataCategory[0] && <Button type="primary" ><Link to={DataPath}>新增数据</Link></Button>}
           <Modal
             title="提示"
             visible={visible}
             onOk={() => handleOK(itemObject.id, isDataOrImages)}
             onCancel={handleCancel}
           >
-            <p>确认要删除{itemObject&&itemObject.Year_item}的条目?</p>
+            <p>确认要删除{itemObject && itemObject.Year_item}的条目?</p>
           </Modal>
         </div>
       </div>

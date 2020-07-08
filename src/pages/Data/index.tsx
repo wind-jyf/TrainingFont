@@ -65,7 +65,7 @@ const getRoutes = (admin: boolean) => {
     {
       path: '/data/cotton',
       component: Cotton,
-      hide: !admin
+      hide: admin
     },
     {
       path: "/data/adminRice",

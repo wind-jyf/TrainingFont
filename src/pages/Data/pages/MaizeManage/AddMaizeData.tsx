@@ -39,7 +39,7 @@ let condition: any = {
 }
 let YearKey = ''
 const Menu_left = (props: IProps) => {
-  const { handleCategory, handleIsDataOrImages,  category } = props;
+  const { handleCategory, handleIsDataOrImages, category } = props;
   console.log("handleCategory:", handleCategory);
 
   const [currentMenuItem, setCurrentMenuItem] = useState('') as any
@@ -57,11 +57,11 @@ const Menu_left = (props: IProps) => {
   return (
     <Menu
       mode="inline"
-      defaultOpenKeys={['Maize(Images):', 'Maize(Data):']}
+      defaultOpenKeys={['Maize(Data):']}
       selectedKeys={[currentMenuItem]}
     // onClick={handleClick}
     >
-      <SubMenu key="Maize(Images):" title="Maize(Images):">
+      <SubMenu key="Maize(Data):" title="Maize(Data):" className={$style['subMenu']}>
         {/* {yearImages.map((item: any, index: any) => <Menu.Item key={'images:' + item} >{item}</Menu.Item>)} */}
         {/* <Menu.Item key={YearKey} >{YearKey}</Menu.Item> */}
       </SubMenu>
@@ -218,7 +218,7 @@ export const AddMaizeData = (props: IProps) => {
           window.localStorage.setItem('category', JSON.stringify(condition))
           window.localStorage.setItem('categoryArray', JSON.stringify(categoryArray))
           window.localStorage.setItem('YearKey', JSON.stringify(condition.Year_item))
-          window.history.go(-1); 
+          window.history.go(-1);
         } else {
           message.error('增加失败')
         }
@@ -249,7 +249,7 @@ export const AddMaizeData = (props: IProps) => {
     // } else {
     //   let tempCategory = window.localStorage.getItem('category');
     //   let tempCategoryArray = window.localStorage.getItem('categoryArray');
- 
+
     //   console.log('categoryArray :>> ', tempCategoryArray);
     //   if (tempCategory != null && tempCategoryArray != null) {
     //     setItemObject(JSON.parse(tempCategory));
@@ -272,7 +272,7 @@ export const AddMaizeData = (props: IProps) => {
       <Form form={form} layout='inline'>
         <Form.Item label='请输入说明:' rules={[{ required: true, message: 'Year is required' }]} >
           {/* <textarea rows={4} cols={50} defaultValue={itemObject.note} onChange={handleNote}></textarea> */}
-          <TextArea rows={4} cols={50} value={itemObject.note} onChange={handleNote} />
+          <TextArea rows={4} cols={50} placeholder='这里如果要展示文件：例如<a href="http://plantphenomics.hzau.edu.cn/data/explaination/test.pdf">点我去百度</a>' value={itemObject.note} onChange={handleNote} />
         </Form.Item>
       </Form>
 
@@ -283,13 +283,13 @@ export const AddMaizeData = (props: IProps) => {
           </Form.Item>
         </Form>
 
-        <Button type="primary" className={$style['firstQueryDirectory_right']} onClick={handleAddDirectory}>新增查询目录</Button>
+        <Button type="primary" className={$style['firstQueryDirectory_right']} onClick={handleAddDirectory}>新增查询类别</Button>
       </div>
 
       <div>
         <Form form={form} layout='inline' >
           {categoryItemArray.map((item: any, index: number) =>
-            <Form.Item className={$style['QueryDirectories']} key={index} label={isDataOrImages ? '请输入查询目录' : '请输入查询类别'} >
+            <Form.Item className={$style['QueryDirectories']} key={index} label='请输入查询类别' >
               <Input defaultValue={item} onChange={(e) => handleCategoryItemArray(index, e)} />
             </Form.Item>
           )}
@@ -300,7 +300,7 @@ export const AddMaizeData = (props: IProps) => {
           <Form form={form} layout='inline' className={$style['firstQueryDirectory_left']} >
             <Form.Item label='请输入查询列的关键字:' rules={[{ required: true, message: '关键字不能为空' }]} >
               {/* <textarea rows={2} cols={20} defaultValue={keywords} onChange={handleKeyWords}></textarea> */}
-              <TextArea rows={2} cols={20} value={itemObject.key_name ? (itemObject.key_name+ ':' + itemObject.key_type) : ''} onChange={handleKeyWords} />
+              <TextArea rows={4} cols={40} placeholder='关键字规则为关键字标题加上英文冒号再加各项,各项间以英文逗号间隔，例如Trait:all,1,2,3,4' value={itemObject.key_name ? (itemObject.key_name + ':' + itemObject.key_type) : ''} onChange={handleKeyWords} />
             </Form.Item>
           </Form>
         </div>

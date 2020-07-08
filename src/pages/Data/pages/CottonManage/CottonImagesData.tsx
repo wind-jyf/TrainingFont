@@ -112,11 +112,11 @@ const Menu_left = (props: IProps) => {
       selectedKeys={[currentMenuItem]}
       onClick={handleClick}
     >
-      <SubMenu key="Cotton(Images):" title="Cotton(Images):">
-        {yearImages.map((item: any, index: any) => <Menu.Item key={'images:' + item} >{item}</Menu.Item>)}
+      <SubMenu key="Cotton(Images):" title="Cotton(Images):" className={$style['subMenu']}>
+        {yearImages.map((item: any, index: any) => <Menu.Item key={'images:' + item}  className={$style['menuItem']}>{item}</Menu.Item>)}
       </SubMenu>
-      <SubMenu key="Cotton(Data):" title="Cotton(Data):">
-        {yearData.map((item: any, index: any) => <Menu.Item key={'data:' + item} >{item}</Menu.Item>)}
+      <SubMenu key="Cotton(Data):" title="Cotton(Data):" className={$style['subMenu']}>
+        {yearData.map((item: any, index: any) => <Menu.Item key={'data:' + item}  className={$style['menuItem']}>{item}</Menu.Item>)}
       </SubMenu>
     </Menu>
   )
@@ -168,6 +168,7 @@ export const CottonImagesData = (year: string) => {
       console.log("初始目录:", category);
       keywords = category&&category.key_name + ':' + category&&category.key_type
       setItemObject(category)
+      categoryArray=[]
       for (let key in category) {
         if (category[key] !== null && key.includes('category')) {
           categoryArray.push(category[key])
@@ -246,6 +247,7 @@ export const CottonImagesData = (year: string) => {
     <div className={$style['leftWrapper']}>
       <Menu_left yearImages={imageYear} yearData={dataYear} dataCategory={dataCategory} imageCategory={imageCategory} handleCategory={handleCategory} handleIsDataOrImages={handleIsDataOrImages} >
       </Menu_left>
+      <Button type="primary"><Link to={'/download'}>下载</Link></Button>
     </div>
   )
 
@@ -291,6 +293,8 @@ export const CottonImagesData = (year: string) => {
           <Button type="primary" onClick={handleDelete}>删除</Button>
           {isDataOrImages && <Button type="primary" ><Link to={ImagePath}>新增图片</Link></Button>}
           {!isDataOrImages && <Button type="primary" ><Link to={DataPath}>新增数据</Link></Button>}
+          {/* 下面这个判断是为了在左边data菜单年份为空时也能显示出新增数据按钮 */}
+          {!dataCategory[0] && <Button type="primary" ><Link to={DataPath}>新增数据</Link></Button>}
           <Modal
             title="提示"
             visible={visible}

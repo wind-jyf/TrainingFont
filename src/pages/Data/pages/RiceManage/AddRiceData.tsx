@@ -56,11 +56,11 @@ const Menu_left = (props: IProps) => {
   return (
     <Menu
       mode="inline"
-      defaultOpenKeys={['Rice(Images):', 'Rice(Data):']}
+      defaultOpenKeys={['Rice(Data):']}
       selectedKeys={[currentMenuItem]}
     // onClick={handleClick}
     >
-      <SubMenu key="Rice(Data):" title="Rice(Data):">
+      <SubMenu key="Rice(Data):" title="Rice(Data):" className={$style['subMenu']}>
         {/* {yearImages.map((item: any, index: any) => <Menu.Item key={'images:' + item} >{item}</Menu.Item>)} */}
         {/* <Menu.Item key={YearKey} >{YearKey}</Menu.Item> */}
       </SubMenu>
@@ -158,22 +158,27 @@ export const AddRiceData = (props: IProps) => {
     console.log('value.split[0] :>> ', value.split(':')[0]);
     console.log('value.split[1] :>> ', value.split(':')[1]);
     timer && clearTimeout(timer)
-    timer = setTimeout(() => {
-      condition.key_name = value.split(':')[0]
-      condition.key_type = value.split(':')[1]
+    // timer = setTimeout(() => {
+    condition.key_name = value.split(':')[0]
+    condition.key_type = value.split(':')[1]
 
-      console.log('key_name :>> ', condition.key_name);
-      console.log('key_type :>> ', condition.key_type);
-      if (!condition.key_name || !condition.key_type) {
-        message.error("请检查关键字格式和内容")
+    console.log('key_name :>> ', condition.key_name);
+    console.log('key_type :>> ', condition.key_type);
+    // if (!condition.key_name || !condition.key_type) {
+    //   message.error("请检查关键字格式和内容")
+    // } 
+    console.log("condition.handleKeyWords:", condition);
+    //不要让undefined显示在用户的上面
+    if (condition.key_name == undefined) condition.key_name = ' '
+    if (condition.key_type == undefined) {
+      if (!condition.key_name.includes(' ')) {
+        condition.key_name += ' '
       }
-      console.log("condition.handleKeyWords:", condition);
-      //不要让undefined显示在用户的上面
-      if (condition.key_name == undefined) condition.key_name = ''
-      if (condition.key_type == undefined) condition.key_type = ''
-      let data = Object.assign({}, itemObject, { 'key_name': condition.key_name, 'key_type': condition.key_type })
-      setItemObject(data)
-    }, 0)
+      condition.key_type = ''
+    }
+    let data = Object.assign({}, itemObject, { 'key_name': condition.key_name, 'key_type': condition.key_type })
+    setItemObject(data)
+    // }, 0)
   }
   const onAddItem = () => {
     let flag = true;
@@ -267,7 +272,7 @@ export const AddRiceData = (props: IProps) => {
       <Form form={form} layout='inline'>
         <Form.Item label='请输入说明:' rules={[{ required: true, message: 'Year is required' }]} >
           {/* <textarea rows={4} cols={50} defaultValue={itemObject.note} onChange={handleNote}></textarea> */}
-          <TextArea rows={4} cols={50} value={itemObject.note} onChange={handleNote} />
+          <TextArea rows={4} cols={50} placeholder='这里如果要展示文件：例如<a href="http://plantphenomics.hzau.edu.cn/data/explaination/test.pdf">点我去百度</a>' value={itemObject.note} onChange={handleNote} />
         </Form.Item>
       </Form>
 
@@ -278,13 +283,13 @@ export const AddRiceData = (props: IProps) => {
           </Form.Item>
         </Form>
 
-        <Button type="primary" className={$style['firstQueryDirectory_right']} onClick={handleAddDirectory}>新增查询目录</Button>
+        <Button type="primary" className={$style['firstQueryDirectory_right']} onClick={handleAddDirectory}>新增查询类别</Button>
       </div>
 
       <div>
         <Form form={form} layout='inline' >
           {categoryItemArray.map((item: any, index: number) =>
-            <Form.Item className={$style['QueryDirectories']} key={index} label={isDataOrImages ? '请输入查询目录' : '请输入查询类别'} >
+            <Form.Item className={$style['QueryDirectories']} key={index} label='请输入查询类别' >
               <Input defaultValue={item} onChange={(e) => handleCategoryItemArray(index, e)} />
             </Form.Item>
           )}
@@ -295,7 +300,7 @@ export const AddRiceData = (props: IProps) => {
           <Form form={form} layout='inline' className={$style['firstQueryDirectory_left']} >
             <Form.Item label='请输入查询列的关键字:' rules={[{ required: true, message: '关键字不能为空' }]} >
               {/* <textarea rows={2} cols={20} defaultValue={keywords} onChange={handleKeyWords}></textarea> */}
-              <TextArea rows={2} cols={20} value={itemObject.key_name ? (itemObject.key_name + ':' + itemObject.key_type) : ''} onChange={handleKeyWords} />
+              <TextArea rows={4} cols={40} placeholder='关键字规则为关键字标题加上英文冒号再加各项,各项间以英文逗号间隔，例如Trait:all,1,2,3,4' value={itemObject.key_name ? (itemObject.key_name + ':' + itemObject.key_type) : ''} onChange={handleKeyWords} />
             </Form.Item>
           </Form>
         </div>
