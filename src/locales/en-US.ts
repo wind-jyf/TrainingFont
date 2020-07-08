@@ -1,10 +1,19 @@
+/**
+ * @file: description
+ * @author: xinguangtai
+ * @Date: 2020-07-02 17:45:07
+ * @LastEditors: xinguangtai
+ * @LastEditTime: 2020-07-06 12:42:46
+ */
 export const en = {
-    'news': 'News',
-    'team': 'Team',
+    'news': 'About CPC',
+    'team': 'Group',
     'instrument': 'Instrument',
     'article': 'Publication',
     'project': 'project',
-    'Homepage_Title': 'crop phenotyping center',
+    'manage': 'Manage',
+    'position': 'Position',
+    'Homepage_Title': 'crop phenotyping center  Phenotyping Center  ',
     'Homepage_Keywords': 'huazhong agriculture university,crop,phenotyping,rice ,cor,cotton,rape,crop phenotyping center',
     'Homepage_Description': 'crop phenotyping center of huazhong agriculture university',
     'Sign_In': 'Sign In',
@@ -16,5 +25,7 @@ export const en = {
     'password': 'Password',
     'username_null_tip': 'Please input your user name',
     'password_null_tip': 'Please input your password',
-    'footer_copyright': 'Copyrighy 2016-2017'
+    'footer_copyright': 'Copyrighy 2016-2017',
+    'footer-middle':'Crop Phenotyping Center',
+    'footer-adress':'Location:No.1,Shizishan Street • HongshanDistict • Wuhan • HubeiProvince • 430070 • P.R.China'
 }

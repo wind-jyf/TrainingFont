@@ -2,8 +2,8 @@
  * @file: description
  * @author: yangqianjun
  * @Date: 2020-07-02 17:45:07
- * @LastEditors: yangqianjun
- * @LastEditTime: 2020-07-03 10:06:10
+ * @LastEditors: xinguangtai
+ * @LastEditTime: 2020-07-05 08:42:38
  */
 import React, { useEffect, useState } from "react";
 
@@ -34,6 +34,8 @@ export const News = (props: Iprops) => {
   const [newsList, setNewsList] = useState<Array<news>>([]);
   const [page, setPage] = useState({}) as any;
 
+  const [newsImg, setNewsImg] = useState(newsPic as any);
+
   const hanldePageInit = (res: any) => {
     const { newsList, pagination } = res;
     // setNewsList(newsList);
@@ -50,6 +52,9 @@ export const News = (props: Iprops) => {
             str.match(/\^+(?=<)/g);
             let result = str.match(/[^>]+(?=<)/g);
             result = result ? result.join(",") : "";
+
+            const picSrc = res.content.match(/src=[\'\"]?([^\'\"]*)[\'\"]?/i);
+            picSrc && picSrc[1] && newsImg === newsPic && setNewsImg(picSrc[1])
 
             news.subtitle = result.slice(0, 100);
             resolve(news);
@@ -95,17 +100,17 @@ export const News = (props: Iprops) => {
                 <>
                   <div className={$style["newsListTop"]}>
                     <div className={$style["news-img-wrapper"]}>
-                      <img src={newsPic} alt="" />
+                      <img src={newsImg} width="100%"  height="100%" alt="" />
                     </div>
                     <div className={$style["news-img-right-part"]}>
                       {renderNewsMainContent(
                         newsList[0].name,
-                        String(newsList[0].subtitle), 0
+                        String(newsList[0].subtitle), newsList[0].id
                       )}
                       {/* {String(newsList[0].subtitle)} */}
                       {renderNewsMainContent(
                         newsList[1].name,
-                        newsList[1].subtitle ? newsList[1].subtitle : "", 1
+                        newsList[1].subtitle ? newsList[1].subtitle : "", newsList[1].id
                       )}
                     </div>
                   </div>
@@ -113,11 +118,11 @@ export const News = (props: Iprops) => {
                   <div className={$style["news-list-middle"]}>
                     {renderNewsMainContent(
                       newsList[2].name,
-                      newsList[2].subtitle + "", 2
+                      newsList[2].subtitle + "", newsList[2].id
                     )}
                     {renderNewsMainContent(
                       newsList[3].name,
-                      newsList[3].subtitle + "", 3
+                      newsList[3].subtitle + "", newsList[3].id
                     )}
                   </div>
                 </>

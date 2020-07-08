@@ -108,14 +108,14 @@ const Menu_left = (props: IProps) => {
   return (
     <Menu
       mode="inline"
-      defaultOpenKeys={['Rape(Images):', 'Rape(Data):']}
+      defaultOpenKeys={['Rape(Images)', 'Rape(Data)']}
       selectedKeys={[currentMenuItem]}
       onClick={handleClick}
     >
-      <SubMenu key="Rape(Images):" title="Rape(Images):" className={$style['subMenu']}>
+      <SubMenu key="Rape(Images)" title="Rape(Images)" className={$style['subMenu']}>
         {yearImages.map((item: any, index: any) => <Menu.Item key={'images:' + item}  className={$style['menuItem']}>{item}</Menu.Item>)}
       </SubMenu>
-      <SubMenu key="Rape(Data):" title="Rape(Data):" className={$style['subMenu']}>
+      <SubMenu key="Rape(Data)" title="Rape(Data)" className={$style['subMenu']}>
         {yearData.map((item: any, index: any) => <Menu.Item key={'data:' + item} className={$style['menuItem']}>{item}</Menu.Item>)}
       </SubMenu>
     </Menu>

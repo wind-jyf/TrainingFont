@@ -1,8 +1,15 @@
+/**
+ * @file: description
+ * @author: xinguangtai
+ * @Date: 2020-07-02 17:45:07
+ * @LastEditors: xinguangtai
+ * @LastEditTime: 2020-07-05 00:54:34
+ */
 import axios from 'axios';
 import { message } from 'antd';
 
 interface IRequestOptions {
-  method: 'get' | 'post' | 'put',
+  method: 'get' | 'post' | 'put' | 'delete',
   data?: any,
   headers?: any
 }

@@ -1,0 +1,28 @@
+.newsWrapper {
+    min-height: 1200px;
+    .newsList {
+        width: 1110px;
+        margin: 40px auto 40px auto;
+
+        .news-name{
+            font-family: "Times New Roman";
+            font-size: x-large;
+            margin-top: 30px;
+
+        }
+
+        .news-content{
+            border-collapse: separate;
+            border-spacing: 2px;
+            line-height: 30px;
+            text-indent: 2em;
+
+        }
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 10px;
+    }
+}
