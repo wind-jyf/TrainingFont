@@ -41,7 +41,7 @@ const getMenus = (admin:boolean) => {
       title: 'project', route: '/project', hide: !isZhCN()
     },
     {
-      title: 'data', route: '/dataSearch'
+      title: 'data', route: '/data'
     },
     {
       title: 'manage', route: '/manage', hide: !admin,
