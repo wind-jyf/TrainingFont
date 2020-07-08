@@ -6,14 +6,14 @@
  * @LastEditTime: 2020-07-04 14:05:11
  */
 export const zh = {
-    'news': '新闻',
+    'news': '首页',
     'team': '团队',
     'instrument': '仪器',
     'article': '文章',
     'project': '项目',
     'manage' : '管理',
     'position' : '位置',
-    'Homepage_Title': '华中农业大学作物表型中心',
+    'Homepage_Title': '华中农业大学作物表型中心 版权所有',
     'Homepage_Keywords': '华中农业大学,作物表型,水稻,玉米,棉花,油菜,植物组学',
     'Homepage_Description': '华中农业大学作物表型中心',
     'Sign_In': 'LOGIN',
@@ -26,4 +26,6 @@ export const zh = {
     'username_null_tip': '请输入账号',
     'password_null_tip': '请输入密码',
     'footer_copyright': 'Copyright 2016-2017',
+    'footer-middle':'作物表型中心',
+    'footer-adress':'通讯地址：中国 · 湖北 · 武汉 南湖狮子山街一号　邮编：430070'
 }

@@ -171,24 +171,23 @@ export const Header = (props: Iprops) => {
       );
     return (
       
-      <div style={{marginBottom:'10px'}}>
+      <div style={{marginBottom:'10px',background:'#fff'}}>
         <div className={$style['logo']}>
           <img style={{margin:'0 auto'}} src={require("../../../img/header.jpg")} alt="logo"/>
           <div className={$style['right']}>
             <Dropdown overlay={menu} placement="bottomCenter" trigger={['click']}>
               <Button>--友情链接--</Button>
             </Dropdown>
-            <div style={{marginTop:'2px',marginBottom:'2px'}}>
-              <Login/>
-            </div>
+            
             <div className={$style['actions']}>               
                 <Dropdown overlayClassName="language-dropdown" overlay={languageMenuJSX}>
-                  <Button className={$style["language-btn"]}>
+                  <p className={$style["language-btn"]}>
                     {LANGUAGE_MENU[currentLocale]}
                     <span className={$style["triangle"]} />
-                  </Button>
+                  </p>
                 </Dropdown>
             </div>
+              <Login/>
           </div>
         </div>
         <div className={$style['header']}>
