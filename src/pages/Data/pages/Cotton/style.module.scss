@@ -9,7 +9,6 @@
 
 .leftWrapper {
   flex: 3;
-
   button {
     width: 100%;
     background-color: #43b344;
@@ -31,7 +30,7 @@
     flex-wrap: wrap;
     padding: 16px;
     margin-right: 250px;
-
+ 
     .firstQueryDirectory {
       display: flex;
       width: 30%;
@@ -40,7 +39,9 @@
 
     .QueryDirectories {
       width: 20%;
-
+      h4{
+        font-weight: 500 !important;
+      }
       select {
         width: 85%;
         border: none;

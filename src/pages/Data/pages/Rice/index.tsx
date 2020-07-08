@@ -191,7 +191,7 @@ export const Rice = (year: string) => {
       setImageCategory(res.image);
 
       category = res.image[0]   //初始目录
-      getImgCategory({ type: 'rice', Year_item: category.Year_item }).then(res => {
+      category&&getImgCategory({ type: 'rice', Year_item: category.Year_item }).then(res => {
         console.log('getImgCategory :>> ', res);
         setDirectoryList(res)
         ImagePathQueryArray = []
@@ -306,10 +306,10 @@ export const Rice = (year: string) => {
       </div>
 
       <div className={$style['buttons']}>
-        {isDataOrImages && <Button type="primary" ><Link to={ImagePathCopy}>Search images</Link></Button>}
-        {!isDataOrImages && <Button type="primary" ><Link to={DataPathCopy}>Search data</Link></Button>}
+        {isDataOrImages && <Button type="primary" ><Link to={ImagePathCopy} >Search images</Link></Button>}
+        {!isDataOrImages && <Button type="primary" ><Link to={DataPathCopy} >Search data</Link></Button>}
         {/* 下面这个判断是为了在左边data菜单年份为空时也能显示出新增数据按钮 */}
-        {!dataCategory[0] && <Button type="primary" ><Link to={DataPathCopy}>Search data</Link></Button>}
+        {!dataCategory[0] && <Button type="primary" ><Link to={DataPathCopy} >Search data</Link></Button>}
       </div>
     </div >
   )
