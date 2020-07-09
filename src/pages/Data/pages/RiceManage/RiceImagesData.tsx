@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Select, Input, Button, Menu, Modal, message } from 'antd';
 import { Link } from "react-router-dom";
-import $style from "./style.module.scss";
+import $style from "../CottonManage/style.module.scss";
 
 import { SearchPanel } from '../../components/SearchPanel';
 import { getCategory, deleteImgCategory, deleteDataCategory } from '../../../../api/admin';
@@ -247,7 +247,7 @@ export const RiceImagesData = (year: string) => {
     <div className={$style['leftWrapper']}>
       <Menu_left yearImages={imageYear} yearData={dataYear} dataCategory={dataCategory} imageCategory={imageCategory} handleCategory={handleCategory} handleIsDataOrImages={handleIsDataOrImages} >
       </Menu_left>
-      <Button type="primary"><Link to={'/download'}>下载</Link></Button>
+      <Button type="primary"><Link to={'/download'}>Download</Link></Button>
     </div>
   )
 
