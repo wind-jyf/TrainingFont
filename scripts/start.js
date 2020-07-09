@@ -63,7 +63,9 @@ if (process.env.HOST) {
 
 // We require that you explicitly set browsers and do not fall back to
 // browserslist defaults.
-const { checkBrowsers } = require('react-dev-utils/browsersHelper');
+const {
+  checkBrowsers
+} = require('react-dev-utils/browsersHelper');
 checkBrowsers(paths.appPath, isInteractive)
   .then(() => {
     // We attempt to use the default port but if it is busy, we offer the user to
@@ -89,7 +91,7 @@ checkBrowsers(paths.appPath, isInteractive)
     };
 
     // const PROXY_URL =  'http://ve4fa2.natappfree.cc';
-    const PROXY_URL = process.env.EMPOWER_PROXY || 'http://localhost:8081';
+    const PROXY_URL = process.env.EMPOWER_PROXY || 'http://localhost:3001';
 
 
     // Create a webpack compiler that is configured with custom messages.
@@ -111,10 +113,9 @@ checkBrowsers(paths.appPath, isInteractive)
     const proxyConfig = {
       '/api/crophe': {
         target: PROXY_URL,
-        onProxyReq: (proxyReq, req, res) => {
-        }
+        onProxyReq: (proxyReq, req, res) => {}
       }
-    }  
+    }
 
     const serverConfig = createDevServerConfig(
       proxyConfig,
@@ -146,8 +147,8 @@ checkBrowsers(paths.appPath, isInteractive)
       openBrowser(urls.localUrlForBrowser);
     });
 
-    ['SIGINT', 'SIGTERM'].forEach(function(sig) {
-      process.on(sig, function() {
+    ['SIGINT', 'SIGTERM'].forEach(function (sig) {
+      process.on(sig, function () {
         devServer.close();
         process.exit();
       });
