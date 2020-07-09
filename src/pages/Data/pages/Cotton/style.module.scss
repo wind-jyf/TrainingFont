@@ -1,4 +1,6 @@
 .ManageWrapper {
+  width: fit-content;
+  margin: 10px auto;
   display: flex;
   background: #fff;
   border: 1px solid #e6e6e6;
@@ -49,10 +51,12 @@
 .rightWrapper {
   flex: 6;
   margin-left: 16px;
+  width: fit-content;
 
   .directories {
     flex-wrap: wrap;
     padding-left: 4px;
+    width: 690px;
 
     .QueryDirectories {
       width: 140px;

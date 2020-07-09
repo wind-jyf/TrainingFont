@@ -1,10 +1,13 @@
 .ManageWrapper {
+  width: fit-content;
+  margin: 10px auto;
   display: flex;
   background: #fff;
   border: 1px solid #e6e6e6;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .1);
   border-radius: 6px;
   padding: 16px;
+  font-family: "宋体","Times New Roman", Times, serif;
 }
 
 .leftWrapper {
@@ -52,15 +55,18 @@
 .rightWrapper {
   flex: 7;
   margin-left: 50px;
+  width: 850px;
 
   .firstQueryDirectory {
     display: flex;
     padding: 5px 0;
+    width: 600px;
 
     .firstQueryDirectory_right {
       background-color: #43b344;
       color: #fff;
       font-size: 16px;
+      height: 40px;
       outline: none;
       border-color: #fff;
       border-radius: 3px;
@@ -68,11 +74,10 @@
   }
 
   .QueryDirectories {
-    width: 100%;
     padding: 5px 0;
-
+    width: 600px;
     input {
-      width: 30%;
+      width: 65%;
     }
   }
 
@@ -100,6 +105,7 @@
   .ant-form-item-label {
     label {
       width: 160px !important;
+      font-size: 18px;
     }
   }
 }
