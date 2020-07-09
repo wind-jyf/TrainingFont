@@ -12,9 +12,9 @@ export const LineMarkerEcharts = (props: IProps) => {
     const { xData, yData, valueData } = props;
     let endWidth;
     if (xData.length > 100) {
-        endWidth = 1000 / xData.length;
+        endWidth = 1500 / xData.length;
     } else {
-        endWidth = 400 / xData.length;
+        endWidth = 1500 / xData.length;
     }
 
     const getOtion = () => {
@@ -81,7 +81,7 @@ export const LineMarkerEcharts = (props: IProps) => {
                     data: yData,
                     markPoint: {
                         symbol: 'pin', //标记(气泡)的图形
-                        symbolSize: 50, //标记(气泡)的大小
+                        symbolSize: 20, //标记(气泡)的大小
                         data: valueData
                     },
                 },

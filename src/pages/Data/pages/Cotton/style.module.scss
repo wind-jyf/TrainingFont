@@ -12,28 +12,31 @@
 
 .leftWrapper {
   flex: 3;
+
   .subMenu {
     border-radius: 0;
     background-color: #43b344;
     color: #fff;
     font-size: 20px;
-  
+
     .menuItem {
       color: #000;
       font-size: 18px;
       text-align: center;
       padding: 0 !important;
     }
-  
+
     :global {
       .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
         background-color: rgb(197, 253, 214);
+
         &::after {
           border-right: 3px solid #43b343;
         }
       }
     }
   }
+
   button {
     width: 100%;
     font-size: 18px;
@@ -71,7 +74,7 @@
 
       select {
         width: 140px;
-        border: 1px #666 dotted;
+        border: 1px #666 solid;
         font-size: 16px;
         overflow: auto;
         outline: none;
