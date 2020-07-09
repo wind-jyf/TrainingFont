@@ -3,7 +3,7 @@
  * @author: xinguangtai
  * @Date: 2020-07-03 21:44:22
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-08 10:38:27
+ * @LastEditTime: 2020-07-09 10:49:45
  */
 
 import React, { useContext, useState, useEffect } from "react";
@@ -48,42 +48,36 @@ export const NewsManage = (props: any) => {
   };
 
   const handleToNewsEdit = (id?: number) => {
-    // return id != null
-    //   ? () => props.history.push(`/manage/newsEdit?id=${id}`)
-    //   : () => props.history.push(`/manage/newsEdit`);
     return id != null
-      ? () => window.open(`http://plantphenomics.hzau.edu.cn/Crophe/editnews.action?id=${id}`)
-      : () => window.open(`http://plantphenomics.hzau.edu.cn/Crophe/addnews.jsp`);
+      ? () => props.history.push(`/manage/newsEdit?id=${id}`)
+      : () => props.history.push(`/manage/newsEdit`);
   };
 
   const handleToNewsDelete = (id: number) => {
     return () => {
-      deleteNews({ id, lan: "CH" }).then((res) => {
-        getNewsList({ page: page.page, page_size: page.page_size }).then(
-          (res) => {
-            hanldePageInit(res);
-          }
-        );
-        res.code === 0
-          ? message.success(res.data, 3)
-          : message.error(res.data, 3);
-      });
-    };
-  };
+      deleteNews({id, lan: 'CH'}).then(res => {
+        getNewsList({ page: page.page, page_size: page.page_size }).then((res) => {
+          hanldePageInit(res);
+        });
+        res.code === 0? message.success(res.data,3):message.error(res.data,3)
+      })
+    }
+  }
 
   const columns = [
     {
       title: "新闻",
       dataIndex: "name",
       key: "name",
-      width: "800px",
+      width: 800,
       render: (text: string, record: any) => (
         <div
           style={{
-            width: "700px",
+            width: "1000px",
             overflow: "hidden",
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",
+            fontSize:"1.5em",
           }}
           onClick={handleToNewsDetail(record.id)}
         >
@@ -95,7 +89,21 @@ export const NewsManage = (props: any) => {
       title: "时间",
       dataIndex: "date",
       key: "date",
-      width: 120,
+      width: 800,
+      render: (date: string, record: any) => (
+        <div
+          style={{
+            width: "100px",
+            // overflow: "hidden",
+            whiteSpace: "nowrap",
+            fontSize:"1.5em",
+            // textOverflow: "ellipsis",
+          }}
+          // onClick={handleToNewsDetail(record.id)}
+        >
+          {date}
+        </div>
+      ),
     },
     {
       title: "操作",
@@ -105,21 +113,19 @@ export const NewsManage = (props: any) => {
           <Button
             onClick={handleToNewsEdit(record.id)}
             type="primary"
-            style={{ marginRight: "20px" }}
+            style={{ marginRight: "20px",fontSize:"1.2em" }}
           >
             编辑
           </Button>
-          <Button onClick={handleToNewsDelete(record.id)} danger>
-            删除
-          </Button>
+          <Button onClick={handleToNewsDelete(record.id)} style={{ fontSize:"1.2em" }} danger>删除</Button>
         </>
       ),
     },
   ];
 
   return (
-    <>
-      <Button type="primary" onClick={handleToNewsEdit()}>
+    <div style={{paddingLeft:"10vw",paddingRight:"10vw"}}>
+      <Button type="primary" onClick={handleToNewsEdit()} style={{ marginLeft: "20px",marginBottom:"20px",marginTop:"10px",fontSize:"1.2em" }}>
         新增新闻
       </Button>
       <Table
@@ -135,6 +141,6 @@ export const NewsManage = (props: any) => {
           onChange: handlePageChange,
         }}
       />
-    </>
+    </div>
   );
 };

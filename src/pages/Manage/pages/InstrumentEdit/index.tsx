@@ -3,7 +3,7 @@
  * @author: xinguangtai
  * @Date: 2020-07-03 23:43:37
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-05 17:16:49
+ * @LastEditTime: 2020-07-08 21:28:19
  */
 import React, { useContext, useState, useEffect, useRef } from "react";
 
@@ -117,7 +117,7 @@ export const InstrumentEdit = (props: any) => {
     <>
       <div>
         <div
-          style={{ display: "flex", alignItems: "center", marginTop: "30px" }}
+          style={{ display: "flex", alignItems: "center", marginTop: "30px",width:"1000px",paddingLeft:"200px" }}
         >
           <span style={{ width: "70px" }}>仪器名称:</span>
           <Input
@@ -126,7 +126,7 @@ export const InstrumentEdit = (props: any) => {
             onChange={(e) => setName(e.target.value)}
           />
         </div>
-        <div>介绍如下:</div>
+        <div style={{paddingLeft:"200px"}}>介绍如下:</div>
         <ReactQuill
           className={$style["newsEditWrapper"]}
           theme="snow"

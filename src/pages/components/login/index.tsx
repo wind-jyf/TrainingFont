@@ -70,13 +70,13 @@ export const Login = () => {
                 {login ?
                     <Dropdown overlayClassName="user-dropdown" overlay={overlay}>
                         <span className={$style['userName']}>
-                            {`${intl.get('user_name')}：${username}`}
+                            {`${username}`}
                         </span>
                     </Dropdown>
                     :
-                    <Button className={$style['active']} onClick={() => setModalVisable(true)}>
+                    <p className={$style['active']} onClick={() => setModalVisable(true)} style={{width:'20px'}}>
                         {intl.get('Sign_In')}
-                    </Button>
+                    </p>
                 }
             </div>
             <Modal

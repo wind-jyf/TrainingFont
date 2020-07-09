@@ -3,7 +3,7 @@
  * @author: yangqianjun
  * @Date: 2020-07-03 18:46:49
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-05 17:17:03
+ * @LastEditTime: 2020-07-08 23:53:11
  */
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import { Divider, Input, Table, Button, Upload ,message } from "antd";
@@ -113,6 +113,7 @@ export const InstrumentManage = (props: Iprops) => {
             overflow: "hidden",
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",
+            fontSize:"1.2em",
           }}
           // onClick={handleToNewsDetail(record.id)}
         >
@@ -125,7 +126,7 @@ export const InstrumentManage = (props: Iprops) => {
       key: "action",
       render: (record: any) => (
         <>
-          <Button onClick={() => handleToInstrumentDelete(record.id, 'zh-CN')} danger>
+          <Button style={{fontSize:"1.2em" }} onClick={() => handleToInstrumentDelete(record.id, 'zh-CN')} danger>
             删除
           </Button>
         </>
@@ -144,6 +145,7 @@ export const InstrumentManage = (props: Iprops) => {
             overflow: "hidden",
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",
+            fontSize:"1.2em",
           }}
           // onClick={handleToNewsDetail(record.id)}
         >
@@ -156,7 +158,7 @@ export const InstrumentManage = (props: Iprops) => {
       key: "action",
       render: (record: any) => (
         <>
-          <Button onClick={() => handleToInstrumentDelete(record.id, 'en-US')} danger>
+          <Button style={{fontSize:"1.2em" }} onClick={() => handleToInstrumentDelete(record.id, 'en-US')} danger>
             删除
           </Button>
         </>
@@ -166,8 +168,8 @@ export const InstrumentManage = (props: Iprops) => {
 
   return (
     <div className={$style["team-manage"]}>
-      <div style={{ paddingTop: "100px" }}>
-        <Button type="primary" onClick={() => props.history.push(`/manage/instrumentEdit?lan=zh-CN`)}>增加仪器中文介绍</Button>
+      <div style={{ paddingTop: "100px",paddingLeft:"10vw",paddingRight:"10vw"}}>
+        <Button type="primary" style={{fontSize:"1.2em",height:'50px' }} onClick={() => props.history.push(`/manage/instrumentEdit?lan=zh-CN`)}>增加仪器中文介绍</Button>
         <Divider
           style={{
             marginTop: "10px",
@@ -177,6 +179,7 @@ export const InstrumentManage = (props: Iprops) => {
         />
         <Table
           columns={columns}
+          // style={{fontSize:"1.2em" }}
           dataSource={data}
           pagination={{
             size: "small",
@@ -189,8 +192,8 @@ export const InstrumentManage = (props: Iprops) => {
           }}
         ></Table>
       </div>
-      <div style={{ paddingTop: "100px" }}>
-        <Button type="primary"  onClick={() => props.history.push(`/manage/instrumentEdit?lan=en-US`)}>增加仪器英文介绍</Button>
+      <div style={{ paddingTop: "100px",paddingLeft:"10vw",paddingRight:"10vw" }}>
+        <Button type="primary" style={{fontSize:"1.2em",height:'50px' }} onClick={() => props.history.push(`/manage/instrumentEdit?lan=en-US`)}>增加仪器英文介绍</Button>
         <Divider
           style={{
             marginTop: "10px",
@@ -201,6 +204,7 @@ export const InstrumentManage = (props: Iprops) => {
         <Table
           columns={columnsEn}
           dataSource={dataEn}
+          // style={{fontSize:"1.2em" }}
           pagination={{
             size: "small",
             showSizeChanger: false,

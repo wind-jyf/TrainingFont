@@ -3,7 +3,7 @@
  * @author: xinguangtai
  * @Date: 2020-07-03 21:44:22
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-06 12:16:11
+ * @LastEditTime: 2020-07-09 00:30:56
  */
 
 import React, { useContext, useState, useEffect } from "react";
@@ -133,11 +133,11 @@ export const NewsManageEn = (props: any) => {
           <Button
             onClick={handleToNewsEdit(record.id, record.title, record.content)}
             type="primary"
-            style={{ marginRight: "20px" }}
+            style={{ marginRight: "20px",fontSize:"1.2em",height:"40px",marginTop:"30px" }}
           >
             编辑
           </Button>
-          <Button onClick={handleToNewsDelete(record.id)} danger>
+          <Button style={{fontSize:"1.2em",height:"40px"  }} onClick={handleToNewsDelete(record.id)} danger>
             删除
           </Button>
         </>
@@ -187,7 +187,7 @@ export const NewsManageEn = (props: any) => {
   };
 
   return (
-    <>
+    <div style={{paddingLeft:"10vw",paddingRight:"10vw"}}>
       <Modal
         title="英文首页"
         visible={isModalVisible}
@@ -195,19 +195,22 @@ export const NewsManageEn = (props: any) => {
         onCancel={() => setIsModalVisible(false)}
       >
         <Input
+          // rows={200}
           placeholder="标题"
           value={newsTitle}
           onChange={(e) => setNewsTitle(e.target.value)}
+          style={{fontSize:"1.2em"}}
         />
         <TextArea
-          rows={30}
+          rows={10}
           placeholder="内容"
           value={newsContent}
           onChange={(e) => setNewsContent(e.target.value)}
+          style={{fontSize:"1.2em"}}
         />
       </Modal>
 
-      <Button type="primary" onClick={handleToNewsEdit()}>
+      <Button  style={{fontSize:"1.2em",height:"40px" }} type="primary" onClick={handleToNewsEdit()}>
         新增新闻
       </Button>
       <Table
@@ -223,6 +226,6 @@ export const NewsManageEn = (props: any) => {
           onChange: handlePageChange,
         }}
       />
-    </>
+    </div>
   );
 };

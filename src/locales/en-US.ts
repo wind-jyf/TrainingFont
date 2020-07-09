@@ -3,13 +3,13 @@
  * @author: xinguangtai
  * @Date: 2020-07-02 17:45:07
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-06 12:42:46
+ * @LastEditTime: 2020-07-09 00:36:05
  */
 export const en = {
-    'news': 'News',
-    'team': 'Team',
-    'instrument': 'Instrument',
-    'article': 'Publication',
+    'news': 'About CPC',
+    'team': 'Group',
+    'instrument': 'Phenotyping Facilities',
+    'article': 'Publications',
     'project': 'project',
     'manage': 'Manage',
     'position': 'Position',
