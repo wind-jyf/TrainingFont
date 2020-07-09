@@ -192,8 +192,8 @@ export const ArticleManage = (props: Iprops) => {
 
         <div>
           <Radio.Group onChange={(e) => setLan(e.target.value)} value={lan}>
-            <Radio value={"EN"} style={{ fontSize: "1.2em" }}>English</Radio>
-            <Radio value={"CH"} style={{ fontSize: "1.2em" }}>Chinese</Radio>
+            <Radio value={"EN"} >English</Radio>
+            <Radio value={"CH"} >Chinese</Radio>
           </Radio.Group>
         </div>
 

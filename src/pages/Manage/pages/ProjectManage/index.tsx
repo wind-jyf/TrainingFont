@@ -12,7 +12,7 @@ import React, {
   useRef,
   createElement,
 } from "react";
-import { Divider, Input, Table, Button, Upload, Modal ,message } from "antd";
+import { Divider, Input, Table, Button, Upload, Modal, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 
 import {
@@ -64,11 +64,11 @@ export const ProjectManage = (props: Iprops) => {
   }, []);
 
   const handleToProjectDelete = (id: number) => {
-    deleteProjectById({ id }).then((res) => {getData();res.code === 0? message.success(res.data,3):message.error(res.data,3)});
+    deleteProjectById({ id }).then((res) => { getData(); res.code === 0 ? message.success(res.data, 3) : message.error(res.data, 3) });
   };
 
   const handleToProjectPost = () => {
-    postProject({ projectname }).then((res) => {getData();res.code === 0? message.success(res.data,3):message.error(res.data,3)});
+    postProject({ projectname }).then((res) => { getData(); res.code === 0 ? message.success(res.data, 3) : message.error(res.data, 3) });
   };
 
   const handleToProjectEdit = (id: number, projectname: string) => {
@@ -95,14 +95,13 @@ export const ProjectManage = (props: Iprops) => {
       render: (text: string, record: any) => (
         <div
           style={{
-            width:'600px',
-            overflow:'hidden',
+            width: '600px',
+            overflow: 'hidden',
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",
-            fontSize:"1.2em",
-            width:"700px"
+            fontSize: "1.2em"
           }}
-          // onClick={handleToNewsDetail(record.id)}
+        // onClick={handleToNewsDetail(record.id)}
         >
           {text}
         </div>
@@ -134,12 +133,12 @@ export const ProjectManage = (props: Iprops) => {
     putProject({ id: ModalId, projectname: modalProjectname }).then((res) => {
       getData();
       setModalProjectname("");
-      res.code === 0? message.success(res.data,3):message.error(res.data,3)
+      res.code === 0 ? message.success(res.data, 3) : message.error(res.data, 3)
     });
   };
 
   return (
-    <div className={$style["project-manage"]} style={{marginLeft:'2%'}}>
+    <div className={$style["project-manage"]} style={{ marginLeft: '2%' }}>
       <Modal
         visible={isModalVisible}
         onOk={handleModalOk}
@@ -149,14 +148,14 @@ export const ProjectManage = (props: Iprops) => {
           rows={4}
           value={modalProjectname}
           onChange={(e) => setModalProjectname(e.target.value)}
-          //   placeholder=""
+        //   placeholder=""
         />
       </Modal>
       <div>
         <div
-          style={{paddingLeft:"10vw",paddingRight:"10vw" }}
+          style={{ paddingLeft: "10vw", paddingRight: "10vw" }}
         >
-          <div style={{ marginTop: "20px" ,width:'50px',fontSize:"1.2em"}}>添加</div>
+          <div style={{ marginTop: "20px", width: '50px', fontSize: "1.2em" }}>添加</div>
           <Divider
             style={{
               marginTop: "10px",
@@ -164,26 +163,26 @@ export const ProjectManage = (props: Iprops) => {
               borderBottom: "1px solid #ddd",
             }}
           />
-          <div style={{  display: "flex", alignItems: "center",marginTop: "20px"}}>
-            <div style={{ width: "100px",fontSize:"1.2em" }}>项目介绍:</div>
+          <div style={{ display: "flex", alignItems: "center", marginTop: "20px" }}>
+            <div style={{ width: "100px", fontSize: "1.2em" }}>项目介绍:</div>
             <Input.TextArea
               rows={7}
               value={projectname}
               onChange={(e) => setProjectName(e.target.value)}
             />
           </div>
-          
+
         </div>
         <Button
           type="primary"
           onClick={handleToProjectPost}
-          style={{ marginTop: "20px", marginLeft: "300px",fontSize:"1.2em" }}
+          style={{ marginTop: "20px", marginLeft: "300px", fontSize: "1.2em" }}
         >
           提交
         </Button>
       </div>
-      <div style={{ paddingTop: "100px",paddingLeft:"10vw",paddingRight:"10vw" }}>
-        <div style={{fontSize:"1.2em" }}>修改/删除</div>
+      <div style={{ paddingTop: "100px", paddingLeft: "10vw", paddingRight: "10vw" }}>
+        <div style={{ fontSize: "1.2em" }}>修改/删除</div>
         <Divider
           style={{
             marginTop: "10px",
