@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Select, Input, Button, Menu,message } from 'antd';
+import { Form, Select, Input, Button, Menu, message } from 'antd';
 import $style from "./style.module.scss";
 
 import { SearchPanel } from '../../components/SearchPanel';
@@ -33,17 +33,17 @@ let condition: any = {
   category_name10: null,
 }
 const Menu_left = (props: IProps) => {
-  const {imageYear,dataYear} = props;
+  const { imageYear, dataYear } = props;
 
   return (
     <Menu
       mode="inline"
       defaultOpenKeys={['Cotton(images)']}
-      // selectedKeys={[currentMenuItem]}
+    // selectedKeys={[currentMenuItem]}
     // onClick={handleClick}
     >
       <SubMenu key="Cotton(images)" title="Cotton(images)" className={$style['subMenu']}>
-        {imageYear.map((item: any, index: any) => <Menu.Item key={'images:' + item} >{item}</Menu.Item>)}
+        {imageYear.map((item: any, index: any) => <Menu.Item key={'images:' + item} className={$style['menuItem']}>{item}</Menu.Item>)}
       </SubMenu>
     </Menu>
   )

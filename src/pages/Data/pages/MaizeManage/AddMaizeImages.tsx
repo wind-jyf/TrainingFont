@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Select, Input, Button, Menu, message } from 'antd';
-import $style from "./style.module.scss";
+import $style from "../CottonManage/style.module.scss";
 
 import { SearchPanel } from '../../components/SearchPanel';
 import { getCategory, addDataCategory } from '../../../../api/admin';
@@ -43,7 +43,7 @@ const Menu_left = (props: IProps) => {
     // onClick={handleClick}
     >
       <SubMenu key="Maize(images)" title="Maize(images)" className={$style['subMenu']}>
-        {imageYear.map((item: any, index: any) => <Menu.Item key={'images:' + item} >{item}</Menu.Item>)}
+        {imageYear.map((item: any, index: any) => <Menu.Item key={'images:' + item} className={$style['menuItem']}>{item}</Menu.Item>)}
       </SubMenu>
     </Menu>
   )
