@@ -34,10 +34,10 @@
                 }
                 .instrumentTitle {
                     font-size: 1.2rem;
-                    width: 599px;
+                    //width: 599px;
                     height: 90px;
                     text-align: center;
-                    padding-right: 30px;
+                    //padding-right: 30px;
                     //line-height: 100px;
                     margin-bottom: 30px;
                 }
@@ -54,5 +54,6 @@
         display: flex;
         justify-content: flex-end;
         margin-top: 10px;
+        padding: 0 15% 20px 0 ;
     }
 }
