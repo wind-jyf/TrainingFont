@@ -147,12 +147,15 @@ export const Menus = (props: IProps) => {
   };
 
   return (
-    <Menu
+    <div >
+    <Menu 
+
       mode="inline"
       defaultOpenKeys={defaultOpenKeys}
       selectedKeys={[getDefaultSelectedName(getMenus(admin))]}
     >
       {renderMenu(getMenus(admin))}
     </Menu>
+    </div>
   );
 };

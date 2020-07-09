@@ -6,7 +6,7 @@
  * @LastEditTime: 2020-07-08 23:53:11
  */
 import React, { useEffect, useState, useCallback, useRef } from "react";
-import { Divider, Input, Table, Button, Upload ,message } from "antd";
+import { Divider, Input, Table, Button, Upload, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 
 import {
@@ -63,28 +63,28 @@ export const InstrumentManage = (props: Iprops) => {
     getData();
   }, []);
 
-  const handleToTeamEdit = () => {};
+  const handleToTeamEdit = () => { };
 
   const handleToInstrumentDelete = (id: number, lan: "en-US" | "zh-CN") => {
-    deleteInstrumentById({ id, lan }).then((res) => {getData();res.code === 0? message.success(res.data,3):message.error(res.data,3)});
+    deleteInstrumentById({ id, lan }).then((res) => { getData(); res.code === 0 ? message.success(res.data, 3) : message.error(res.data, 3) });
   };
 
-//   const handleToTeamPost = () => {
-//     const formdata = new FormData();
-//     // formdata.append('file', uploadImg.current && uploadImg.current.files && uploadImg.current.files[0]);
-//     formdata.append("avator", file);
-//     formdata.append("lan", "zh-CN");
-//     formdata.append("describe", description);
-//     formdata.append("name", name);
-//     //@ts-ignore
-//     for (const value of formdata.values()) {
-//       console.log(value);
-//     }
-//     var request = new XMLHttpRequest();
-//     request.open("POST", "/api/crophe/group");
-//     request.setRequestHeader("content-type", "multipart/form-data;");
-//     request.send(formdata);
-//   };
+  //   const handleToTeamPost = () => {
+  //     const formdata = new FormData();
+  //     // formdata.append('file', uploadImg.current && uploadImg.current.files && uploadImg.current.files[0]);
+  //     formdata.append("avator", file);
+  //     formdata.append("lan", "zh-CN");
+  //     formdata.append("describe", description);
+  //     formdata.append("name", name);
+  //     //@ts-ignore
+  //     for (const value of formdata.values()) {
+  //       console.log(value);
+  //     }
+  //     var request = new XMLHttpRequest();
+  //     request.open("POST", "/api/crophe/group");
+  //     request.setRequestHeader("content-type", "multipart/form-data;");
+  //     request.send(formdata);
+  //   };
 
   const handlePageChange = (page: number, pageSize?: number) => {
     getInstrumentList({ page, page_size: pageSize, lan: "zh-CN" }).then(
@@ -113,9 +113,9 @@ export const InstrumentManage = (props: Iprops) => {
             overflow: "hidden",
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",
-            fontSize:"1.2em",
+            fontSize: "1.2em",
           }}
-          // onClick={handleToNewsDetail(record.id)}
+        // onClick={handleToNewsDetail(record.id)}
         >
           {text}
         </div>
@@ -126,7 +126,7 @@ export const InstrumentManage = (props: Iprops) => {
       key: "action",
       render: (record: any) => (
         <>
-          <Button style={{fontSize:"1.2em" }} onClick={() => handleToInstrumentDelete(record.id, 'zh-CN')} danger>
+          <Button style={{ fontSize: "1.2em" }} onClick={() => handleToInstrumentDelete(record.id, 'zh-CN')} danger>
             删除
           </Button>
         </>
@@ -145,9 +145,9 @@ export const InstrumentManage = (props: Iprops) => {
             overflow: "hidden",
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",
-            fontSize:"1.2em",
+            fontSize: "1.2em",
           }}
-          // onClick={handleToNewsDetail(record.id)}
+        // onClick={handleToNewsDetail(record.id)}
         >
           {text}
         </div>
@@ -158,7 +158,7 @@ export const InstrumentManage = (props: Iprops) => {
       key: "action",
       render: (record: any) => (
         <>
-          <Button style={{fontSize:"1.2em" }} onClick={() => handleToInstrumentDelete(record.id, 'en-US')} danger>
+          <Button style={{ fontSize: "1.2em" }} onClick={() => handleToInstrumentDelete(record.id, 'en-US')} danger>
             删除
           </Button>
         </>
@@ -168,8 +168,8 @@ export const InstrumentManage = (props: Iprops) => {
 
   return (
     <div className={$style["team-manage"]}>
-      <div style={{ paddingTop: "100px",paddingLeft:"10vw",paddingRight:"10vw"}}>
-        <Button type="primary" style={{fontSize:"1.2em",height:'50px' }} onClick={() => props.history.push(`/manage/instrumentManageEdit?lan=zh-CN`)}>增加仪器中文介绍</Button>
+      <div style={{ paddingTop: "100px", paddingLeft: "10vw", paddingRight: "10vw" }}>
+        <Button type="primary" style={{ fontSize: "1.2em", height: '50px' }} onClick={() => props.history.push(`/manage/instrumentManageEdit?lan=zh-CN`)}>增加仪器中文介绍</Button>
         <Divider
           style={{
             marginTop: "10px",
@@ -192,8 +192,8 @@ export const InstrumentManage = (props: Iprops) => {
           }}
         ></Table>
       </div>
-      <div style={{ paddingTop: "100px",paddingLeft:"10vw",paddingRight:"10vw" }}>
-        <Button type="primary" style={{fontSize:"1.2em",height:'50px' }} onClick={() => props.history.push(`/manage/instrumentEdit?lan=en-US`)}>增加仪器英文介绍</Button>
+      <div style={{ paddingTop: "100px", paddingLeft: "10vw", paddingRight: "10vw" }}>
+        <Button type="primary" style={{ fontSize: "1.2em", height: '50px' }} onClick={() => props.history.push(`/manage/instrumentManageEdit?lan=en-US`)}>增加仪器英文介绍</Button>
         <Divider
           style={{
             marginTop: "10px",

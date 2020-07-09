@@ -1,13 +1,16 @@
 $menuWidth: 200px;
 
 .layoutContainer{
+  padding-left: 5%;
+  padding-right: 5%;
   display: flex;
-  min-height: 1200px;
+  min-height: 800px;
   background-color: #f8f8f8;
 }
 
 .menuContainer{
   position: sticky;
+  
   flex: 0 0 $menuWidth;
   background-color: #fff;
   :global{

@@ -2,8 +2,14 @@
 
 .loginWrapper {
   display: inline-block;
+
   .login {
-   p {
+    a {
+      font-size: 16px;
+      color: #5A1A8B;
+    }
+
+    p {
       display: inline-block;
       background-color: transparent;
       border: none;
@@ -14,13 +20,13 @@
       height: 34px;
       //margin-left: 16px;
       border-radius: 17px;
-  
+
       &.active {
         font-size: 16px;
-        color:#5A1A8B ;
+        color: #5A1A8B;
         background: #fff;
       }
-  
+
       &.default {
         //color: #f23340;
         border: 1px solid $theme-red;
@@ -35,9 +41,11 @@
       padding: 32px 40px;
     }
   }
+
   .formWrapper {
     margin-top: 40px;
   }
+
   .signButton {
     display: inline-block;
     background-color: transparent;
@@ -53,25 +61,28 @@
   }
 }
 
-  .userName {
-    color: #4bb344;
-  }
+.userName {
+  color: #5A1A8B;
+}
 
-  :global {
-    .user-dropdown {
-      .ant-dropdown-menu {
-        background: rgba(14, 24, 51, 0.65);
-      }
-      .ant-dropdown-menu-item {
-        color: rgba(255, 255, 255, 0.85);
-        font-size: 14px;
-      }
-      .ant-dropdown-menu-item-active {
-        background: rgba(34, 50, 97, 0.65);
-      }
-      .ant-dropdown-menu-item-selected {
-        color: #f23340;
-        background: rgba(34, 50, 97, 0.65);
-      }
+:global {
+  .user-dropdown {
+    .ant-dropdown-menu {
+      background: rgba(14, 24, 51, 0.65);
+    }
+
+    .ant-dropdown-menu-item {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 14px;
+    }
+
+    .ant-dropdown-menu-item-active {
+      background: rgba(34, 50, 97, 0.65);
+    }
+
+    .ant-dropdown-menu-item-selected {
+      color: #f23340;
+      background: rgba(34, 50, 97, 0.65);
     }
   }
+}

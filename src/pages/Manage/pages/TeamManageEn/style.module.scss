@@ -13,6 +13,9 @@
     }
 
     .pagination{
+        display: flex;
+       
+        justify-content: flex-end;
         margin: 40px 50px;
     }
 

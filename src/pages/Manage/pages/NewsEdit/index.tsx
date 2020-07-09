@@ -168,7 +168,7 @@ export const NewsEdit = (props: any) => {
   const dateFormat = "YYYY-MM-DD";
 
   return (
-    <>
+    <div style={{marginLeft:'2%'}}>
       <div id="news">
         <div
           style={{ display: "flex", alignItems: "center", marginTop: "30px",width:"1000px",paddingLeft:"200px" }}
@@ -237,6 +237,6 @@ export const NewsEdit = (props: any) => {
       >
         预览
       </Button> */}
-    </>
+    </div>
   );
 };

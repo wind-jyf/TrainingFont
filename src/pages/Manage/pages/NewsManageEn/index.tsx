@@ -12,7 +12,7 @@ import { routes } from "../../route";
 import { Link } from "react-router-dom";
 
 import { Context } from "../../../../context";
-import { Table, Tag, Space, Button, Modal, Input ,message } from "antd";
+import { Table, Tag, Space, Button, Modal, Input, message } from "antd";
 import { homedir } from "os";
 
 import { getNewsList, deleteNews, putNews } from "../../../../api/news";
@@ -87,7 +87,7 @@ export const NewsManageEn = (props: any) => {
   const handleToNewsDelete = (id: number) => {
     return () => {
       deleteNews({ id, lan: "en-US" }).then((res) => {
-        res.code === 0? message.success(res.data,3):message.error(res.data,3)
+        res.code === 0 ? message.success(res.data, 3) : message.error(res.data, 3)
         getNewsList({
           page: page.page,
           page_size: page.page_size,
@@ -113,7 +113,7 @@ export const NewsManageEn = (props: any) => {
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",
           }}
-          // onClick={handleToNewsDetail(record.id)}
+        // onClick={handleToNewsDetail(record.id)}
         >
           {text}
         </div>
@@ -133,11 +133,11 @@ export const NewsManageEn = (props: any) => {
           <Button
             onClick={handleToNewsEdit(record.id, record.title, record.content)}
             type="primary"
-            style={{ marginRight: "20px",fontSize:"1.2em",height:"40px",marginTop:"30px" }}
+            style={{ marginRight: "20px", fontSize: "1.2em", height: "40px", marginTop: "30px" }}
           >
             编辑
           </Button>
-          <Button style={{fontSize:"1.2em",height:"40px"  }} onClick={handleToNewsDelete(record.id)} danger>
+          <Button style={{ fontSize: "1.2em", height: "40px" }} onClick={handleToNewsDelete(record.id)} danger>
             删除
           </Button>
         </>
@@ -149,7 +149,7 @@ export const NewsManageEn = (props: any) => {
     if (newsId === -1) {
       postNews({ name: newsTitle, content: newsContent, lan: "en-US" }).then(
         (res) => {
-          res.code === 0? message.success(res.data,3):message.error(res.data,3)
+          res.code === 0 ? message.success(res.data, 3) : message.error(res.data, 3)
           getNewsList({
             page: page.page,
             page_size: page.page_size,
@@ -159,7 +159,7 @@ export const NewsManageEn = (props: any) => {
           });
           setNewsContent("");
           setNewsTitle("");
-          
+
         }
 
       );
@@ -170,7 +170,7 @@ export const NewsManageEn = (props: any) => {
         content: newsContent,
         lan: "en-US",
       }).then((res) => {
-        res.code === 0? message.success(res.data,3):message.error(res.data,3)
+        res.code === 0 ? message.success(res.data, 3) : message.error(res.data, 3)
         getNewsList({
           page: page.page,
           page_size: page.page_size,
@@ -187,7 +187,7 @@ export const NewsManageEn = (props: any) => {
   };
 
   return (
-    <div style={{paddingLeft:"10vw",paddingRight:"10vw"}}>
+    <div style={{ marginLeft: '2%' }}>
       <Modal
         title="英文首页"
         visible={isModalVisible}
@@ -199,18 +199,18 @@ export const NewsManageEn = (props: any) => {
           placeholder="标题"
           value={newsTitle}
           onChange={(e) => setNewsTitle(e.target.value)}
-          style={{fontSize:"1.2em"}}
+          style={{ fontSize: "1.2em" }}
         />
         <TextArea
           rows={10}
           placeholder="内容"
           value={newsContent}
           onChange={(e) => setNewsContent(e.target.value)}
-          style={{fontSize:"1.2em"}}
+          style={{ fontSize: "1.2em" }}
         />
       </Modal>
 
-      <Button  style={{fontSize:"1.2em",height:"40px" }} type="primary" onClick={handleToNewsEdit()}>
+      <Button style={{ fontSize: "1.2em", height: "40px" }} type="primary" onClick={handleToNewsEdit()}>
         新增新闻
       </Button>
       <Table
