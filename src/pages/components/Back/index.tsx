@@ -14,7 +14,7 @@ export const Back = (props: Iprops) => {
 
     return (
         <div className={$style['backButton']}>
-            <button onClick={() => { backClick() }} >返回上级</button>
+            <button onClick={() => { backClick() }} >Back</button>
         </div>
     )
 }

@@ -1,36 +1,39 @@
-.ManageWrapper{
+.ManageWrapper {
   display: flex;
   background: #fff;
   border: 1px solid #e6e6e6;
-  box-shadow: 0 1px 4px 0 rgba(0,0,0,.1);
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .1);
   border-radius: 6px;
   padding: 16px;
 }
 
 .leftWrapper {
   flex: 3;
+
   .subMenu {
     border-radius: 0;
     background-color: #43b344;
     color: #fff;
     font-size: 20px;
-  
+
     .menuItem {
       color: #000;
       font-size: 18px;
       text-align: center;
       padding: 0 !important;
     }
-  
+
     :global {
       .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
         background-color: rgb(197, 253, 214);
+
         &::after {
           border-right: 3px solid #43b343;
         }
       }
     }
   }
+
   button {
     width: 100%;
     font-size: 18px;
@@ -46,13 +49,15 @@
   }
 }
 
-.rightWrapper{
-  flex:7;
+.rightWrapper {
+  flex: 7;
   margin-left: 50px;
-  .firstQueryDirectory{
+
+  .firstQueryDirectory {
     display: flex;
     padding: 5px 0;
-    .firstQueryDirectory_right{
+
+    .firstQueryDirectory_right {
       background-color: #43b344;
       color: #fff;
       font-size: 16px;
@@ -61,19 +66,23 @@
       border-radius: 3px;
     }
   }
-  .QueryDirectories{
+
+  .QueryDirectories {
     width: 100%;
     padding: 5px 0;
-    input{
+
+    input {
       width: 30%;
     }
   }
-  .buttons{
+
+  .buttons {
     display: flex;
     margin: 20px;
-    justify-content:flex-start;
+    justify-content: flex-start;
     align-items: center;
-    button{
+
+    button {
       margin: 10px;
       width: 120px;
       height: 45px;
@@ -83,6 +92,14 @@
       outline: none;
       border-color: #fff;
       border-radius: 3px;
+    }
+  }
+}
+
+:global {
+  .ant-form-item-label {
+    label {
+      width: 160px !important;
     }
   }
 }
