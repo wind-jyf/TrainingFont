@@ -9,12 +9,37 @@
 
 .leftWrapper {
   flex: 3;
+  .subMenu {
+    border-radius: 0;
+    background-color: #43b344;
+    color: #fff;
+    font-size: 20px;
+  
+    .menuItem {
+      color: #000;
+      font-size: 18px;
+      text-align: center;
+      padding: 0 !important;
+    }
+  
+    :global {
+      .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+        background-color: rgb(197, 253, 214);
+        &::after {
+          border-right: 3px solid #43b343;
+        }
+      }
+    }
+  }
   button {
     width: 100%;
+    font-size: 18px;
+    height: 40px;
     background-color: #43b344;
     border-color: #fff;
 
     &:hover {
+      color: #1890ff;
       background-color: #43b344;
       border-color: #fff;
     }
@@ -23,92 +48,57 @@
 
 .rightWrapper {
   flex: 6;
-  margin-left: 50px;
+  margin-left: 16px;
 
   .directories {
-    display: flex;
     flex-wrap: wrap;
-    padding: 16px;
-    margin-right: 250px;
- 
-    .firstQueryDirectory {
-      display: flex;
-      width: 30%;
-      height: 100px;
-    }
+    padding-left: 4px;
 
     .QueryDirectories {
-      width: 20%;
-      h4{
+      width: 140px;
+      margin-right: 30px;
+      padding-top: 20px;
+      float: left;
+
+      h4 {
         font-weight: 500 !important;
       }
+
       select {
-        width: 85%;
-        border: none;
+        width: 140px;
+        border: 1px #666 dotted;
         font-size: 16px;
         overflow: auto;
         outline: none;
       }
 
       .category {
-        width: 85%;
-        background-color: #43b344;
-        color: #fff;
-        font-size: 20px;
-        padding: 1px 0 1px 5px;
-
-        &::after {
-          content: "";
-          width: 15px;
-          height: 15px;
-          margin: 2px 8px 0 0;
-          display: block;
-          border-top: 2px solid #fff;
-          border-left: 2px solid #fff;
-          transform: rotate(-135deg);
-          float: right;
-        }
+        color: #08b702;
       }
     }
 
+    &::after {
+      display: table;
+      content: "";
+      clear: both;
+    }
   }
 
   .buttons {
-    display: flex;
     margin: 20px;
     justify-content: flex-start;
     align-items: center;
 
     button {
       margin: 10px;
+      width: 160px;
+      height: 45px;
       background-color: #43b344;
       color: #fff;
-      font-size: 16px;
+      font-size: 20px;
       outline: none;
       border-color: #fff;
       border-radius: 3px;
-    }
-  }
-}
-
-.subMenu {
-  border-radius: 0;
-  background-color: #43b344;
-  color: #fff;
-  font-size: 16px;
-
-  .menuItem {
-    color: #000;
-    font-size: 14px;
-  }
-
-  :global {
-    .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
-      background-color: rgb(197, 253, 214);
-
-      &::after {
-        border-right: 3px solid #43b343;
-      }
     }
   }
 }

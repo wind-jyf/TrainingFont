@@ -247,7 +247,7 @@ export const CottonImagesData = (year: string) => {
     <div className={$style['leftWrapper']}>
       <Menu_left yearImages={imageYear} yearData={dataYear} dataCategory={dataCategory} imageCategory={imageCategory} handleCategory={handleCategory} handleIsDataOrImages={handleIsDataOrImages} >
       </Menu_left>
-      <Button type="primary"><Link to={'/download'}>下载</Link></Button>
+      <Button type="primary"><Link to={'/download'}>Download</Link></Button>
     </div>
   )
 

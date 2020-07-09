@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Select, Input, Button, Menu, Modal, message } from 'antd';
 import { Link } from "react-router-dom";
-import $style from "./style.module.scss";
+import $style from "../CottonManage/style.module.scss";
 
 import { SearchPanel } from '../../components/SearchPanel';
 import { getCategory, addDataCategory } from '../../../../api/admin';

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Select, Input, Button, Menu, Typography } from 'antd';
 import { Link } from "react-router-dom";
-import $style from "./style.module.scss";
+import $style from "../Cotton/style.module.scss";
 import { Note } from '../../components/Note';
 
 import { SearchPanel } from '../../components/SearchPanel';
@@ -274,7 +274,7 @@ export const Rape = (year: string) => {
     <div className={$style['leftWrapper']}>
       <Menu_left yearImages={imageYear} yearData={dataYear} dataCategory={dataCategory} imageCategory={imageCategory} handleCategory={handleCategory} handleIsDataOrImages={handleIsDataOrImages} handleDirectoryList={handleDirectoryList} >
       </Menu_left>
-      <Button type="primary"><Link to={'/download'}>下载</Link></Button>
+      <Button type="primary"><Link to={'/download'}>Download</Link></Button>
     </div>
   )
 
@@ -286,7 +286,7 @@ export const Rape = (year: string) => {
         {directoryList.map((items: any, index: number) =>
           <div className={$style['QueryDirectories']}>
             <Title level={4} className={$style['category']}>{items.title}</Title>
-            <select name="directory" size={5} onChange={(e) => handleSelect(e, items.title)}>
+            <select name="directory" size={10} onChange={(e) => handleSelect(e, items.title)}>
               {items.array.map((item_each: any, indexEach: any) => <option value={item_each} selected={indexEach == 0 ? true : false}>{item_each}</option>)}
             </select>
           </div>

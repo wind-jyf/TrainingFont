@@ -1,27 +1,28 @@
-$menuWidth: 200px;
+// $menuWidth: 200px;
 
-.layoutContainer {
-  display: flex;
-  min-height: 1200px;
-  background-color: #f8f8f8;
-}
+// .layoutContainer {
+//   display: flex;
+//   min-height: 800px;
+//   margin: 0 auto;
+//   background-color: #f8f8f8;
+// }
 
-.menuContainer {
-  position: sticky;
-  flex: 0 0 $menuWidth;
-  background-color: #fff;
+// // .menuContainer {
+// //   position: sticky;
+// //   flex: 0 0 $menuWidth;
+// //   background-color: #fff;
 
-  :global {
+// //   :global {
 
-    .ant-menu-inline,
-    .ant-menu-vertical,
-    .ant-menu-vertical-left {
-      border-right: none
-    }
-  }
-}
+// //     .ant-menu-inline,
+// //     .ant-menu-vertical,
+// //     .ant-menu-vertical-left {
+// //       border-right: none
+// //     }
+// //   }
+// // }
 
-.mainContainer {
-  flex: 1;
-  min-width: 1400px;
-}
+// .mainContainer {
+//   flex: 1;
+//   min-width: 1400px;
+// }
