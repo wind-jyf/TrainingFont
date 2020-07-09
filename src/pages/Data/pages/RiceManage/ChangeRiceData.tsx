@@ -222,6 +222,7 @@ export const ChangeRiceData = (props: IProps) => {
           window.localStorage.setItem('categoryArray', JSON.stringify(categoryArray))
           window.localStorage.setItem('YearKey', JSON.stringify(condition.Year_item))
           // window.location.reload()
+          window.history.go(-1);
         } else {
           message.error('修改失败')
         }

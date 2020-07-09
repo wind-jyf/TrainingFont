@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Select, Input, Button, Menu, Modal, message } from 'antd';
-import { Link } from "react-router-dom";
-import $style from "../CottonManage/style.module.scss";
+import { Form, Select, Input, Button, Menu, message } from 'antd';
+import $style from "./style.module.scss";
 
 import { SearchPanel } from '../../components/SearchPanel';
 import { getCategory, addDataCategory } from '../../../../api/admin';
@@ -13,12 +12,8 @@ const { SubMenu } = Menu;
 interface IProps {
   [key: string]: any;
 }
-let category: any = []
 let categoryArray: any = []
-let categoryArrayCopy: any = []
-let keywords = ''   //如果不是因为textarea那里面的defaultValue不能设置表达式，谁又愿意设置这个变量呢
-let firstFlag = false //标记是否是从上个路由第一次进来
-let tempYearArray: any = []    //拿这个存左边的年份，因为左边的年份在这里不会变
+
 let condition: any = {
   id: null,
   type: 'maize',
@@ -37,33 +32,18 @@ let condition: any = {
   category_name9: null,
   category_name10: null,
 }
-let YearKey = ''
 const Menu_left = (props: IProps) => {
-  const { handleCategory, handleIsDataOrImages, category } = props;
-  console.log("handleCategory:", handleCategory);
-
-  const [currentMenuItem, setCurrentMenuItem] = useState('') as any
-
-  let tempYearKey = window.localStorage.getItem('YearKey')
-  if (tempYearKey) {
-    YearKey = JSON.parse(tempYearKey)
-    // setCurrentMenuItem(YearKey)
-  }
-  console.log('tempYearKey :>> ', tempYearKey);
-  useEffect(() => {
-    setCurrentMenuItem(YearKey)
-  }, [YearKey]);
+  const { imageYear, dataYear } = props;
 
   return (
     <Menu
       mode="inline"
       defaultOpenKeys={['Maize(Data)']}
-      selectedKeys={[currentMenuItem]}
+    // selectedKeys={[currentMenuItem]}
     // onClick={handleClick}
     >
       <SubMenu key="Maize(Data)" title="Maize(Data)" className={$style['subMenu']}>
-        {/* {yearImages.map((item: any, index: any) => <Menu.Item key={'images:' + item} >{item}</Menu.Item>)} */}
-        {/* <Menu.Item key={YearKey} >{YearKey}</Menu.Item> */}
+        {dataYear.map((item: any, index: any) => <Menu.Item key={'data:' + item} >{item}</Menu.Item>)}
       </SubMenu>
     </Menu>
   )
@@ -71,37 +51,14 @@ const Menu_left = (props: IProps) => {
 export const AddMaizeData = (props: IProps) => {
   const [dataYear, setDataYear] = useState([]) as any;
   const [imageYear, setImageYear] = useState([]) as any;
-
-  const [directoryList, setDirectoryList] = useState([]) as any;
-
-  const [dataCategory, setDataCategory] = useState([]) as any;
-  const [imageCategory, setImageCategory] = useState([]) as any;
   const [categoryItemArray, setCategoryItemArray] = useState([]) as any;
   const [itemObject, setItemObject] = useState({}) as any;
-  const [isDataOrImages, setIsDataOrImages] = useState(true) as any;
-  const [visible, setVisible] = useState(false) as any;
   const [form] = Form.useForm();
-  const getCategoryData = (index: any, itemObject?: any) => {
+  const getCategoryData = () => {
     getCategory({ condition: { type: 'maize' } }).then(res => {
-      console.log("res111222333:", res);
-      setDataCategory(res.data);
-      setImageCategory(res.image);
 
-      category = itemObject || res.image[index]   //初始目录
-      condition.id = category.id
-      condition.type = 'maize'
-      console.log("初始目录:", category);
-      keywords = category.key_name + ':' + category.key_type
-      setItemObject(category)
-      categoryArray = []
-      for (let key in category) {
-        if (category[key] !== null && key.includes('category')) {
-          categoryArray.push(category[key])
-        }
-      }
-      setCategoryItemArray(categoryArray)
+      const category = res.image[0]   //初始目录
 
-      console.log("category_first:", category);
       let tempDataYear: any = [], tempImageYear: any = []
       res.data.forEach((item: any) => {
         tempDataYear.push(item.Year_item)
@@ -111,16 +68,7 @@ export const AddMaizeData = (props: IProps) => {
       })
       setDataYear(tempDataYear)
       setImageYear(tempImageYear)
-      tempYearArray = tempImageYear
     })
-  }
-
-  const handleCategory = (item1: any, item2: any) => {
-    setCategoryItemArray(item1)
-    setItemObject(item2)
-  }
-  const handleIsDataOrImages = (isImage: boolean) => {
-    setIsDataOrImages(isImage)
   }
 
 
@@ -128,19 +76,16 @@ export const AddMaizeData = (props: IProps) => {
     let temdirectoryList = categoryItemArray.slice()
     temdirectoryList.push([])
     setCategoryItemArray(temdirectoryList)
-    console.log("categoryItemArray:", categoryItemArray);
   }
   const handleNote: any = (e: any) => {
     let value = e.target.value
     condition.note = value
-    console.log("condition.note:", condition);
     let data = Object.assign({}, itemObject, { 'note': value })
     setItemObject(data)
   }
   const handleYearChange: any = (e: any) => {
     let value = e.target.value
     condition.Year_item = value
-    console.log("condition.Year_item:", condition);
     !condition.Year_item && message.error('年份不能为空');
     let data = Object.assign({}, itemObject, { 'Year_item': value })
     setItemObject(data)
@@ -148,23 +93,18 @@ export const AddMaizeData = (props: IProps) => {
   const handleCategoryItemArray: any = (index: number, e: any) => {
     let value = e.target.value
     let category_name = 'category_name' + (index + 1)
-    console.log("category_name:", category_name);
     condition[category_name] = value
-    console.log("condition.category_name:", condition);
     let data = Object.assign({}, itemObject, { category_name: value })
     setItemObject(data)
   }
   let timer: any = null  //避免提示太多次了
   const handleKeyWords: any = (e: any) => {
     let value = e.target.value
-    console.log('value.split[0] :>> ', value.split(':')[0]);
-    console.log('value.split[1] :>> ', value.split(':')[1]);
 
+    timer && clearTimeout(timer)
     condition.key_name = value.split(':')[0]
     condition.key_type = value.split(':')[1]
 
-    console.log('key_name :>> ', condition.key_name);
-    console.log("condition.handleKeyWords:", condition);
     //不要让undefined显示在用户的上面
     if (condition.key_name == undefined) condition.key_name = ' '
     if (condition.key_type == undefined) {
@@ -178,10 +118,6 @@ export const AddMaizeData = (props: IProps) => {
   }
   const onAddItem = () => {
     let flag = true;
-    console.log('conditionBefore :>> ', condition);
-    console.log('itemObject :>> ', itemObject);
-    // console.log('condition :>> ', condition);
-    console.log(typeof condition);
     for (let key in condition) {
       if (key == 'Year_item') {
         condition[key] = condition[key].trim();
@@ -189,7 +125,6 @@ export const AddMaizeData = (props: IProps) => {
           flag = false
           message.error('年份不能为空');
         }
-        console.log('Year_item :>> false');
       } else if (key.includes('category_name')) {
         condition[key] = condition[key] && condition[key].trim();
         if (condition[key] === '') condition[key] = null
@@ -201,7 +136,6 @@ export const AddMaizeData = (props: IProps) => {
         }
       }
     }
-    console.log('flag :>> ', flag);
     if (flag) {
       addDataCategory({ condition }).then(res => {
         if (res.code === 0) {
@@ -213,10 +147,8 @@ export const AddMaizeData = (props: IProps) => {
             }
           }
           setCategoryItemArray(categoryArray)
-          console.log('categoryArray66667777 :>> ', categoryArray);
           window.localStorage.setItem('category', JSON.stringify(condition))
           window.localStorage.setItem('categoryArray', JSON.stringify(categoryArray))
-          window.localStorage.setItem('YearKey', JSON.stringify(condition.Year_item))
           window.history.go(-1);
         } else {
           message.error('增加失败')
@@ -225,43 +157,12 @@ export const AddMaizeData = (props: IProps) => {
     }
   }
   useEffect(() => {
-    // if (location.query) {
-    //   const category = location.query.itemObject
-    //   console.log("11111111122222223333:", category);
-    //   setItemObject(category)
-    //   window.localStorage.setItem('YearKey', JSON.stringify(category.Year_item))
-    //   console.log('firstYearKey :>> ', category.Year_item);
-    //   condition.id = category.id
-    //   condition.type = category.type
-    //   keywords = category.key_name + ':' + category.key_type
-    //   condition = JSON.parse(JSON.stringify(category))
-    //   categoryArray = []
-    //   for (let key in category) {
-    //     if (category[key] !== null && key.includes('category')) {
-    //       categoryArray.push(category[key])
-    //     }
-    //   }
-    //   keywords = category.key_name + ":" + category.key_type
-    //   setCategoryItemArray(categoryArray)
-    //   window.localStorage.setItem('category', JSON.stringify(category))
-    //   window.localStorage.setItem('categoryArray', JSON.stringify(categoryArray))
-    // } else {
-    //   let tempCategory = window.localStorage.getItem('category');
-    //   let tempCategoryArray = window.localStorage.getItem('categoryArray');
-
-    //   console.log('categoryArray :>> ', tempCategoryArray);
-    //   if (tempCategory != null && tempCategoryArray != null) {
-    //     setItemObject(JSON.parse(tempCategory));
-    //     condition = JSON.parse(tempCategory)
-    //     setCategoryItemArray(JSON.parse(tempCategoryArray));
-    //     keywords = JSON.parse(tempCategory).key_name + ":" + JSON.parse(tempCategory).key_type
-    //   }
-    // }
+    getCategoryData();
   }, []);
 
   const formContent = (
     <div className={$style['leftWrapper']}>
-      <Menu_left handleCategory={handleCategory} handleIsDataOrImages={handleIsDataOrImages} category={category} >
+      <Menu_left dataYear={dataYear} imageYear={imageYear}  >
       </Menu_left>
     </div>
   )
@@ -306,14 +207,6 @@ export const AddMaizeData = (props: IProps) => {
 
         <div className={$style['buttons']} >
           <Button type="primary" onClick={onAddItem}>增加</Button>
-          {/* <Modal
-            title="提示"
-            visible={visible}
-            onOk={() => handleOK(itemObject.id, isDataOrImages)}
-            onCancel={handleCancel}
-          >
-            <p>确认要删除{category.Year_item}的条目?</p>
-          </Modal> */}
         </div>
       </div>
     </div >
