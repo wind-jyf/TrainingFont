@@ -14,7 +14,7 @@ import { getArticleList } from '../../api/article';
 import $style from "./style.module.scss";
 
 interface Iprops {
-    [key:string]: any;
+    [key: string]: any;
 }
 
 const LAN_MAP = {
@@ -22,7 +22,7 @@ const LAN_MAP = {
     'en-US': 'EN'
 } as any;
 
-export const Article = (props:Iprops) => {
+export const Article = (props: Iprops) => {
     const [articleList, setArticleList] = useState([]);
     const [page, setPage] = useState({}) as any;
     const { currentLocale } = intl.getInitOptions();
@@ -44,13 +44,13 @@ export const Article = (props:Iprops) => {
         });
     }, [lan]);
 
-    const handlePageChange = (page:number, pageSize?:number) => {
-        getArticleList({lan, page, page_size: pageSize}).then((res) => {
+    const handlePageChange = (page: number, pageSize?: number) => {
+        getArticleList({ lan, page, page_size: pageSize }).then((res) => {
             hanldePageInit(res);
         });
     }
 
-    const handleToArticle = (path:string) => {
+    const handleToArticle = (path: string) => {
         return () => window.open(path);
     }
 
@@ -58,37 +58,37 @@ export const Article = (props:Iprops) => {
 
     return (
         <div className={$style['articleWrapper']}>
-            <Spin spinning={loading }>
+            <Spin spinning={loading}>
                 <div className={$style['articleList']}>
                     {loading ? null :
-                        articleList.map((item:any, index) => {
+                        articleList.map((item: any, index) => {
                             return (
-                            <div key={item.id} onClick={handleToArticle(item.path)} 
-                             className={
-                                index % 2 === 0
-                                  ? $style["articleItem"]
-                                  : $style["dark"] + " " + $style["articleItem"]
-                              }>
-                                <div className={$style['article']}>
-                                    <h3 className={$style['articleTitle']}>{item.name}</h3>
+                                <div key={item.id} onClick={handleToArticle(item.path)}
+                                    className={
+                                        index % 2 === 0
+                                            ? $style["articleItem"]
+                                            : $style["dark"] + " " + $style["articleItem"]
+                                    }>
+                                    <div className={$style['article']}>
+                                        <h3 className={$style['articleTitle']}>{item.name}</h3>
+                                    </div>
+                                    <div className={$style['date']}>{item.date}</div>
                                 </div>
-                                <div className={$style['date']}>{item.date}</div>
-                            </div>
                             )
                         })
                     }
-                    <Pagination
-                        className={$style['pagination']}
-                        size="small"
-                        showSizeChanger={false}
-                        showQuickJumper
-                        total={page.total ? page.total : 0}
-                        current={page.page ? page.page : 1}
-                        pageSize={page.page_size ? page.page_size : 10}
-                        onChange={handlePageChange}
-                    />
                 </div>
             </Spin>
+            <Pagination
+                className={$style['pagination']}
+                size="small"
+                showSizeChanger={false}
+                showQuickJumper
+                total={page.total ? page.total : 0}
+                current={page.page ? page.page : 1}
+                pageSize={page.page_size ? page.page_size : 10}
+                onChange={handlePageChange}
+            />
         </div>
     )
 }
