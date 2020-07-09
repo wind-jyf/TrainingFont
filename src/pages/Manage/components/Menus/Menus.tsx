@@ -120,7 +120,7 @@ export const Menus = (props: IProps) => {
     for (let i = 0; i < menus.length; i++) {
       if (menus[i].subMenu) {
         name = getDefaultSelectedName(menus[i].subMenu);
-      } else if (menus[i].path === pathname) {
+      } else if (pathname.includes(menus[i].path)) {//在菜单各项里面的组件里进行跳转也能选中对应菜单，用路由名的包含关系控制
         name = menus[i].name;
       }
     }

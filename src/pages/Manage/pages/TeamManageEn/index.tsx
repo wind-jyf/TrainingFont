@@ -60,11 +60,11 @@ export const TeamManageEn = (props: Iprops) => {
   }, []);
 
   const handleTeamAdd = () => {
-    props.history.push("/manage/teamEditEn");
+    props.history.push("/manage/TeamEnManageEdit");
   };
 
   const handleToTeamEdit = (id: number) => {
-    props.history.push(`/manage/teamEditEn?id=${id}`);
+    props.history.push(`/manage/TeamEnManageEdit?id=${id}`);
   };
 
   const handleToTeamDelete = (id: number) => {

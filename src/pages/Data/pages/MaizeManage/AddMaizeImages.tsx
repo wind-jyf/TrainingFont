@@ -3,7 +3,7 @@ import { Form, Select, Input, Button, Menu, message } from 'antd';
 import $style from "../CottonManage/style.module.scss";
 
 import { SearchPanel } from '../../components/SearchPanel';
-import { getCategory, addDataCategory } from '../../../../api/admin';
+import { getCategory, addImgCategory } from '../../../../api/admin';
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -137,7 +137,7 @@ export const AddMaizeImages = (props: IProps) => {
       }
     }
     if (flag) {
-      addDataCategory({ condition }).then(res => {
+      addImgCategory({ condition }).then(res => {
         if (res.code === 0) {
           message.success('增加成功')
           categoryArray = []

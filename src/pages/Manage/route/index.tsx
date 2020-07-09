@@ -37,7 +37,7 @@ export const routes:IRouteData = {
         component: TeamManage
     },
     teamManageEn: {
-        path: "/manage/teamManageEn",
+        path: "/manage/TeamEnManage",
         component: TeamManageEn
     },
     instrumentManage: {
@@ -53,7 +53,7 @@ export const routes:IRouteData = {
         component: ProjectManage
     },
     newsEdit: {
-        path: '/manage/newsEdit',
+        path: '/manage/newsManageEdit',
         component: NewsEdit
     },
     newsEditEn: {
@@ -61,15 +61,15 @@ export const routes:IRouteData = {
         component: NewsEditEn
     },
     teamEdit: {
-        path: '/manage/teamEdit',
+        path: '/manage/teamManageEdit',
         component: TeamEdit
     },
     teamEditEn: {
-        path: '/manage/teamEditEn',
+        path: '/manage/TeamEnManageEdit',
         component: TeamEditEn
     },
     instrumentEdit: {
-        path: '/manage/instrumentEdit',
+        path: '/manage/instrumentManageEdit',
         component: InstrumentEdit
     },
     default: {

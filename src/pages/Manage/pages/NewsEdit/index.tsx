@@ -160,6 +160,7 @@ export const NewsEdit = (props: any) => {
 
     query[1] &&
       getNewsById({ id: query[1] }).then((res) => {
+        console.log('res :>> ', res);
         setEditor(res.content);
       });
   }, []);

@@ -57,7 +57,7 @@ export const TeamManage = (props: Iprops) => {
   }, []);
 
   const handleToTeamEdit = (id:number) => {
-    props.history.push(`/manage/teamEdit?id=${id}`)
+    props.history.push(`/manage/teamManageEdit?id=${id}`)
   };
 
   const handleToTeamDelete = (id: number) => {

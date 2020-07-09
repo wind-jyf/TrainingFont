@@ -49,8 +49,8 @@ export const NewsManage = (props: any) => {
 
   const handleToNewsEdit = (id?: number) => {
     return id != null
-      ? () => props.history.push(`/manage/newsEdit?id=${id}`)
-      : () => props.history.push(`/manage/newsEdit`);
+      ? () => props.history.push(`/manage/newsManageEdit?id=${id}`)
+      : () => props.history.push(`/manage/newsManageEdit`);
   };
 
   const handleToNewsDelete = (id: number) => {
