@@ -95,7 +95,8 @@ export const ProjectManage = (props: Iprops) => {
       render: (text: string, record: any) => (
         <div
           style={{
-            overflow: "hidden",
+            width:'600px',
+            overflow:'hidden',
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",
           }}
@@ -136,7 +137,7 @@ export const ProjectManage = (props: Iprops) => {
   };
 
   return (
-    <div className={$style["project-manage"]}>
+    <div className={$style["project-manage"]} style={{marginLeft:'2%'}}>
       <Modal
         visible={isModalVisible}
         onOk={handleModalOk}

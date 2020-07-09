@@ -62,7 +62,8 @@ export const Header = (props: Iprops) => {
     const { state: {admin} } = useContext(Context);
     const menus = getMenus(admin);
 
-    const handleMenuClick = (data:any) => {
+    const handleMenuClick = function(data:any){
+      console.log(data);
         changeLocale(data.key);
       };
 
@@ -176,19 +177,13 @@ export const Header = (props: Iprops) => {
           <img style={{margin:'0 auto'}} src={require("../../../img/header.jpg")} alt="logo"/>
           <div className={$style['right']}>
             <Dropdown overlay={menu} placement="bottomCenter" trigger={['click']}>
-              <Button>--友情链接--</Button>
+              <Button >--友情链接--</Button>
             </Dropdown>
-            
+            <p className={$style["language-btn"]} style={{margin:'0'}}>
+                   <a onClick={()=>handleMenuClick({key:'zh-CN'})}>中文 </a>|<a onClick={()=>handleMenuClick({key:'en-US'})}> English</a>
+            </p>
             <div className={$style['actions']}>               
-                <Dropdown overlayClassName="language-dropdown" overlay={languageMenuJSX}>
-                  <p className={$style["language-btn"]}>
-                    {LANGUAGE_MENU[currentLocale]}
-                    <span className={$style["triangle"]} />
-                  </p>
-                </Dropdown>
-                <div style={{marginLeft:'30%'}}>
                 <Login/>
-                </div>
             </div>
           </div>
         </div>

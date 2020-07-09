@@ -165,8 +165,8 @@ export const InstrumentManage = (props: Iprops) => {
   ];
 
   return (
-    <div className={$style["team-manage"]}>
-      <div style={{ paddingTop: "100px" }}>
+    <div className={$style["team-manage"]} style={{marginLeft:'2%'}}>
+      <div>
         <Button type="primary" onClick={() => props.history.push(`/manage/instrumentEdit?lan=zh-CN`)}>增加仪器中文介绍</Button>
         <Divider
           style={{

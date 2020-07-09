@@ -68,15 +68,13 @@ export const Login = () => {
         <div className={$style['loginWrapper']}>
             <div className={$style['login']}>
                 {login ?
-                    <Dropdown overlayClassName="user-dropdown" overlay={overlay}>
-                        <span className={$style['userName']}>
-                            {`${username}`}
-                        </span>
-                    </Dropdown>
+                        <a className={$style['userName']}  onClick={handleLogout}>
+                            {intl.get('logout')}
+                        </a>
                     :
-                    <p className={$style['active']} onClick={() => setModalVisable(true)} style={{width:'20px'}}>
+                    <a className={$style['active']} onClick={() => setModalVisable(true)}>
                         {intl.get('Sign_In')}
-                    </p>
+                    </a>
                 }
             </div>
             <Modal

@@ -187,7 +187,7 @@ export const NewsManageEn = (props: any) => {
   };
 
   return (
-    <>
+    <div style={{marginLeft:'2%'}}>
       <Modal
         title="英文首页"
         visible={isModalVisible}
@@ -223,6 +223,6 @@ export const NewsManageEn = (props: any) => {
           onChange: handlePageChange,
         }}
       />
-    </>
+    </div>
   );
 };

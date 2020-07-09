@@ -109,7 +109,7 @@ export const NewsManage = (props: any) => {
   ];
 
   return (
-    <>
+    <div style={{marginLeft:'2%'}}>
       <Button type="primary" onClick={handleToNewsEdit()}>
         新增新闻
       </Button>
@@ -126,6 +126,6 @@ export const NewsManage = (props: any) => {
           onChange: handlePageChange,
         }}
       />
-    </>
+    </div>
   );
 };

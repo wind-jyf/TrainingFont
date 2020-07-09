@@ -4,19 +4,16 @@
 .logo{
   display: flex;
   .right{
-    width: 80px;
-    //display: flex;
-    //flex-direction: column;
-    //align-items: center;
-    margin-top: 1%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: 2% 0;
     margin-right:100px;
-    .actions{
-      width:100%;
-      display:flex;
-      //align-items: center;
-      justify-content: space-between;
-      margin-top: 20%;
-      font-size:16px
+    .language-btn a{
+      color:#5A1A8B;
+      font-size: 16px;;
     }
     }
 }
@@ -48,8 +45,10 @@
       height: 100%;
       flex-shrink: 1;
       flex-grow: 1;
-      padding: 0 5px;
+      padding: 0 10%;
       a {
+        width:15%;
+        text-align: center;
         font-size: 16px;
         display: inline-block;
         height: 100%;
@@ -128,9 +127,6 @@
         //border-right: 4px solid transparent;
       }
     }
-    &.language-btn:hover{
-      cursor: pointer;
-    }
   }
 }
 
@@ -162,4 +158,5 @@
     height: 100%;
     width: 100%;
   }
+  
 }
