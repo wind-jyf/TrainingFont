@@ -10,8 +10,12 @@ interface IProps {
 
 export const LineMarkerEcharts = (props: IProps) => {
     const { xData, yData, valueData } = props;
-
-    const endWidth = 500 / xData.length;
+    let endWidth;
+    if (xData.length > 100) {
+        endWidth = 1000 / xData.length;
+    } else {
+        endWidth = 400 / xData.length;
+    }
 
     const getOtion = () => {
         const option = {

@@ -81,7 +81,7 @@ export const Instrument = (props: Iprops) => {
   };
 
   const loading = instrumentList.length === 0;
-  
+
   return (
     <div className={$style["instrumentWrapper"]}>
       <Spin spinning={loading}>
@@ -90,38 +90,38 @@ export const Instrument = (props: Iprops) => {
           {loading
             ? null
             : instrumentList.map((item: any, index) => {
-                return (
-                  <div
-                    key={item.id}
-                    onClick={handleToInstrumentDetail(item.id)}
-                    className={
-                      index % 2 === 0
-                        ? $style["instrumentItem"]
-                        : $style["dark"] + " " + $style["instrumentItem"]
-                    }
-                  >
-                    <div className={$style["instrument"]}>
-                      <div className={$style["instrument-img-wrapper"]}>
-                        {/* <img src={instrumentPic} alt="" /> */}
-                        <img src={item.picSrc} alt="" />
-                      </div>
-                      <h3 className={$style["instrumentTitle"]}>{item.name}</h3>
+              return (
+                <div
+                  key={item.id}
+                  onClick={handleToInstrumentDetail(item.id)}
+                  className={
+                    index % 2 === 0
+                      ? $style["instrumentItem"]
+                      : $style["dark"] + " " + $style["instrumentItem"]
+                  }
+                >
+                  <div className={$style["instrument"]}>
+                    <div className={$style["instrument-img-wrapper"]}>
+                      {/* <img src={instrumentPic} alt="" /> */}
+                      <img src={item.picSrc} alt="" />
                     </div>
+                    <h3 className={$style["instrumentTitle"]}>{item.name}</h3>
                   </div>
-                );
-              })}
-          <Pagination
-            className={$style["pagination"]}
-            size="small"
-            showSizeChanger={false}
-            showQuickJumper
-            total={page.total ? page.total : 0}
-            current={page.page ? page.page : 1}
-            pageSize={page.page_size ? page.page_size : 10}
-            onChange={handlePageChange}
-          />
+                </div>
+              );
+            })}
         </div>
       </Spin>
+      <Pagination
+        className={$style["pagination"]}
+        size="small"
+        showSizeChanger={false}
+        showQuickJumper
+        total={page.total ? page.total : 0}
+        current={page.page ? page.page : 1}
+        pageSize={page.page_size ? page.page_size : 10}
+        onChange={handlePageChange}
+      />
     </div>
   );
 };

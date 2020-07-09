@@ -255,7 +255,7 @@ export const MaizeImagesData = (year: string) => {
     <div className={$style['rightWrapper']}>
       <Form form={form} layout='inline'>
         <Form.Item label='请输入说明:' rules={[{ required: true, message: 'Year is required' }]} >
-          <textarea rows={4} cols={50} disabled defaultValue={itemObject && itemObject.note}></textarea>
+          <textarea rows={4} cols={90} disabled defaultValue={itemObject && itemObject.note}></textarea>
         </Form.Item>
       </Form>
 
@@ -282,8 +282,8 @@ export const MaizeImagesData = (year: string) => {
 
         <div className={$style['firstQueryDirectory']}>
           <Form form={form} layout='inline' className={$style['firstQueryDirectory_left']} >
-            <Form.Item label='请输入查询列的关键字:'  >
-              <textarea rows={2} cols={20} disabled defaultValue={keywords}></textarea>
+            <Form.Item label='请输入关键字:'  >
+              <textarea rows={2} cols={60} disabled defaultValue={keywords}></textarea>
             </Form.Item>
           </Form>
         </div>
