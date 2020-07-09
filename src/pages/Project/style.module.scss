@@ -1,13 +1,14 @@
 .projectWrapper {
     min-height: 1200px;
+    margin-left:10vw;
     .projectList {
         // width: 1400px;
         padding: 100px 0 0 0;
      
         .projectItem {
-            width: 350px;
+            width: 400px;
             // margin: 50px 0;
-            font-size: 18px;
+            font-size: 20px;
             line-height: 25px;
 
             .projectTitle { 
@@ -18,7 +19,7 @@
                 height: 25px;
                 line-height: 50px;
                 font-family: MicrosoftYaHei;
-                font-size: 22px;
+                font-size: 25px;
             }
         
         }

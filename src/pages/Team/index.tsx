@@ -15,7 +15,7 @@ interface Iprops {
 const pageDefault = {
     lan:LOCALES.zh,
     page: 1,
-    page_size: 6
+    page_size: 9
 }
 
 export const Team = (props:Iprops) => {

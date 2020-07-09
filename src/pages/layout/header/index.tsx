@@ -178,7 +178,9 @@ export const Header = (props: Iprops) => {
             <Dropdown overlay={menu} placement="bottomCenter" trigger={['click']}>
               <Button>--友情链接--</Button>
             </Dropdown>
-            
+            {/* <div style={{marginTop:'2px',marginBottom:'2px'}}>
+              <Login/>
+            </div> */}
             <div className={$style['actions']}>               
                 <Dropdown overlayClassName="language-dropdown" overlay={languageMenuJSX}>
                   <p className={$style["language-btn"]}>
@@ -186,8 +188,11 @@ export const Header = (props: Iprops) => {
                     <span className={$style["triangle"]} />
                   </p>
                 </Dropdown>
+                <div style={{marginLeft:'30%'}}>
+                  <Login/>
+                </div>
             </div>
-              <Login/>
+              {/* <Login/> */}
           </div>
         </div>
         <div className={$style['header']}>

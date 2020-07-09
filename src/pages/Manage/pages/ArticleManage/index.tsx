@@ -3,7 +3,7 @@
  * @author: xinguangtai
  * @Date: 2020-07-03 20:07:23
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-06 08:48:41
+ * @LastEditTime: 2020-07-09 00:05:25
  */
 /**
  * @file: description
@@ -121,6 +121,8 @@ export const ArticleManage = (props: Iprops) => {
             overflow: "hidden",
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",
+            fontSize:"1.2em",
+            width:"700px"
           }}
           onClick={() => handleToArticle(record.path)}
         >
@@ -132,19 +134,19 @@ export const ArticleManage = (props: Iprops) => {
       title: "语言",
       dataIndex: "language",
       key: "language",
-      render: (text) => <div>{text}</div>,
+      render: (text) => <div style={{fontSize:"1.2em",width:"60px"}}>{text}</div>,
     },
     {
       title: "日期",
       dataIndex: "date",
       key: "date",
-      render: (text) => <div>{text}</div>,
+      render: (text) => <div style={{fontSize:"1.2em",width:"170px"}}>{text}</div>,
     },
     {
       title: "操作",
       key: "action",
       render: (record: any) => (
-        <Button onClick={() => handleToArticleDelete(record.id)} danger>
+        <Button style={{fontSize:"1.2em"}} onClick={() => handleToArticleDelete(record.id)} danger>
           删除
         </Button>
       ),
@@ -156,7 +158,7 @@ export const ArticleManage = (props: Iprops) => {
   return (
     <div className={$style["article-manage"]}>
       <div>
-        <div style={{ marginTop: "20px" }}>添加</div>
+        <div style={{ marginTop: "20px",fontSize:"1.2em" }}>添加</div>
         <Divider
           style={{
             marginTop: "10px",
@@ -167,8 +169,8 @@ export const ArticleManage = (props: Iprops) => {
         <div
           style={{ display: "flex", alignItems: "center", marginTop: "20px" }}
         >
-          <div style={{ width: "60px" }}>文章名:</div>
-          <Input value={name} onChange={(e) => setName(e.target.value)} />
+          <div style={{ width: "100px",fontSize:"1.2em" }}>文章名:</div>
+          <Input  style={{ width: "400px"}} value={name} onChange={(e) => setName(e.target.value)} />
         </div>
 
         <div
@@ -179,7 +181,7 @@ export const ArticleManage = (props: Iprops) => {
             marginBottom: "10px",
           }}
         >
-          <span style={{ width: "70px" }}>发表日期：</span>
+          <span style={{ width: "100px",fontSize:"1.2em" }}>发表日期：</span>
           <DatePicker
             format={dateFormat}
             onChange={(value) => setDate(value ? value.format(dateFormat) : "")}
@@ -188,15 +190,15 @@ export const ArticleManage = (props: Iprops) => {
 
         <div>
           <Radio.Group onChange={(e) => setLan(e.target.value)} value={lan}>
-            <Radio value={"EN"}>English</Radio>
-            <Radio value={"CH"}>Chinese</Radio>
+            <Radio value={"EN"} style={{fontSize:"1.2em" }}>English</Radio>
+            <Radio value={"CH"} style={{fontSize:"1.2em" }}>Chinese</Radio>
           </Radio.Group>
         </div>
 
         <div
           style={{ display: "flex", alignItems: "center", marginTop: "20px" }}
         >
-          <div style={{ marginTop: "8px", width: "70px" }}>导入pdf:</div>
+          <div style={{ marginTop: "8px", width: "100px",fontSize:"1.2em"  }}>导入pdf:</div>
           <input
             ref={uploadImg}
             type="file"
@@ -209,12 +211,12 @@ export const ArticleManage = (props: Iprops) => {
         <Button
           type="primary"
           onClick={handleToTeamPost}
-          style={{ marginTop: "20px", marginLeft: "60px" }}
+          style={{ marginTop: "20px", marginLeft: "100px",fontSize:"1.2em" }}
         >
           提交
         </Button>
       </div>
-      <div style={{ paddingTop: "100px" }}>
+      <div style={{ paddingTop: "100px",fontSize:"1.2em"  }}>
         <div>操作</div>
         <Divider
           style={{

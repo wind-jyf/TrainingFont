@@ -3,7 +3,7 @@
  * @author: yangqianjun
  * @Date: 2020-07-03 18:46:49
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-06 08:56:26
+ * @LastEditTime: 2020-07-09 00:17:59
  */
 import React, {
   useEffect,
@@ -98,6 +98,8 @@ export const ProjectManage = (props: Iprops) => {
             overflow: "hidden",
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",
+            fontSize:"1.2em",
+            width:"700px"
           }}
           // onClick={handleToNewsDetail(record.id)}
         >
@@ -151,9 +153,9 @@ export const ProjectManage = (props: Iprops) => {
       </Modal>
       <div>
         <div
-          // style={{ display: "flex", alignItems: "center", marginTop: "20px" }}
+          style={{paddingLeft:"10vw",paddingRight:"10vw" }}
         >
-          <div style={{ marginTop: "20px" ,width:'50px'}}>添加</div>
+          <div style={{ marginTop: "20px" ,width:'50px',fontSize:"1.2em"}}>添加</div>
           <Divider
             style={{
               marginTop: "10px",
@@ -162,9 +164,9 @@ export const ProjectManage = (props: Iprops) => {
             }}
           />
           <div style={{  display: "flex", alignItems: "center",marginTop: "20px"}}>
-            <div style={{ width: "80px" }}>项目介绍:</div>
+            <div style={{ width: "100px",fontSize:"1.2em" }}>项目介绍:</div>
             <Input.TextArea
-              rows={5}
+              rows={7}
               value={projectname}
               onChange={(e) => setProjectName(e.target.value)}
             />
@@ -174,13 +176,13 @@ export const ProjectManage = (props: Iprops) => {
         <Button
           type="primary"
           onClick={handleToProjectPost}
-          style={{ marginTop: "20px", marginLeft: "80px" }}
+          style={{ marginTop: "20px", marginLeft: "300px",fontSize:"1.2em" }}
         >
           提交
         </Button>
       </div>
-      <div style={{ paddingTop: "100px" }}>
-        <div>修改/删除</div>
+      <div style={{ paddingTop: "100px",paddingLeft:"10vw",paddingRight:"10vw" }}>
+        <div style={{fontSize:"1.2em" }}>修改/删除</div>
         <Divider
           style={{
             marginTop: "10px",

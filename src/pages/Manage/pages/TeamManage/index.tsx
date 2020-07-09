@@ -3,7 +3,7 @@
  * @author: yangqianjun
  * @Date: 2020-07-03 18:46:49
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-05 21:09:32
+ * @LastEditTime: 2020-07-08 23:43:20
  */
 import React, {
   useEffect,
@@ -118,6 +118,8 @@ export const TeamManage = (props: Iprops) => {
             overflow: "hidden",
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",
+            fontSize:"1.2em",
+            height:"50px"
           }}
           // onClick={handleToNewsDetail(record.id)}
         >
@@ -128,17 +130,18 @@ export const TeamManage = (props: Iprops) => {
     {
       title: "操作",
       key: "action",
+      
       render: (record: any) => (
         <>
           <Button
             // onClick={handleToTeamEdit(record.id)}
             onClick={() => handleToTeamEdit(record.id)}
             type="primary"
-            style={{ marginRight: "20px" }}
+            style={{ marginRight: "20px",fontSize:"1.2em",marginTop:"20px" }}
           >
             编辑
           </Button>
-          <Button onClick={() => handleToTeamDelete(record.id)} danger>
+          <Button onClick={() => handleToTeamDelete(record.id)} style={{fontSize:"1.2em", }} danger>
             删除
           </Button>
         </>
@@ -149,7 +152,7 @@ export const TeamManage = (props: Iprops) => {
   return (
     <div className={$style["team-manage"]}>
       <div>
-        <div style={{ marginTop: "20px" }}>添加团队成员</div>
+        <div style={{ marginTop: "20px",fontSize:"1.2em" }}>添加团队成员</div>
         <Divider
           style={{
             marginTop: "10px",
@@ -160,13 +163,13 @@ export const TeamManage = (props: Iprops) => {
         <div
           style={{ display: "flex", alignItems: "center", marginTop: "20px" }}
         >
-          <div style={{ width: "60px" }}>姓名:</div>
-          <Input value={name} onChange={(e) => setName(e.target.value)} />
+          <div style={{ width: "60px",fontSize:"1.2em" }}>姓名:</div>
+          <Input value={name} onChange={(e) => setName(e.target.value)} style={{width:"1000px"}}/>
         </div>
         <div
           style={{ display: "flex", alignItems: "center", marginTop: "20px" }}
         >
-          <div style={{ marginTop: "8px", width: "70px" }}>导入图片:</div>
+          <div style={{ marginTop: "8px", width: "100px",fontSize:"1.2em" }}>导入图片:</div>
           <input
             ref={uploadImg}
             type="file"
@@ -180,22 +183,23 @@ export const TeamManage = (props: Iprops) => {
         <div
           style={{ display: "flex", alignItems: "center", marginTop: "20px" }}
         >
-          <div style={{ marginTop: "20px", width: "60px" }}>描述:</div>
+          <div style={{ marginTop: "20px", width: "60px",fontSize:"1.2em" }}>描述:</div>
           <Input.TextArea
             rows={5}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            style={{width:"1000px",height:"400px"}}
           />
         </div>
         <Button
           type="primary"
           onClick={handleToTeamPost}
-          style={{ marginTop: "20px", marginLeft: "60px" }}
+          style={{ marginTop: "20px", marginLeft: "60px",fontSize:"1.2em" }}
         >
           提交
         </Button>
       </div>
-      <div style={{ paddingTop: "100px" }}>
+      <div style={{ paddingTop: "100px",fontSize:"1.2em" }}>
         <div>修改/删除</div>
         <Divider
           style={{

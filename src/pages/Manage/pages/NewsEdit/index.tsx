@@ -3,7 +3,7 @@
  * @author: xinguangtai
  * @Date: 2020-07-03 23:43:37
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-07 09:18:40
+ * @LastEditTime: 2020-07-08 21:27:29
  */
 import React, { useContext, useState, useEffect, useRef } from "react";
 
@@ -16,7 +16,7 @@ import QuillResize from "quill-resize-module";
 import "react-quill/dist/quill.snow.css";
 import $style from "./style.module.scss";
 
-import { Button, DatePicker, Input,message } from "antd";
+import { Button, DatePicker, Input, message } from "antd";
 import { RSA_NO_PADDING } from "constants";
 
 // Quill.register("modules/imageResize", ImageResize);
@@ -46,7 +46,31 @@ const modules = {
     [{ size: ["small", false, "large", "huge"] }], // custom dropdown
     [{ header: [1, 2, 3, 4, 5, 6, false] }],
 
-    [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+    [{ color: ['rgb(  0,   0,   0)', 'rgb(230,   0,   0)', 'rgb(255, 153,   0)',
+    'rgb(255, 255,   0)', 'rgb(  0, 138,   0)', 'rgb(  0, 102, 204)',
+    'rgb(153,  51, 255)', 'rgb(255, 255, 255)', 'rgb(250, 204, 204)',
+    'rgb(255, 235, 204)', 'rgb(255, 255, 204)', 'rgb(204, 232, 204)',
+    'rgb(204, 224, 245)', 'rgb(235, 214, 255)', 'rgb(187, 187, 187)',
+    'rgb(240, 102, 102)', 'rgb(255, 194, 102)', 'rgb(255, 255, 102)',
+    'rgb(102, 185, 102)', 'rgb(102, 163, 224)', 'rgb(194, 133, 255)',
+    'rgb(136, 136, 136)', 'rgb(161,   0,   0)', 'rgb(178, 107,   0)',
+    'rgb(178, 178,   0)', 'rgb(  0,  97,   0)', 'rgb(  0,  71, 178)',
+    'rgb(107,  36, 178)', 'rgb( 68,  68,  68)', 'rgb( 92,   0,   0)',
+    'rgb(102,  61,   0)', 'rgb(102, 102,   0)', 'rgb(  0,  55,   0)',
+    'rgb(  0,  41, 102)', 'rgb( 61,  20,  10)'
+] }, { background: ['rgb(  0,   0,   0)', 'rgb(230,   0,   0)', 'rgb(255, 153,   0)',
+    'rgb(255, 255,   0)', 'rgb(  0, 138,   0)', 'rgb(  0, 102, 204)',
+    'rgb(153,  51, 255)', 'rgb(255, 255, 255)', 'rgb(250, 204, 204)',
+    'rgb(255, 235, 204)', 'rgb(255, 255, 204)', 'rgb(204, 232, 204)',
+    'rgb(204, 224, 245)', 'rgb(235, 214, 255)', 'rgb(187, 187, 187)',
+    'rgb(240, 102, 102)', 'rgb(255, 194, 102)', 'rgb(255, 255, 102)',
+    'rgb(102, 185, 102)', 'rgb(102, 163, 224)', 'rgb(194, 133, 255)',
+    'rgb(136, 136, 136)', 'rgb(161,   0,   0)', 'rgb(178, 107,   0)',
+    'rgb(178, 178,   0)', 'rgb(  0,  97,   0)', 'rgb(  0,  71, 178)',
+    'rgb(107,  36, 178)', 'rgb( 68,  68,  68)', 'rgb( 92,   0,   0)',
+    'rgb(102,  61,   0)', 'rgb(102, 102,   0)', 'rgb(  0,  55,   0)',
+    'rgb(  0,  41, 102)', 'rgb( 61,  20,  10)'
+] }], // dropdown with defaults from theme
     [{ font: [] }],
     [{ align: [] }],
 
@@ -68,6 +92,20 @@ const formats = [
   "indent",
   "link",
   "image",
+  "header",
+  "font",
+  "size",
+  "bold",
+  "italic",
+  "underline",
+  "strike",
+  "blockquote",
+  "list",
+  "bullet",
+  "indent",
+  "link",
+  "image",
+  "color",
 ];
 
 export const NewsEdit = (props: any) => {
@@ -83,13 +121,17 @@ export const NewsEdit = (props: any) => {
   const handleNewsPost = () => {
     const content = getHTML();
     if (newsId === -1) {
-      postNews({ date, name, content, lan: "CH" }).then(res=>{
+      postNews({ date, name, content, lan: "CH" }).then((res) => {
         console.log(res);
-        res.code === 0? message.success(res.data,3):message.error(res.data,3)
+        res.code === 0
+          ? message.success(res.data, 3)
+          : message.error(res.data, 3);
       });
     } else {
-      putNews({ id: newsId, date, name, content, lan: "CH" }).then(res=>{
-        res.code === 0? message.success(res.data,3):message.error(res.data,3)
+      putNews({ id: newsId, date, name, content, lan: "CH" }).then((res) => {
+        res.code === 0
+          ? message.success(res.data, 3)
+          : message.error(res.data, 3);
       });
     }
   };
@@ -128,7 +170,7 @@ export const NewsEdit = (props: any) => {
     <>
       <div id="news">
         <div
-          style={{ display: "flex", alignItems: "center", marginTop: "30px" }}
+          style={{ display: "flex", alignItems: "center", marginTop: "30px",width:"1000px",paddingLeft:"200px" }}
         >
           <span style={{ width: "70px" }}>新闻标题:</span>
           <Input
@@ -143,6 +185,7 @@ export const NewsEdit = (props: any) => {
             alignItems: "center",
             marginTop: "20px",
             marginBottom: "10px",
+            paddingLeft:"200px"
           }}
         >
           <span style={{ width: "70px" }}>上传日期：</span>
@@ -175,24 +218,16 @@ export const NewsEdit = (props: any) => {
           }}
         />
       </div>
-      
-
-
 
       <Button
-        style={{marginTop:'90px'}}
+        style={{ marginTop: "90px" }}
         className={$style["submit"]}
         type="primary"
         onClick={handleNewsPost}
         // onClick={success}
-
       >
-        
         提交
       </Button>
-
-      
-      
 
       {/* <Button
         className={$style["preview"]}

@@ -23,7 +23,6 @@ export const TeamEdit = (props: any) => {
 
   const handleTeamPost = () => {
     const formdata = new FormData();
-    formdata.append("id", id+"");
     formdata.append("name", name);
     formdata.append("lan", "zh-CN");
     formdata.append("descripe", descripe);

@@ -4,11 +4,30 @@
 .logo{
   display: flex;
   .right{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+    width: 80px;
+    //display: flex;
+    //flex-direction: column;
+    //align-items: center;
+
     margin-top: 1%;
     margin-right:100px;
+    .actions{
+      width:100%;
+      display:flex;
+      //align-items: center;
+      justify-content: space-between;
+      margin-top: 20%;
+      font-size:16px
+    }
+    }
+    .actions{
+      width:100%;
+      display:flex;
+      //align-items: center;
+      justify-content: space-between;
+      margin-top: 20%;
+      font-size:16px
     }
 }
 .header {  
@@ -35,12 +54,21 @@
     nav {
       // margin-left: 22%;
       display: flex;
+<<<<<<< HEAD
+      justify-content:  space-around;
+=======
       justify-content: space-around;
+>>>>>>> c2ad77cd012687259e5dae2816248b764636e991
       height: 100%;
       flex-shrink: 1;
       flex-grow: 1;
       padding: 0 5px;
+<<<<<<< HEAD
+    
+=======
+>>>>>>> c2ad77cd012687259e5dae2816248b764636e991
       a {
+        font-size: 16px;
         display: inline-block;
         height: 100%;
         line-height: 64px;
@@ -82,17 +110,23 @@
   flex-shrink: 0;
   flex-grow: 0;
 
-  button {
+  p {
     display: inline-block;
     //background-color: transparent;
     border: none;
     outline: none;
     text-align: center;
     cursor: pointer;
-    width: 88px;
+    width: 60px;
     height: 34px;
-    margin-left: 14px;
-    border-radius: 17px;
+<<<<<<< HEAD
+    // margin-left: 14px;
+    // border-radius: 17px;
+    margin-left: -2px;
+=======
+    margin-left: -2px;
+    //border-radius: 17px;
+>>>>>>> c2ad77cd012687259e5dae2816248b764636e991
 
     &.active {
       color: rgba(255, 255, 255, 1);
@@ -109,14 +143,19 @@
       //border: 1px solid rgba(255, 255, 255, 0.14);
       background: #fff;
       font-size: 15px;
+      // width:50px;
       .triangle {
         display: inline-block;
         margin-left: 5px;
+        width:40px;
         //border-top: 4px solid rgba(255, 255, 255, 0.6);
         //border-left: 4px solid transparent;
         //border-bottom: 4px solid transparent;
         //border-right: 4px solid transparent;
       }
+    }
+    &.language-btn:hover{
+      cursor: pointer;
     }
   }
 }

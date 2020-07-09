@@ -3,13 +3,18 @@
  * @author: xinguangtai
  * @Date: 2020-07-02 17:45:07
  * @LastEditors: xinguangtai
- * @LastEditTime: 2020-07-06 12:42:46
+ * @LastEditTime: 2020-07-09 00:36:05
  */
 export const en = {
     'news': 'About CPC',
     'team': 'Group',
+<<<<<<< HEAD
+    'instrument': 'Phenotyping Facilities',
+    'article': 'Publications',
+=======
     'instrument': 'Instrument',
     'article': 'Publication',
+>>>>>>> c2ad77cd012687259e5dae2816248b764636e991
     'project': 'project',
     'manage': 'Manage',
     'position': 'Position',
