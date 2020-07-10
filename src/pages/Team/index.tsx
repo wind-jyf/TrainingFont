@@ -93,7 +93,9 @@ export const Team = (props:Iprops) => {
                         })
                     }
                 </div>
-                <Pagination
+                
+            </Spin>
+            <Pagination
                         className={$style['pagination']}
                         size="small"
                         showSizeChanger={false}
@@ -103,7 +105,6 @@ export const Team = (props:Iprops) => {
                         pageSize={page.page_size ? page.page_size : 10}
                         onChange={handlePageChange}
                     />
-            </Spin>
         </div>
     )
 }

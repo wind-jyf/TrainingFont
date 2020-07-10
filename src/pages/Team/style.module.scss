@@ -1,28 +1,26 @@
 .groupWrapper {
-    min-height: 600px;
+    min-height: 1000px;
     .groupList {
-        margin-top: 5%;;
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items:center;
-        //margin: 98px auto;
+        width: 1310px;
+        // margin: 40px auto 40px auto;
+
+        // display: flex;
+        // flex-wrap: wrap;
+        margin: 98px auto;
         // overflow: hidden;
         .groupItem {
             // display: flex;
-            //float: left;
+            float: left;
             padding: 8px;
             // border-bottom: 1px solid #ddd;
             cursor: pointer;
             .group {
-                //position: relative;
+                position: relative;
                 flex: 1 0 auto;
                 // padding-left: 5px;
                 padding:0 50px 50px 50px;
-                margin-bottom: 50px;
-                margin-left: 10px;
-                margin-right: 10px;
+                margin-bottom: 100px;
+                margin-right: 20px;
 
                 width: 386px;
                 // height: 370px;
@@ -40,11 +38,11 @@
                 }
                 .group-title {
                     // padding-left: 20px;
-                    margin-top: -23px;
+                    margin-top: -30px;
                     // height: 24px;
                     font-size: 24px;
                     color: #353535;
-                    margin-bottom: 22px;
+                    margin-bottom: 28px;
                     // margin-top: 38px;
                 }
 
@@ -55,11 +53,12 @@
                     border-radius: 2px;
                     display: block;
                     // margin-left: 51px;
-                    margin-top: -4px;
-                    margin-bottom: 10px;
+                    margin-top: -10px;
+                    margin-bottom: 20px;
                 }
                 .group-subtitle {
-                    height: 60px;
+
+                    height: 52px;
                     font-size: 18px;
                     color: #999999;
                     width: 280px;
@@ -77,10 +76,9 @@
         }
     }
     .pagination {
-        //clear: both;
+        clear: both;
         display: flex;
         justify-content: flex-end;
-        margin-top: 10px;
-        padding: 0 8% 20px 0 ;
+        padding: 0 5% 20px 0 ;
     }
 }

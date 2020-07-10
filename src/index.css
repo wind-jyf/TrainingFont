@@ -139,8 +139,8 @@ a {
 }
 
 body {
-	font-family: PingFangSC-Regular, PingFangSC, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-		'Droid Sans', 'Helvetica Neue', sans-serif,"Times New Roman", Times, serif;;
+	font-family: "Times New Roman",PingFangSC-Regular, PingFangSC, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+		'Droid Sans', 'Helvetica Neue', sans-serif, Times, serif;;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	font-size: 14px;
@@ -155,6 +155,8 @@ body {
 	height: 100%;
 	/* padding-top: 64px; */
 	min-width: 1200px;
+	font-family: "Times New Roman",PingFangSC-Regular, PingFangSC, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+		'Droid Sans', 'Helvetica Neue', sans-serif, Times, serif;
 }
 
 body,

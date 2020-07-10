@@ -213,7 +213,7 @@ export const NewsManageEn = (props: any) => {
       </Modal>
 
       <Button style={{ fontSize: "16px", height: "40px" }} type="primary" onClick={handleToNewsEdit()}>
-        新增About CPC
+        新增CPC
       </Button>
       <Table
         columns={columns}
