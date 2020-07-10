@@ -1,5 +1,7 @@
 .detailContainer {
-    min-height: 800px;
+    height: 100%;
+    overflow: visible;
+    padding-bottom: 40px;
     .newsName {
         text-align: center;
         margin-top: 20px;
@@ -7,9 +9,20 @@
         font-weight: 600;
     }
     .detailWrapper {
-        width: 800px;
+        width: 800px; 
         margin: 0 auto;
         text-indent: 2em;
-        font-size:30px;
+        //font-size:30px;
+        //.DraftEditor-root .DraftEditor-editorContainer .public-DraftEditor-content .public-DraftStyleDefault-block{
+        
     }
 }
+:global{
+    .rdw-editor-main .DraftEditor-root .DraftEditor-editorContainer .public-DraftEditor-content .public-DraftStyleDefault-block{
+        margin: -10px 0px;
+    }
+    .rdw-editor-main{
+        overflow: visible;
+    }
+}
+

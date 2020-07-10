@@ -12,6 +12,7 @@ import { Pagination, Spin } from "antd";
 import { getNewsList } from "../../api/news";
 import $style from "./style.module.scss";
 import newsPic from "../../img/news-pic.jpg";
+import newsDefault from '../../img/newsDefault.png'
 import { getNewsById } from "../../api/news";
 
 interface Iprops {
@@ -54,7 +55,12 @@ export const News = (props: Iprops) => {
             result = result ? result.join("") : "";
 
             const picSrc = res.content.match(/src=[\'\"]?([^\'\"]*)[\'\"]?/i);
-            picSrc && picSrc[1] && newsImg === newsPic && setNewsImg(picSrc[1])
+            console.log('111',picSrc);
+            if(picSrc && picSrc[1] && newsImg === newsPic){
+              setNewsImg(picSrc[1])
+            }else{
+              setNewsImg(newsDefault);
+            }
 
             news.subtitle = result.slice(0, 100);
             resolve(news);
