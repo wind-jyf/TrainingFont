@@ -45,7 +45,6 @@ export const ProjectManage = (props: Iprops) => {
 
   const [page, setPage] = useState(pageDefault) as any;
 
-  const [visibleDelete, setVisibleDelete] = useState(false) as any;
 
   const uploadImg = useRef(null);
   const [file, setFile] = useState(null) as any;
@@ -65,17 +64,16 @@ export const ProjectManage = (props: Iprops) => {
     getData();
   }, []);
 
-  const handleToProjectDelete = () => {
-    setVisibleDelete(true)
+  const handleToProjectDelete = (id: number) => {
+    return () => {
+      console.log('id :>> ', id);
+      const con: boolean = window.confirm('请确认删除吗？');
+      if (con) {
+        deleteProjectById({ id }).then((res) => { getData(); res.code === 0 ? message.success(res.data, 3) : message.error(res.data, 3) });
+      }
+    }
   };
 
-  const handleCancel = () => {
-    setVisibleDelete(false)
-  }
-  const handleOK = (id: number) => {
-    deleteProjectById({ id }).then((res) => {getData();res.code === 0? message.success(res.data,3):message.error(res.data,3)});
-    setVisibleDelete(false)
-  }
 
   const handleToProjectPost = () => {
     postProject({ projectname }).then((res) => { getData(); res.code === 0 ? message.success(res.data, 3) : message.error(res.data, 3) });
@@ -130,17 +128,9 @@ export const ProjectManage = (props: Iprops) => {
           >
             编辑
           </Button>
-          <Button onClick={handleToProjectDelete} danger>
+          <Button onClick={handleToProjectDelete(record.id)} danger>
             删除
           </Button>
-          <Modal
-            title="提示"
-            visible={visibleDelete}
-            onOk={() => handleOK(record.id)}
-            onCancel={handleCancel}
-          >
-            <p>确认要删除吗?</p>
-          </Modal>
         </>
       ),
     },
@@ -171,7 +161,7 @@ export const ProjectManage = (props: Iprops) => {
       </Modal>
       <div>
         <div
-          
+
         >
           <div style={{ marginTop: "20px", width: '50px', fontSize: "16px" }}>添加</div>
           <Divider
@@ -199,7 +189,7 @@ export const ProjectManage = (props: Iprops) => {
           提交
         </Button>
       </div>
-      <div style={{ paddingTop: "100px"}}>
+      <div style={{ paddingTop: "100px" }}>
         <div style={{ fontSize: "16px" }}>修改/删除</div>
         <Divider
           style={{

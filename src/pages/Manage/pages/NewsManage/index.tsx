@@ -26,8 +26,6 @@ export const NewsManage = (props: any) => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState({}) as any;
 
-  const [visibleDelete, setVisibleDelete] = useState(false) as any;
-
   useEffect(() => {
     getNewsList(pageDefault).then((res) => {
       hanldePageInit(res);
@@ -69,11 +67,6 @@ export const NewsManage = (props: any) => {
       }
     }
   }
-  const handleOK = (id: number) => {
-    console.log('handleOKid :>> ', id);
-    setVisibleDelete(false)
-  }
-
 
   const columns = [
     {
