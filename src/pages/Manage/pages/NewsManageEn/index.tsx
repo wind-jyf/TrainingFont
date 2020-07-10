@@ -86,16 +86,19 @@ export const NewsManageEn = (props: any) => {
 
   const handleToNewsDelete = (id: number) => {
     return () => {
-      deleteNews({ id, lan: "en-US" }).then((res) => {
-        res.code === 0 ? message.success(res.data, 3) : message.error(res.data, 3)
-        getNewsList({
-          page: page.page,
-          page_size: page.page_size,
-          lan: "en-US",
-        }).then((res) => {
-          hanldePageInit(res);
+      const con: boolean = window.confirm('请确认删除吗？');
+      if (con) {
+        deleteNews({ id, lan: "en-US" }).then((res) => {
+          res.code === 0 ? message.success(res.data, 3) : message.error(res.data, 3)
+          getNewsList({
+            page: page.page,
+            page_size: page.page_size,
+            lan: "en-US",
+          }).then((res) => {
+            hanldePageInit(res);
+          });
         });
-      });
+      }
     };
   };
 

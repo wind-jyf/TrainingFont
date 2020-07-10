@@ -55,12 +55,16 @@ export const NewsManage = (props: any) => {
 
   const handleToNewsDelete = (id: number) => {
     return () => {
-      deleteNews({ id, lan: 'CH' }).then(res => {
-        getNewsList({ page: page.page, page_size: page.page_size }).then((res) => {
-          hanldePageInit(res);
-        });
-        res.code === 0 ? message.success(res.data, 3) : message.error(res.data, 3)
-      })
+      console.log('id :>> ', id);
+      const con: boolean = window.confirm('请确认删除吗？');
+      if (con) {
+        deleteNews({ id, lan: 'CH' }).then(res => {
+          getNewsList({ page: page.page, page_size: page.page_size }).then((res) => {
+            hanldePageInit(res);
+          });
+          res.code === 0 ? message.success(res.data, 3) : message.error(res.data, 3)
+        })
+      }
     }
   }
 
