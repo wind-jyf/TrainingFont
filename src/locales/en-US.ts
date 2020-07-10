@@ -25,7 +25,7 @@ export const en = {
     'password': 'Password',
     'username_null_tip': 'Please input your user name',
     'password_null_tip': 'Please input your password',
-    'footer_copyright': 'Copyrighy 2016-2017',
+    'footer_copyright': 'Copyrighy 2016-2020',
     'footer-middle': 'Crop Phenotyping Center',
     'footer-adress': 'Location:No.1,Shizishan Street • HongshanDistict • Wuhan • HubeiProvince • 430070 • P.R.China'
 }

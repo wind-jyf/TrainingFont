@@ -25,7 +25,7 @@ export const zh = {
     'password': '密码',
     'username_null_tip': '请输入账号',
     'password_null_tip': '请输入密码',
-    'footer_copyright': 'Copyright 2016-2017',
+    'footer_copyright': 'Copyright 2016-2020',
     'footer-middle':'作物表型中心',
     'footer-adress':'通讯地址：中国 · 湖北 · 武汉 南湖狮子山街一号　邮编：430070'
 }
