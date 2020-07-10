@@ -45,6 +45,8 @@ export const ProjectManage = (props: Iprops) => {
 
   const [page, setPage] = useState(pageDefault) as any;
 
+  const [visibleDelete, setVisibleDelete] = useState(false) as any;
+
   const uploadImg = useRef(null);
   const [file, setFile] = useState(null) as any;
 
@@ -63,9 +65,17 @@ export const ProjectManage = (props: Iprops) => {
     getData();
   }, []);
 
-  const handleToProjectDelete = (id: number) => {
-    deleteProjectById({ id }).then((res) => { getData(); res.code === 0 ? message.success(res.data, 3) : message.error(res.data, 3) });
+  const handleToProjectDelete = () => {
+    setVisibleDelete(true)
   };
+
+  const handleCancel = () => {
+    setVisibleDelete(false)
+  }
+  const handleOK = (id: number) => {
+    deleteProjectById({ id }).then((res) => {getData();res.code === 0? message.success(res.data,3):message.error(res.data,3)});
+    setVisibleDelete(false)
+  }
 
   const handleToProjectPost = () => {
     postProject({ projectname }).then((res) => { getData(); res.code === 0 ? message.success(res.data, 3) : message.error(res.data, 3) });
@@ -120,9 +130,17 @@ export const ProjectManage = (props: Iprops) => {
           >
             编辑
           </Button>
-          <Button onClick={() => handleToProjectDelete(record.id)} danger>
+          <Button onClick={handleToProjectDelete} danger>
             删除
           </Button>
+          <Modal
+            title="提示"
+            visible={visibleDelete}
+            onOk={() => handleOK(record.id)}
+            onCancel={handleCancel}
+          >
+            <p>确认要删除吗?</p>
+          </Modal>
         </>
       ),
     },

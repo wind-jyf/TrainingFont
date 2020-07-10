@@ -6,7 +6,7 @@
  * @LastEditTime: 2020-07-08 23:53:11
  */
 import React, { useEffect, useState, useCallback, useRef } from "react";
-import { Divider, Input, Table, Button, Upload, message } from "antd";
+import { Divider, Input, Table, Button, Upload, message, Modal } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 
 import {
@@ -39,6 +39,9 @@ export const InstrumentManage = (props: Iprops) => {
 
   const uploadImg = useRef(null);
   const [file, setFile] = useState(null) as any;
+  const [visible1, setVisible1] = useState(false) as any;
+  const [visible2, setVisible2] = useState(false) as any;
+
 
   const hanldePageInit = (res: any) => {
     setData(res.instrumentList);
@@ -65,10 +68,28 @@ export const InstrumentManage = (props: Iprops) => {
 
   const handleToTeamEdit = () => { };
 
-  const handleToInstrumentDelete = (id: number, lan: "en-US" | "zh-CN") => {
-    deleteInstrumentById({ id, lan }).then((res) => { getData(); res.code === 0 ? message.success(res.data, 3) : message.error(res.data, 3) });
+  const handleToInstrumentDelete = (lan:"en-US" | "zh-CN") => {
+    if(lan === 'zh-CN'){
+      setVisible1(true)
+    }else{
+      setVisible2(true)
+    }
   };
-
+  const handleCancel = (lan:"en-US" | "zh-CN") => {
+    if(lan === 'zh-CN'){
+      setVisible1(false)
+    }else{
+      setVisible2(false)
+    }
+  }
+  const handleOK = (id: number, lan: "en-US" | "zh-CN") => {
+    deleteInstrumentById({ id, lan }).then((res) => { getData(); res.code === 0 ? message.success(res.data, 3) : message.error(res.data, 3) });
+    if(lan === 'zh-CN'){
+      setVisible1(false)
+    }else{
+      setVisible2(false)
+    }
+  }
   //   const handleToTeamPost = () => {
   //     const formdata = new FormData();
   //     // formdata.append('file', uploadImg.current && uploadImg.current.files && uploadImg.current.files[0]);
@@ -126,9 +147,17 @@ export const InstrumentManage = (props: Iprops) => {
       key: "action",
       render: (record: any) => (
         <>
-          <Button style={{ fontSize: "1.2em" }} onClick={() => handleToInstrumentDelete(record.id, 'zh-CN')} danger>
+          <Button style={{ fontSize: "1.2em" }} onClick={() => handleToInstrumentDelete('zh-CN')} danger>
             删除
           </Button>
+          <Modal
+            title="提示"
+            visible={visible1}
+            onOk={() => handleOK(record.id, 'zh-CN')}
+            onCancel={() => handleCancel('zh-CN')}
+          >
+            <p>确认要删除吗?</p>
+          </Modal>
         </>
       ),
     },
@@ -158,9 +187,17 @@ export const InstrumentManage = (props: Iprops) => {
       key: "action",
       render: (record: any) => (
         <>
-          <Button style={{ fontSize: "1.2em" }} onClick={() => handleToInstrumentDelete(record.id, 'en-US')} danger>
+          <Button style={{ fontSize: "1.2em" }} onClick={() => handleToInstrumentDelete('en-US')} danger>
             删除
           </Button>
+          <Modal
+            title="提示"
+            visible={visible2}
+            onOk={() => handleOK(record.id, 'en-US')}
+            onCancel={() =>handleCancel('en-US')}
+          >
+            <p>确认要删除吗?</p>
+          </Modal>
         </>
       ),
     },

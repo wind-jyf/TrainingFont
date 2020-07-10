@@ -33,7 +33,6 @@ const pageDefault = {
 export const News = (props: Iprops) => {
   const [newsList, setNewsList] = useState<Array<news>>([]);
   const [page, setPage] = useState({}) as any;
-
   const [newsImg, setNewsImg] = useState(newsPic as any);
 
   const hanldePageInit = (res: any) => {
@@ -67,6 +66,7 @@ export const News = (props: Iprops) => {
 
   useEffect(() => {
     getNewsList(pageDefault).then((res) => {
+      console.log('getNewsList :>> ', res);
       hanldePageInit(res);
     });
   }, []);
@@ -101,7 +101,7 @@ export const News = (props: Iprops) => {
                 <>
                   <div className={$style["newsListTop"]}>
                     <div className={$style["news-img-wrapper"]}>
-                      <img src={newsImg} width="100%"  height="100%" alt="" />
+                      <img src={newsImg} width="100%" height="100%" alt="" />
                     </div>
                     <div className={$style["news-img-right-part"]}>
                       {renderNewsMainContent(
@@ -156,7 +156,7 @@ export const News = (props: Iprops) => {
                           {newsList[page.page === 1 ? index + 4 : index]
                             .subtitle
                             ? newsList[page.page === 1 ? index + 4 : index]
-                                .subtitle
+                              .subtitle
                             : ""}
                         </span>
                       </div>

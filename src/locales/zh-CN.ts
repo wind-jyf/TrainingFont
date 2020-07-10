@@ -20,7 +20,7 @@ export const zh = {
     'data': '数据',
     'server_error': '服务器错误',
     'user_name': '用户',
-    'logout': '退出',
+    'logout': 'LOGOUT',
     'username': "用户名",
     'password': '密码',
     'username_null_tip': '请输入账号',

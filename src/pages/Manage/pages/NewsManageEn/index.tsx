@@ -36,6 +36,8 @@ export const NewsManageEn = (props: any) => {
   const [newsContent, setNewsContent] = useState("");
   const [newsId, setNewsId] = useState(-1);
 
+  const [visibleDelete, setVisibleDelete] = useState(false) as any;
+
   useEffect(() => {
     getNewsList({ ...pageDefault, lan: "en-US" }).then((res) => {
       hanldePageInit(res);
@@ -101,6 +103,23 @@ export const NewsManageEn = (props: any) => {
       }
     };
   };
+
+  const handleCancelDelete = () => {
+    setVisibleDelete(false)
+  }
+  const handleOKDelete = (id: number) => {
+    deleteNews({ id, lan: "en-US" }).then((res) => {
+      res.code === 0 ? message.success(res.data, 3) : message.error(res.data, 3)
+      getNewsList({
+        page: page.page,
+        page_size: page.page_size,
+        lan: "en-US",
+      }).then((res) => {
+        hanldePageInit(res);
+      });
+    });
+    setVisibleDelete(false)
+  }
 
   const columns = [
     {

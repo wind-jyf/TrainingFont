@@ -13,7 +13,7 @@
  * @LastEditTime: 2020-07-05 23:28:23
  */
 import React, { useEffect, useState, useCallback, useRef } from "react";
-import { Divider, Input, Table, Button, Upload, DatePicker, Radio, message } from "antd";
+import { Divider, Input, Table, Button, Upload, DatePicker, Radio, message, Modal } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 
 import { getArticleList, deleteArticle } from "../../../../api/article";
@@ -43,6 +43,8 @@ export const ArticleManage = (props: Iprops) => {
   const uploadImg = useRef(null);
   const [file, setFile] = useState(null) as any;
 
+  const [visible, setVisible] = useState(false) as any;
+
   const hanldePageInit = (res: any) => {
     setData(res.articleList);
     setPage(res.pagination);
@@ -62,10 +64,17 @@ export const ArticleManage = (props: Iprops) => {
   //     props.history.push(`/manage/teamEdit?id=${id}`);
   //   };
 
-  const handleToArticleDelete = (id: number) => {
-    deleteArticle({ id }).then((res) => { getData(); res.code === 0 ? message.success(res.data, 3) : message.error(res.data, 3) });
+  const handleToArticleDelete = () => {
+    setVisible(true)
   };
 
+  const handleCancel = () => {
+    setVisible(false)
+  }
+  const handleOK = (id: number) => {
+    deleteArticle({ id }).then((res) => { getData(); res.code === 0 ? message.success(res.data, 3) : message.error(res.data, 3) });
+    setVisible(false)
+  }
   const handleToTeamPost = () => {
     const form = document.createElement("form");
     const formdata = new FormData(form);
@@ -146,9 +155,19 @@ export const ArticleManage = (props: Iprops) => {
       title: "操作",
       key: "action",
       render: (record: any) => (
-        <Button style={{ fontSize: "16px" }} onClick={() => handleToArticleDelete(record.id)} danger>
-          删除
-        </Button>
+        <>
+          <Button style={{ fontSize: "16px" }} onClick={handleToArticleDelete} danger>
+            删除
+          </Button>
+          <Modal
+            title="提示"
+            visible={visible}
+            onOk={() => handleOK(record.id)}
+            onCancel={handleCancel}
+          >
+            <p>确认要删除吗?</p>
+          </Modal>
+        </>
       ),
     },
   ];

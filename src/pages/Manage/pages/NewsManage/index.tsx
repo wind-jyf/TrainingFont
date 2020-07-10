@@ -12,7 +12,7 @@ import { routes } from "../../route";
 import { Link } from "react-router-dom";
 
 import { Context } from "../../../../context";
-import { Table, Tag, Space, Button, message } from "antd";
+import { Table, Tag, Space, Button, message, Modal } from "antd";
 import { homedir } from "os";
 
 import { getNewsList, deleteNews } from "../../../../api/news";
@@ -25,6 +25,8 @@ const pageDefault = {
 export const NewsManage = (props: any) => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState({}) as any;
+
+  const [visibleDelete, setVisibleDelete] = useState(false) as any;
 
   useEffect(() => {
     getNewsList(pageDefault).then((res) => {
@@ -67,6 +69,11 @@ export const NewsManage = (props: any) => {
       }
     }
   }
+  const handleOK = (id: number) => {
+    console.log('handleOKid :>> ', id);
+    setVisibleDelete(false)
+  }
+
 
   const columns = [
     {
