@@ -1,5 +1,7 @@
 .instrumentWrapper {
     min-height: 800px;
+    overflow: hidden;
+    padding-top: 60px;
     
     .instrumentList {
         width: 100%;
@@ -28,6 +30,7 @@
                 .instrument-img-wrapper{
                     width: 520px;
                     height: 350px;
+                    overflow: hidden;
                     
                     img {
                         width: 500px;

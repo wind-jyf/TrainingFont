@@ -20,7 +20,7 @@ export const en = {
     'data': 'Data',
     'server_error': 'Server Error',
     'user_name': 'User',
-    'logout': 'logout',
+    'logout': 'Logout',
     'username': "Username",
     'password': 'Password',
     'username_null_tip': 'Please input your user name',
