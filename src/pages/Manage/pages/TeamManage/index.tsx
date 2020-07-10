@@ -12,7 +12,7 @@ import React, {
   useRef,
   createElement,
 } from "react";
-import { Divider, Input, Table, Button, Upload ,message } from "antd";
+import { Divider, Input, Table, Button, Upload ,message,Modal } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 
 import { getGroupList, deleteTeamById } from "../../../../api/team";
@@ -41,6 +41,8 @@ export const TeamManage = (props: Iprops) => {
   const uploadImg = useRef(null);
   const [file, setFile] = useState(null) as any;
 
+  const [visible, setVisible] = useState(false) as any;
+
   const hanldePageInit = (res: any) => {
     setData(res.groupList);
     setPage(res.pagination);
@@ -60,10 +62,16 @@ export const TeamManage = (props: Iprops) => {
     props.history.push(`/manage/teamManageEdit?id=${id}`)
   };
 
-  const handleToTeamDelete = (id: number) => {
-    deleteTeamById({ id, lan: "zh-CN" }).then((res) => {getData();res.code === 0? message.success(res.data,3):message.error(res.data,3)});
+  const handleToTeamDelete = () => {
+    setVisible(true)
   };
-
+  const handleCancel = () => {
+    setVisible(false)
+  }
+  const handleOK = (id: number) => {
+    deleteTeamById({ id, lan: "zh-CN" }).then((res) => {getData();res.code === 0? message.success(res.data,3):message.error(res.data,3)});
+    setVisible(false)
+  }
   const handleToTeamPost = () => {
     const form = document.createElement("form");
     const formdata = new FormData(form);
@@ -141,9 +149,17 @@ export const TeamManage = (props: Iprops) => {
           >
             编辑
           </Button>
-          <Button onClick={() => handleToTeamDelete(record.id)} style={{fontSize:"1.2em", }} danger>
+          <Button onClick={handleToTeamDelete} style={{fontSize:"1.2em", }} danger>
             删除
           </Button>
+          <Modal
+            title="提示"
+            visible={visible}
+            onOk={() => handleOK(record.id)}
+            onCancel={handleCancel}
+          >
+            <p>确认要删除吗?</p>
+          </Modal>
         </>
       ),
     },

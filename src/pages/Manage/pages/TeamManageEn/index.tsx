@@ -14,7 +14,8 @@ import {
   Upload,
   Pagination,
   Collapse,
-  message
+  message,
+  Modal
 } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 
@@ -44,6 +45,8 @@ export const TeamManageEn = (props: Iprops) => {
   // const uploadImg = useRef(null);
   const [file, setFile] = useState(null) as any;
 
+  const [visible, setVisible] = useState(false) as any;
+
   const hanldePageInit = (res: any) => {
     setData(res.groupList);
     setPage(res.pagination);
@@ -67,10 +70,17 @@ export const TeamManageEn = (props: Iprops) => {
     props.history.push(`/manage/TeamEnManageEdit?id=${id}`);
   };
 
-  const handleToTeamDelete = (id: number) => {
-    deleteTeamById({ id, lan: "en-US" }).then((res) => {getData();res.code === 0? message.success(res.data,3):message.error(res.data,3)});
+  const handleToTeamDelete = () => {
+    setVisible(true)
   };
 
+  const handleCancel = () => {
+    setVisible(false)
+  }
+  const handleOK = (id: number) => {
+    deleteTeamById({ id, lan: "en-US" }).then((res) => { getData(); res.code === 0 ? message.success(res.data, 3) : message.error(res.data, 3) });
+    setVisible(false)
+  }
   const handlePageChange = (page: number, pageSize?: number) => {
     getGroupList({ page, page_size: pageSize, lan: "en-US" }).then((res) => {
       hanldePageInit(res);
@@ -84,32 +94,40 @@ export const TeamManageEn = (props: Iprops) => {
     content: string,
     foot: string
   ) => (
-    <div>
-      <Button style={{marginTop:'10px'}} danger onClick={() => handleToTeamDelete(id)}>删除</Button>
-      <Button style={{marginLeft:'10px'}} type="primary" onClick={() => handleToTeamEdit(id)}>修改</Button>
-      <div className={$style["personData"]}>Person Data</div>
-      <div className={$style["imgWrapper"]}>
+      <div>
+        <Button style={{ marginTop: '10px' }} danger onClick={ handleToTeamDelete}>删除</Button>
+        <Modal
+          title="提示"
+          visible={visible}
+          onOk={() => handleOK(id)}
+          onCancel={handleCancel}
+        >
+          <p>确认要删除吗?</p>
+        </Modal>
+        <Button style={{ marginLeft: '10px' }} type="primary" onClick={() => handleToTeamEdit(id)}>修改</Button>
+        <div className={$style["personData"]}>Person Data</div>
+        <div className={$style["imgWrapper"]}>
 
-      <div
-        className={$style["left"]}
-        dangerouslySetInnerHTML={{ __html: left }}
-      ></div>
-      <div className={$style["personImg"]}>
-        <img src={img} />
+          <div
+            className={$style["left"]}
+            dangerouslySetInnerHTML={{ __html: left }}
+          ></div>
+          <div className={$style["personImg"]}>
+            <img src={img} />
+          </div>
+        </div>
+        <DropdownAndPickUp>
+          <div
+            className={$style["content"]}
+            dangerouslySetInnerHTML={{ __html: content }}
+          ></div>
+          <div
+            className={$style["foot"]}
+            dangerouslySetInnerHTML={{ __html: foot }}
+          ></div>
+        </DropdownAndPickUp>
       </div>
-      </div>
-      <DropdownAndPickUp>
-        <div
-          className={$style["content"]}
-          dangerouslySetInnerHTML={{ __html: content }}
-        ></div>
-        <div
-          className={$style["foot"]}
-          dangerouslySetInnerHTML={{ __html: foot }}
-        ></div>
-      </DropdownAndPickUp>
-    </div>
-  );
+    );
 
   return (
     <div className={$style["team-manage"]}>

@@ -13,7 +13,7 @@
  * @LastEditTime: 2020-07-05 23:28:23
  */
 import React, { useEffect, useState, useCallback, useRef } from "react";
-import { Divider, Input, Table, Button, Upload, DatePicker, Radio,message } from "antd";
+import { Divider, Input, Table, Button, Upload, DatePicker, Radio, message, Modal } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 
 import { getArticleList, deleteArticle } from "../../../../api/article";
@@ -43,6 +43,8 @@ export const ArticleManage = (props: Iprops) => {
   const uploadImg = useRef(null);
   const [file, setFile] = useState(null) as any;
 
+  const [visible, setVisible] = useState(false) as any;
+
   const hanldePageInit = (res: any) => {
     setData(res.articleList);
     setPage(res.pagination);
@@ -62,10 +64,17 @@ export const ArticleManage = (props: Iprops) => {
   //     props.history.push(`/manage/teamEdit?id=${id}`);
   //   };
 
-  const handleToArticleDelete = (id: number) => {
-    deleteArticle({ id }).then((res) => {getData();res.code === 0? message.success(res.data,3):message.error(res.data,3)});
+  const handleToArticleDelete = () => {
+    setVisible(true)
   };
 
+  const handleCancel = () => {
+    setVisible(false)
+  }
+  const handleOK = (id: number) => {
+    deleteArticle({ id }).then((res) => { getData(); res.code === 0 ? message.success(res.data, 3) : message.error(res.data, 3) });
+    setVisible(false)
+  }
   const handleToTeamPost = () => {
     const form = document.createElement("form");
     const formdata = new FormData(form);
@@ -86,9 +95,9 @@ export const ArticleManage = (props: Iprops) => {
       url: "/api/crophe/article",
       data: formdata,
     }).then((res) => {
-      res.data.code === 0? message.success(res.data.data,3):message.error(res.data.data,3)
+      res.data.code === 0 ? message.success(res.data.data, 3) : message.error(res.data.data, 3)
       getData();
-      
+
     });
     setName("");
     // if (uploadImg.current) {
@@ -107,7 +116,7 @@ export const ArticleManage = (props: Iprops) => {
   };
 
   const handleToArticle = (path: string) => {
-      window.open(path)
+    window.open(path)
   }
 
   const columns = [
@@ -121,8 +130,8 @@ export const ArticleManage = (props: Iprops) => {
             overflow: "hidden",
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",
-            fontSize:"1.2em",
-            width:"700px"
+            fontSize: "1.2em",
+            width: "700px"
           }}
           onClick={() => handleToArticle(record.path)}
         >
@@ -134,21 +143,31 @@ export const ArticleManage = (props: Iprops) => {
       title: "语言",
       dataIndex: "language",
       key: "language",
-      render: (text) => <div style={{fontSize:"1.2em",width:"60px"}}>{text}</div>,
+      render: (text) => <div style={{ fontSize: "1.2em", width: "60px" }}>{text}</div>,
     },
     {
       title: "日期",
       dataIndex: "date",
       key: "date",
-      render: (text) => <div style={{fontSize:"1.2em",width:"170px"}}>{text}</div>,
+      render: (text) => <div style={{ fontSize: "1.2em", width: "170px" }}>{text}</div>,
     },
     {
       title: "操作",
       key: "action",
       render: (record: any) => (
-        <Button style={{fontSize:"1.2em"}} onClick={() => handleToArticleDelete(record.id)} danger>
-          删除
-        </Button>
+        <>
+          <Button style={{ fontSize: "1.2em" }} onClick={handleToArticleDelete} danger>
+            删除
+          </Button>
+          <Modal
+            title="提示"
+            visible={visible}
+            onOk={() => handleOK(record.id)}
+            onCancel={handleCancel}
+          >
+            <p>确认要删除吗?</p>
+          </Modal>
+        </>
       ),
     },
   ];
@@ -158,7 +177,7 @@ export const ArticleManage = (props: Iprops) => {
   return (
     <div className={$style["article-manage"]}>
       <div>
-        <div style={{ marginTop: "20px",fontSize:"1.2em" }}>添加</div>
+        <div style={{ marginTop: "20px", fontSize: "1.2em" }}>添加</div>
         <Divider
           style={{
             marginTop: "10px",
@@ -169,8 +188,8 @@ export const ArticleManage = (props: Iprops) => {
         <div
           style={{ display: "flex", alignItems: "center", marginTop: "20px" }}
         >
-          <div style={{ width: "100px",fontSize:"1.2em" }}>文章名:</div>
-          <Input  style={{ width: "400px"}} value={name} onChange={(e) => setName(e.target.value)} />
+          <div style={{ width: "100px", fontSize: "1.2em" }}>文章名:</div>
+          <Input style={{ width: "400px" }} value={name} onChange={(e) => setName(e.target.value)} />
         </div>
 
         <div
@@ -181,7 +200,7 @@ export const ArticleManage = (props: Iprops) => {
             marginBottom: "10px",
           }}
         >
-          <span style={{ width: "100px",fontSize:"1.2em" }}>发表日期：</span>
+          <span style={{ width: "100px", fontSize: "1.2em" }}>发表日期：</span>
           <DatePicker
             format={dateFormat}
             onChange={(value) => setDate(value ? value.format(dateFormat) : "")}
@@ -190,15 +209,15 @@ export const ArticleManage = (props: Iprops) => {
 
         <div>
           <Radio.Group onChange={(e) => setLan(e.target.value)} value={lan}>
-            <Radio value={"EN"} style={{fontSize:"1.2em" }}>English</Radio>
-            <Radio value={"CH"} style={{fontSize:"1.2em" }}>Chinese</Radio>
+            <Radio value={"EN"} style={{ fontSize: "1.2em" }}>English</Radio>
+            <Radio value={"CH"} style={{ fontSize: "1.2em" }}>Chinese</Radio>
           </Radio.Group>
         </div>
 
         <div
           style={{ display: "flex", alignItems: "center", marginTop: "20px" }}
         >
-          <div style={{ marginTop: "8px", width: "100px",fontSize:"1.2em"  }}>导入pdf:</div>
+          <div style={{ marginTop: "8px", width: "100px", fontSize: "1.2em" }}>导入pdf:</div>
           <input
             ref={uploadImg}
             type="file"
@@ -211,12 +230,12 @@ export const ArticleManage = (props: Iprops) => {
         <Button
           type="primary"
           onClick={handleToTeamPost}
-          style={{ marginTop: "20px", marginLeft: "100px",fontSize:"1.2em" }}
+          style={{ marginTop: "20px", marginLeft: "100px", fontSize: "1.2em" }}
         >
           提交
         </Button>
       </div>
-      <div style={{ paddingTop: "100px",fontSize:"1.2em"  }}>
+      <div style={{ paddingTop: "100px", fontSize: "1.2em" }}>
         <div>操作</div>
         <Divider
           style={{

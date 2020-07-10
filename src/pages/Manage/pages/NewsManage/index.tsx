@@ -12,7 +12,7 @@ import { routes } from "../../route";
 import { Link } from "react-router-dom";
 
 import { Context } from "../../../../context";
-import { Table, Tag, Space, Button, message } from "antd";
+import { Table, Tag, Space, Button, message, Modal } from "antd";
 import { homedir } from "os";
 
 import { getNewsList, deleteNews } from "../../../../api/news";
@@ -25,6 +25,8 @@ const pageDefault = {
 export const NewsManage = (props: any) => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState({}) as any;
+
+  const [visibleDelete, setVisibleDelete] = useState(false) as any;
 
   useEffect(() => {
     getNewsList(pageDefault).then((res) => {
@@ -53,16 +55,26 @@ export const NewsManage = (props: any) => {
       : () => props.history.push(`/manage/newsManageEdit`);
   };
 
-  const handleToNewsDelete = (id: number) => {
-    return () => {
-      deleteNews({id, lan: 'CH'}).then(res => {
-        getNewsList({ page: page.page, page_size: page.page_size }).then((res) => {
-          hanldePageInit(res);
-        });
-        res.code === 0? message.success(res.data,3):message.error(res.data,3)
-      })
-    }
+  const handleToNewsDelete = () => {
+    setVisibleDelete(true)
+    // return () => {
+    //   deleteNews({id, lan: 'CH'}).then(res => {
+    //     getNewsList({ page: page.page, page_size: page.page_size }).then((res) => {
+    //       hanldePageInit(res);
+    //     });
+    //     res.code === 0? message.success(res.data,3):message.error(res.data,3)
+    //   })
+    // }
   }
+
+  const handleCancel = () => {
+    setVisibleDelete(false)
+  }
+  const handleOK = (id: number) => {
+    console.log('handleOKid :>> ', id);
+    setVisibleDelete(false)
+  }
+
 
   const columns = [
     {
@@ -117,7 +129,15 @@ export const NewsManage = (props: any) => {
           >
             编辑
           </Button>
-          <Button onClick={handleToNewsDelete(record.id)} style={{ fontSize:"1.2em" }} danger>删除</Button>
+          <Button onClick={handleToNewsDelete} style={{ fontSize:"1.2em" }} danger>删除</Button>
+          <Modal
+            title="提示"
+            visible={visibleDelete}
+            onOk={() => handleOK(record.id)}
+            onCancel={handleCancel}
+          >
+            <p>确认要删除吗?</p>
+          </Modal>
         </>
       ),
     },
