@@ -171,7 +171,7 @@ export const NewsEdit = (props: any) => {
     <div style={{marginLeft:'2%'}}>
       <div id="news">
         <div
-          style={{ display: "flex", alignItems: "center", marginTop: "30px",width:"1000px",paddingLeft:"200px" }}
+          style={{ display: "flex", alignItems: "center", marginTop: "30px",width:"800px"}}
         >
           <span style={{ width: "70px" }}>新闻标题:</span>
           <Input
@@ -186,7 +186,6 @@ export const NewsEdit = (props: any) => {
             alignItems: "center",
             marginTop: "20px",
             marginBottom: "10px",
-            paddingLeft:"200px"
           }}
         >
           <span style={{ width: "70px" }}>上传日期：</span>

@@ -121,8 +121,8 @@ export const ArticleManage = (props: Iprops) => {
             overflow: "hidden",
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",
-            fontSize: "1.2em",
-            width: "700px"
+            fontSize: "16px",
+            width: "500px"
           }}
           onClick={() => handleToArticle(record.path)}
         >
@@ -134,19 +134,19 @@ export const ArticleManage = (props: Iprops) => {
       title: "语言",
       dataIndex: "language",
       key: "language",
-      render: (text) => <div style={{ fontSize: "1.2em", width: "60px" }}>{text}</div>,
+      render: (text) => <div style={{ fontSize: "16px", width: "60px" }}>{text}</div>,
     },
     {
       title: "日期",
       dataIndex: "date",
       key: "date",
-      render: (text) => <div style={{ fontSize: "1.2em", width: "170px" }}>{text}</div>,
+      render: (text) => <div style={{ fontSize: "16px", width: "170px" }}>{text}</div>,
     },
     {
       title: "操作",
       key: "action",
       render: (record: any) => (
-        <Button style={{ fontSize: "1.2em" }} onClick={() => handleToArticleDelete(record.id)} danger>
+        <Button style={{ fontSize: "16px" }} onClick={() => handleToArticleDelete(record.id)} danger>
           删除
         </Button>
       ),
@@ -183,7 +183,7 @@ export const ArticleManage = (props: Iprops) => {
             marginBottom: "10px",
           }}
         >
-          <span style={{ width: "100px", fontSize: "1.2em" }}>发表日期：</span>
+          <span style={{ width: "100px", fontSize: "16px" }}>发表日期：</span>
           <DatePicker
             format={dateFormat}
             onChange={(value) => setDate(value ? value.format(dateFormat) : "")}
@@ -200,7 +200,7 @@ export const ArticleManage = (props: Iprops) => {
         <div
           style={{ display: "flex", alignItems: "center", marginTop: "20px" }}
         >
-          <div style={{ marginTop: "8px", width: "100px", fontSize: "1.2em" }}>导入pdf:</div>
+          <div style={{ marginTop: "8px", width: "100px", fontSize: "16px" }}>导入pdf:</div>
           <input
             ref={uploadImg}
             type="file"
@@ -213,12 +213,12 @@ export const ArticleManage = (props: Iprops) => {
         <Button
           type="primary"
           onClick={handleToTeamPost}
-          style={{ marginTop: "20px", marginLeft: "100px", fontSize: "1.2em" }}
+          style={{ marginTop: "20px", fontSize: "16px" }}
         >
           提交
         </Button>
       </div>
-      <div style={{ paddingTop: "100px", fontSize: "1.2em" }}>
+      <div style={{ paddingTop: "100px", fontSize: "16px" }}>
         <div>操作</div>
         <Divider
           style={{

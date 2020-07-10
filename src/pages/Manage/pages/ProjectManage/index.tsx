@@ -99,7 +99,7 @@ export const ProjectManage = (props: Iprops) => {
             overflow: 'hidden',
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",
-            fontSize: "1.2em"
+            fontSize: "16px"
           }}
         // onClick={handleToNewsDetail(record.id)}
         >
@@ -153,9 +153,9 @@ export const ProjectManage = (props: Iprops) => {
       </Modal>
       <div>
         <div
-          style={{ paddingLeft: "10vw", paddingRight: "10vw" }}
+          
         >
-          <div style={{ marginTop: "20px", width: '50px', fontSize: "1.2em" }}>添加</div>
+          <div style={{ marginTop: "20px", width: '50px', fontSize: "16px" }}>添加</div>
           <Divider
             style={{
               marginTop: "10px",
@@ -164,7 +164,7 @@ export const ProjectManage = (props: Iprops) => {
             }}
           />
           <div style={{ display: "flex", alignItems: "center", marginTop: "20px" }}>
-            <div style={{ width: "100px", fontSize: "1.2em" }}>项目介绍:</div>
+            <div style={{ width: "100px", fontSize: "16px" }}>项目介绍:</div>
             <Input.TextArea
               rows={7}
               value={projectname}
@@ -176,13 +176,13 @@ export const ProjectManage = (props: Iprops) => {
         <Button
           type="primary"
           onClick={handleToProjectPost}
-          style={{ marginTop: "20px", marginLeft: "300px", fontSize: "1.2em" }}
+          style={{ marginTop: "20px", fontSize: "16px" }}
         >
           提交
         </Button>
       </div>
-      <div style={{ paddingTop: "100px", paddingLeft: "10vw", paddingRight: "10vw" }}>
-        <div style={{ fontSize: "1.2em" }}>修改/删除</div>
+      <div style={{ paddingTop: "100px"}}>
+        <div style={{ fontSize: "16px" }}>修改/删除</div>
         <Divider
           style={{
             marginTop: "10px",

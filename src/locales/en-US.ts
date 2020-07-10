@@ -13,7 +13,7 @@ export const en = {
     'project': 'project',
     'manage': 'Manage',
     'position': 'Position',
-    'Homepage_Title': 'crop phenotyping center  Phenotyping Center  ',
+    'Homepage_Title': 'Huazhong Agricultural University Crop Phenotyping Center  ',
     'Homepage_Keywords': 'huazhong agriculture university,crop,phenotyping,rice ,cor,cotton,rape,crop phenotyping center',
     'Homepage_Description': 'crop phenotyping center of huazhong agriculture university',
     'Sign_In': 'Sign In',

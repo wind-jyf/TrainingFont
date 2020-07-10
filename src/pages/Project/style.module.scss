@@ -1,6 +1,6 @@
 .projectWrapper {
     min-height: 1200px;
-    margin-left:5vw;
+    //margin-left:5vw;
     .projectList {
         // width: 1400px;
         padding: 100px 0 0 0;
@@ -8,18 +8,18 @@
         .projectItem {
             width: 400px;
             // margin: 50px 0;
-            font-size: 20px;
+            font-size: 18px;
             line-height: 25px;
 
             .projectTitle { 
-                margin-left: 100px;
+                margin-left: 10%;
                 margin-bottom: 95px;
                 color: rgba(0, 0, 0, 0.85);
                 width: 1000px;
                 height: 25px;
                 line-height: 50px;
                 font-family: MicrosoftYaHei;
-                font-size: 25px;
+                font-size: 24px;
             }
         
         }
@@ -30,6 +30,6 @@
         display: flex;
         justify-content: flex-end;
         margin-top: 10px;
-        padding: 0 10% 50px 0 ;
+        padding: 0 8% 20px 0 ;
     }
 }

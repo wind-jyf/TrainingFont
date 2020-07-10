@@ -64,7 +64,7 @@ export const TeamEdit = (props: any) => {
   }, []);
 
   return (
-    <>
+    <div style={{marginLeft:'2%'}}>
       <div>
         <div
           style={{ display: "flex", alignItems: "center", marginTop: "30px" }}
@@ -113,6 +113,6 @@ export const TeamEdit = (props: any) => {
       >
         预览
       </Button> */}
-    </>
+    </div>
   );
 };

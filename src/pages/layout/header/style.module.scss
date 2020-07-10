@@ -7,7 +7,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-around;
     margin: 2% 0;
     margin-right: 100px;
@@ -47,24 +47,28 @@
     // margin-left: 22%;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     height: 100%;
     flex-shrink: 1;
     flex-grow: 1;
     padding: 0 10%;
 
     a {
-      width: 15%;
+      width: 17%;
       text-align: center;
-      font-size: 16px;
+      font-size: 18px;
       display: inline-block;
-      height: 100%;
-      line-height: 64px;
+      height: 64px;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: center;
       padding: 0 24px;
       color: #fff;
-      font-weight: 400;
+      font-weight: 600;
       position: relative;
       transition: color 0.1s ease-in;
-
+      font-family: "Times New Roman";
       &::after {
         content: '';
         width: 0%;
@@ -81,7 +85,7 @@
       &.active {
         //color: rgba(242, 51, 64, 1);
         color: #4bb344;
-        font-family: PingFangSC-Medium;
+        font-family: PingFangSC-Medium,"Times New Roman";
         background: #fff;
       }
 

@@ -7,7 +7,7 @@
  */
 
 import React, { useContext, useState, useEffect } from "react";
-import { Menu } from "antd";
+import { Menu, Divider } from "antd";
 import { routes } from "../../route";
 import { Link } from "react-router-dom";
 
@@ -104,11 +104,10 @@ export const NewsManageEn = (props: any) => {
       title: "标题",
       dataIndex: "title",
       key: "title",
-      // width: 800,
       render: (text: string, record: any) => (
         <div
           style={{
-            // width: "700px",
+            fontSize:'18px',
             overflow: "hidden",
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",
@@ -123,6 +122,9 @@ export const NewsManageEn = (props: any) => {
       title: "内容",
       dataIndex: "content",
       key: "content",
+      render : (text)=>(<div style={{fontSize:'18px'}}>
+        {text}
+      </div>)
     },
     {
       title: "操作",
@@ -133,11 +135,11 @@ export const NewsManageEn = (props: any) => {
           <Button
             onClick={handleToNewsEdit(record.id, record.title, record.content)}
             type="primary"
-            style={{ marginRight: "20px", fontSize: "1.2em", height: "40px", marginTop: "30px" }}
+            style={{ marginRight: "20px", fontSize: "16px", height: "40px", marginTop: "30px" }}
           >
             编辑
           </Button>
-          <Button style={{ fontSize: "1.2em", height: "40px" }} onClick={handleToNewsDelete(record.id)} danger>
+          <Button style={{ fontSize: "16px", height: "40px" }} onClick={handleToNewsDelete(record.id)} danger>
             删除
           </Button>
         </>
@@ -187,7 +189,7 @@ export const NewsManageEn = (props: any) => {
   };
 
   return (
-    <div style={{ marginLeft: '2%' }}>
+    <div style={{ marginLeft: '2%',fontFamily:'Times New Roman'}}>
       <Modal
         title="英文首页"
         visible={isModalVisible}
@@ -199,19 +201,19 @@ export const NewsManageEn = (props: any) => {
           placeholder="标题"
           value={newsTitle}
           onChange={(e) => setNewsTitle(e.target.value)}
-          style={{ fontSize: "1.2em" }}
+          style={{ fontSize: "18px" }}
         />
         <TextArea
           rows={10}
           placeholder="内容"
           value={newsContent}
           onChange={(e) => setNewsContent(e.target.value)}
-          style={{ fontSize: "1.2em" }}
+          style={{ fontSize: "18px" }}
         />
       </Modal>
 
-      <Button style={{ fontSize: "1.2em", height: "40px" }} type="primary" onClick={handleToNewsEdit()}>
-        新增新闻
+      <Button style={{ fontSize: "16px", height: "40px" }} type="primary" onClick={handleToNewsEdit()}>
+        新增About CPC
       </Button>
       <Table
         columns={columns}

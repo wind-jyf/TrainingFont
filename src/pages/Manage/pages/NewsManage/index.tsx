@@ -69,15 +69,15 @@ export const NewsManage = (props: any) => {
       title: "新闻",
       dataIndex: "name",
       key: "name",
-      width: 800,
+      //width: 800,
       render: (text: string, record: any) => (
         <div
           style={{
-            width: "1000px",
+            width: "100%",
             overflow: "hidden",
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",
-            fontSize: "1.5em",
+            fontSize: "16px",
           }}
           onClick={handleToNewsDetail(record.id)}
         >
@@ -89,14 +89,14 @@ export const NewsManage = (props: any) => {
       title: "时间",
       dataIndex: "date",
       key: "date",
-      width: 800,
+      //width: 800,
       render: (date: string, record: any) => (
         <div
           style={{
-            width: "100px",
+            width: "100%",
             // overflow: "hidden",
             whiteSpace: "nowrap",
-            fontSize: "1.5em",
+            fontSize: "16px",
             // textOverflow: "ellipsis",
           }}
         // onClick={handleToNewsDetail(record.id)}
@@ -113,11 +113,11 @@ export const NewsManage = (props: any) => {
           <Button
             onClick={handleToNewsEdit(record.id)}
             type="primary"
-            style={{ marginRight: "20px", fontSize: "1.2em" }}
+            style={{ marginRight: "20px", fontSize: "16px" }}
           >
             编辑
           </Button>
-          <Button onClick={handleToNewsDelete(record.id)} style={{ fontSize: "1.2em" }} danger>删除</Button>
+          <Button onClick={handleToNewsDelete(record.id)} style={{ fontSize: "16px" }} danger>删除</Button>
         </>
       ),
     },

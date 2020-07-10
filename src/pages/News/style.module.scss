@@ -1,15 +1,14 @@
 .newsWrapper {
-    min-height: 1200px;
-    line-height: 1.7;
+    min-height: 800px;
+    line-height: 1.8;
     .newsList {
         width: 1110px;
         margin: 40px auto 40px auto;
         .newsListTop {
             // padding-bottom: 30px;
-            // overflow: hidden;
+            overflow: hidden;
             display: flex;
             justify-content: space-between;
-
             .news-img-wrapper {
                 width: 550px;
                 height: 330px;
@@ -39,7 +38,7 @@
         .newsItem {
             display: flex;
             // padding: 8px;
-            padding: 25px 0;
+            padding: 20px 0;
             // border-bottom: 1px solid #ddd;
             cursor: pointer;
             letter-spacing: 2px;
@@ -144,4 +143,8 @@
             // -webkit-box-orient: vertical;
         }
     }
+}
+
+h3{
+    margin-bottom: 0;
 }

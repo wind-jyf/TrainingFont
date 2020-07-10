@@ -78,9 +78,9 @@ export const TeamEditEn = (props: any) => {
   }, []);
 
   return (
-    <>
+    <div style={{marginLeft:'2%'}}>
       <div className={$style['wrapper']}>
-        <div style={{width:'800px'}}>
+        <div style={{width:'500px'}}>
           <div style={{marginTop:'20px'}}>添加Name, Gender, Telephone, Email</div>
           <Input.TextArea
             rows={10}
@@ -129,6 +129,6 @@ export const TeamEditEn = (props: any) => {
       <Button type="primary" onClick={handleTeamEnPost} style={{marginTop:'20px'}}>
         提交
       </Button>
-    </>
+    </div>
   );
 };

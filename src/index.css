@@ -140,7 +140,7 @@ a {
 
 body {
 	font-family: PingFangSC-Regular, PingFangSC, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-		'Droid Sans', 'Helvetica Neue', sans-serif;
+		'Droid Sans', 'Helvetica Neue', sans-serif,"Times New Roman", Times, serif;;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	font-size: 14px;

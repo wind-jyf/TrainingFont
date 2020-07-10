@@ -117,16 +117,16 @@ export const InstrumentEdit = (props: any) => {
     <div style={{marginLeft:'2%'}}>
       <div>
         <div
-          style={{ display: "flex", alignItems: "center", marginTop: "30px",width:"1000px",paddingLeft:"200px" }}
+          style={{ display: "flex", alignItems: "center", marginTop: "30px",width:"800px"}}
         >
-          <span style={{ width: "70px" }}>仪器名称:</span>
+          <span style={{width:'80px'}}>仪器名称:</span>
           <Input
             placeholder="仪器名称"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
         </div>
-        <div style={{paddingLeft:"200px"}}>介绍如下:</div>
+        <div>介绍如下:</div>
         <ReactQuill
           className={$style["newsEditWrapper"]}
           theme="snow"

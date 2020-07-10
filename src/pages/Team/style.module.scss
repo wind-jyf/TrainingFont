@@ -1,26 +1,28 @@
 .groupWrapper {
-    min-height: 1200px;
+    min-height: 600px;
     .groupList {
-        width: 1310px;
-        // margin: 40px auto 40px auto;
-
-        // display: flex;
-        // flex-wrap: wrap;
-        margin: 98px auto;
+        margin-top: 5%;;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items:center;
+        //margin: 98px auto;
         // overflow: hidden;
         .groupItem {
             // display: flex;
-            float: left;
+            //float: left;
             padding: 8px;
             // border-bottom: 1px solid #ddd;
             cursor: pointer;
             .group {
-                position: relative;
+                //position: relative;
                 flex: 1 0 auto;
                 // padding-left: 5px;
                 padding:0 50px 50px 50px;
-                margin-bottom: 150px;
-                margin-right: 20px;
+                margin-bottom: 50px;
+                margin-left: 10px;
+                margin-right: 10px;
 
                 width: 386px;
                 // height: 370px;
@@ -75,9 +77,10 @@
         }
     }
     .pagination {
-        clear: both;
+        //clear: both;
         display: flex;
         justify-content: flex-end;
         margin-top: 10px;
+        padding: 0 8% 20px 0 ;
     }
 }

@@ -118,7 +118,7 @@ export const TeamManage = (props: Iprops) => {
             overflow: "hidden",
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",
-            fontSize:"1.2em",
+            fontSize:"16px",
             height:"50px"
           }}
           // onClick={handleToNewsDetail(record.id)}
@@ -163,13 +163,13 @@ export const TeamManage = (props: Iprops) => {
         <div
           style={{ display: "flex", alignItems: "center", marginTop: "20px" }}
         >
-          <div style={{ width: "60px",fontSize:"1.2em" }}>姓名:</div>
-          <Input value={name} onChange={(e) => setName(e.target.value)} style={{width:"1000px"}}/>
+          <div style={{ width: "60px",fontSize:"16px" }}>姓名:</div>
+          <Input value={name} onChange={(e) => setName(e.target.value)} style={{width:"600px"}}/>
         </div>
         <div
           style={{ display: "flex", alignItems: "center", marginTop: "20px" }}
         >
-          <div style={{ marginTop: "8px", width: "100px",fontSize:"1.2em" }}>导入图片:</div>
+          <div style={{ marginTop: "8px", width: "100px",fontSize:"16px" }}>导入图片:</div>
           <input
             ref={uploadImg}
             type="file"
@@ -188,18 +188,18 @@ export const TeamManage = (props: Iprops) => {
             rows={5}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            style={{width:"1000px",height:"400px"}}
+            style={{width:"600px",height:"400px"}}
           />
         </div>
         <Button
           type="primary"
           onClick={handleToTeamPost}
-          style={{ marginTop: "20px", marginLeft: "60px",fontSize:"1.2em" }}
+          style={{ marginTop: "20px", marginLeft: "60px",fontSize:"16px" }}
         >
           提交
         </Button>
       </div>
-      <div style={{ paddingTop: "100px",fontSize:"1.2em" }}>
+      <div style={{ paddingTop: "100px",fontSize:"16px" }}>
         <div>修改/删除</div>
         <Divider
           style={{
