@@ -48,10 +48,11 @@ export const News = (props: Iprops) => {
       newsList.map((news: any) => {
         return new Promise((resolve, reject) => {
           getNewsById({ id: news.id }).then((res) => {
+            console.log(res);
             let str = res.content.slice(0);
             str.match(/\^+(?=<)/g);
             let result = str.match(/[^>]+(?=<)/g);
-            result = result ? result.join(",") : "";
+            result = result ? result.join("") : "";
 
             const picSrc = res.content.match(/src=[\'\"]?([^\'\"]*)[\'\"]?/i);
             picSrc && picSrc[1] && newsImg === newsPic && setNewsImg(picSrc[1])
