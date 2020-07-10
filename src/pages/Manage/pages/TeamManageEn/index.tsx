@@ -14,8 +14,7 @@ import {
   Upload,
   Pagination,
   Collapse,
-  message,
-  Modal
+  message
 } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 
@@ -45,7 +44,6 @@ export const TeamManageEn = (props: Iprops) => {
   // const uploadImg = useRef(null);
   const [file, setFile] = useState(null) as any;
 
-  const [visible, setVisible] = useState(false) as any;
 
   const hanldePageInit = (res: any) => {
     setData(res.groupList);
@@ -70,17 +68,17 @@ export const TeamManageEn = (props: Iprops) => {
     props.history.push(`/manage/TeamEnManageEdit?id=${id}`);
   };
 
-  const handleToTeamDelete = () => {
-    setVisible(true)
+  const handleToTeamDelete = (id: number) => {
+    return () => {
+      console.log('id :>> ', id);
+      const con: boolean = window.confirm('请确认删除吗？');
+      if (con) {
+        deleteTeamById({ id, lan: "en-US" }).then((res) => { getData(); res.code === 0 ? message.success(res.data, 3) : message.error(res.data, 3) });
+      }
+    }
   };
 
-  const handleCancel = () => {
-    setVisible(false)
-  }
-  const handleOK = (id: number) => {
-    deleteTeamById({ id, lan: "en-US" }).then((res) => { getData(); res.code === 0 ? message.success(res.data, 3) : message.error(res.data, 3) });
-    setVisible(false)
-  }
+
   const handlePageChange = (page: number, pageSize?: number) => {
     getGroupList({ page, page_size: pageSize, lan: "en-US" }).then((res) => {
       hanldePageInit(res);
@@ -95,15 +93,7 @@ export const TeamManageEn = (props: Iprops) => {
     foot: string
   ) => (
       <div>
-        <Button style={{ marginTop: '10px' }} danger onClick={ handleToTeamDelete}>删除</Button>
-        <Modal
-          title="提示"
-          visible={visible}
-          onOk={() => handleOK(id)}
-          onCancel={handleCancel}
-        >
-          <p>确认要删除吗?</p>
-        </Modal>
+        <Button style={{ marginTop: '10px' }} danger onClick={handleToTeamDelete(id)}>删除</Button>
         <Button style={{ marginLeft: '10px' }} type="primary" onClick={() => handleToTeamEdit(id)}>修改</Button>
         <div className={$style["personData"]}>Person Data</div>
         <div className={$style["imgWrapper"]}>

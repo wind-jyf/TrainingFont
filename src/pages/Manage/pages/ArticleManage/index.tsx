@@ -43,7 +43,6 @@ export const ArticleManage = (props: Iprops) => {
   const uploadImg = useRef(null);
   const [file, setFile] = useState(null) as any;
 
-  const [visible, setVisible] = useState(false) as any;
 
   const hanldePageInit = (res: any) => {
     setData(res.articleList);
@@ -64,17 +63,17 @@ export const ArticleManage = (props: Iprops) => {
   //     props.history.push(`/manage/teamEdit?id=${id}`);
   //   };
 
-  const handleToArticleDelete = () => {
-    setVisible(true)
-  };
+  const handleToArticleDelete = (id: number) => {
+    return () => {
+      console.log('id :>> ', id);
+      const con: boolean = window.confirm('请确认删除吗？');
+      if (con) {
+        deleteArticle({ id }).then((res) => { getData(); res.code === 0 ? message.success(res.data, 3) : message.error(res.data, 3) });
+      }
+    }
+  }
 
-  const handleCancel = () => {
-    setVisible(false)
-  }
-  const handleOK = (id: number) => {
-    deleteArticle({ id }).then((res) => { getData(); res.code === 0 ? message.success(res.data, 3) : message.error(res.data, 3) });
-    setVisible(false)
-  }
+
   const handleToTeamPost = () => {
     const form = document.createElement("form");
     const formdata = new FormData(form);
@@ -156,17 +155,9 @@ export const ArticleManage = (props: Iprops) => {
       key: "action",
       render: (record: any) => (
         <>
-          <Button style={{ fontSize: "16px" }} onClick={handleToArticleDelete} danger>
+          <Button style={{ fontSize: "16px" }} onClick={handleToArticleDelete(record.id)} danger>
             删除
           </Button>
-          <Modal
-            title="提示"
-            visible={visible}
-            onOk={() => handleOK(record.id)}
-            onCancel={handleCancel}
-          >
-            <p>确认要删除吗?</p>
-          </Modal>
         </>
       ),
     },

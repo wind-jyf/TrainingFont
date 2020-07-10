@@ -12,7 +12,7 @@ import React, {
   useRef,
   createElement,
 } from "react";
-import { Divider, Input, Table, Button, Upload ,message,Modal } from "antd";
+import { Divider, Input, Table, Button, Upload, message, Modal } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 
 import { getGroupList, deleteTeamById } from "../../../../api/team";
@@ -41,8 +41,6 @@ export const TeamManage = (props: Iprops) => {
   const uploadImg = useRef(null);
   const [file, setFile] = useState(null) as any;
 
-  const [visible, setVisible] = useState(false) as any;
-
   const hanldePageInit = (res: any) => {
     setData(res.groupList);
     setPage(res.pagination);
@@ -58,20 +56,20 @@ export const TeamManage = (props: Iprops) => {
     getData();
   }, []);
 
-  const handleToTeamEdit = (id:number) => {
+  const handleToTeamEdit = (id: number) => {
     props.history.push(`/manage/teamManageEdit?id=${id}`)
   };
 
-  const handleToTeamDelete = () => {
-    setVisible(true)
+  const handleToTeamDelete = (id: number) => {
+    return () => {
+      console.log('id :>> ', id);
+      const con: boolean = window.confirm('请确认删除吗？');
+      if (con) {
+        deleteTeamById({ id, lan: "zh-CN" }).then((res) => { getData(); res.code === 0 ? message.success(res.data, 3) : message.error(res.data, 3) });
+      }
+    }
   };
-  const handleCancel = () => {
-    setVisible(false)
-  }
-  const handleOK = (id: number) => {
-    deleteTeamById({ id, lan: "zh-CN" }).then((res) => {getData();res.code === 0? message.success(res.data,3):message.error(res.data,3)});
-    setVisible(false)
-  }
+
   const handleToTeamPost = () => {
     const form = document.createElement("form");
     const formdata = new FormData(form);
@@ -81,8 +79,8 @@ export const TeamManage = (props: Iprops) => {
     formdata.append("describe", description);
     formdata.append("name", name);
     //@ts-ignore
-    
-    
+
+
     for (const value of formdata.values()) {
       console.log(value);
     }
@@ -95,7 +93,7 @@ export const TeamManage = (props: Iprops) => {
       data: formdata,
     }).then((res) => {
       getData();
-      res.data.code === 0? message.success(res.data.data,3):message.error(res.data.data,3)
+      res.data.code === 0 ? message.success(res.data.data, 3) : message.error('请检查是否有空条件', 3)
     });
     setFile(null);
     setName("");
@@ -126,10 +124,10 @@ export const TeamManage = (props: Iprops) => {
             overflow: "hidden",
             whiteSpace: "nowrap",
             textOverflow: "ellipsis",
-            fontSize:"16px",
-            height:"50px"
+            fontSize: "16px",
+            height: "50px"
           }}
-          // onClick={handleToNewsDetail(record.id)}
+        // onClick={handleToNewsDetail(record.id)}
         >
           {text}
         </div>
@@ -138,28 +136,28 @@ export const TeamManage = (props: Iprops) => {
     {
       title: "操作",
       key: "action",
-      
+
       render: (record: any) => (
         <>
           <Button
             // onClick={handleToTeamEdit(record.id)}
             onClick={() => handleToTeamEdit(record.id)}
             type="primary"
-            style={{ marginRight: "20px",fontSize:"1.2em",marginTop:"20px" }}
+            style={{ marginRight: "20px", fontSize: "1.2em", marginTop: "20px" }}
           >
             编辑
           </Button>
-          <Button onClick={handleToTeamDelete} style={{fontSize:"1.2em", }} danger>
+          <Button onClick={handleToTeamDelete(record.id)} style={{ fontSize: "1.2em", }} danger>
             删除
           </Button>
-          <Modal
+          {/* <Modal
             title="提示"
             visible={visible}
             onOk={() => handleOK(record.id)}
             onCancel={handleCancel}
           >
             <p>确认要删除吗?</p>
-          </Modal>
+          </Modal> */}
         </>
       ),
     },
@@ -168,7 +166,7 @@ export const TeamManage = (props: Iprops) => {
   return (
     <div className={$style["team-manage"]}>
       <div>
-        <div style={{ marginTop: "20px",fontSize:"1.2em" }}>添加团队成员</div>
+        <div style={{ marginTop: "20px", fontSize: "1.2em" }}>添加团队成员</div>
         <Divider
           style={{
             marginTop: "10px",
@@ -179,13 +177,13 @@ export const TeamManage = (props: Iprops) => {
         <div
           style={{ display: "flex", alignItems: "center", marginTop: "20px" }}
         >
-          <div style={{ width: "60px",fontSize:"16px" }}>姓名:</div>
-          <Input value={name} onChange={(e) => setName(e.target.value)} style={{width:"600px"}}/>
+          <div style={{ width: "60px", fontSize: "16px" }}>姓名:</div>
+          <Input value={name} onChange={(e) => setName(e.target.value)} style={{ width: "600px" }} />
         </div>
         <div
           style={{ display: "flex", alignItems: "center", marginTop: "20px" }}
         >
-          <div style={{ marginTop: "8px", width: "100px",fontSize:"16px" }}>导入图片:</div>
+          <div style={{ marginTop: "8px", width: "100px", fontSize: "16px" }}>导入图片:</div>
           <input
             ref={uploadImg}
             type="file"
@@ -199,23 +197,23 @@ export const TeamManage = (props: Iprops) => {
         <div
           style={{ display: "flex", alignItems: "center", marginTop: "20px" }}
         >
-          <div style={{ marginTop: "20px", width: "60px",fontSize:"1.2em" }}>描述:</div>
+          <div style={{ marginTop: "20px", width: "60px", fontSize: "1.2em" }}>描述:</div>
           <Input.TextArea
             rows={5}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            style={{width:"600px",height:"400px"}}
+            style={{ width: "600px", height: "400px" }}
           />
         </div>
         <Button
           type="primary"
           onClick={handleToTeamPost}
-          style={{ marginTop: "20px", marginLeft: "60px",fontSize:"16px" }}
+          style={{ marginTop: "20px", marginLeft: "60px", fontSize: "16px" }}
         >
           提交
         </Button>
       </div>
-      <div style={{ paddingTop: "100px",fontSize:"16px" }}>
+      <div style={{ paddingTop: "100px", fontSize: "16px" }}>
         <div>修改/删除</div>
         <Divider
           style={{
