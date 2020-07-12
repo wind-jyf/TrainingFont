@@ -309,7 +309,7 @@ export const Rice = (year: string) => {
         {isDataOrImages && <Button type="primary" ><Link to={ImagePathCopy} >Search images</Link></Button>}
         {!isDataOrImages && <Button type="primary" ><Link to={DataPathCopy} >Search data</Link></Button>}
         {/* 下面这个判断是为了在左边data菜单年份为空时也能显示出新增数据按钮 */}
-        {!dataCategory[0] && <Button type="primary" ><Link to={DataPathCopy} >Search data</Link></Button>}
+        {/* {!dataCategory[0] && <Button type="primary" ><Link to={DataPathCopy} >Search data</Link></Button>} */}
       </div>
     </div >
   )

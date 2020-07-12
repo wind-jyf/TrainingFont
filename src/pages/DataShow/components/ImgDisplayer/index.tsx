@@ -28,6 +28,7 @@ export const ImgDisplayer = (props:IProps) => {
                                         setCurrentPath(item.path)
                                     }} 
                                 />
+                                <div className={$style['imgName']}>{item.name}</div>
                             </div>
                         )
                     })                    

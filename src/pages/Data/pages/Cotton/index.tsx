@@ -246,10 +246,20 @@ export const Cotton = (year: string) => {
     console.log('handleSelect :>> ', e.target.value, title);
     if (isDataOrImages) {
       ImagePath.query[title] = e.target.value
-      console.log('ImagePath :>> ', ImagePath.query);
+      ImagePathQueryArray.forEach((item: any, index: any) => {
+        if (title in item) {
+          ImagePathQueryArray[index][title] = e.target.value
+        }
+      })
+      console.log('ImagePathQueryArray :>> ', ImagePathQueryArray);
     } else {
       DataPath.query[title] = e.target.value
-      console.log('DataPath :>> ', DataPath.query);
+      DataPathQueryArray.forEach((item: any, index: any) => {
+        if (title in item) {
+          DataPathQueryArray[index][title] = e.target.value
+        }
+      })
+      console.log('DataPathQueryArray :>> ', DataPathQueryArray);
     }
   }
 
@@ -298,7 +308,7 @@ export const Cotton = (year: string) => {
         {isDataOrImages && <Button type="primary" className={$style['botton']} ><Link to={ImagePathCopy}>Search images</Link></Button>}
         {!isDataOrImages && <Button type="primary" className={$style['botton']}><Link to={DataPathCopy}>Search data</Link></Button>}
         {/* 下面这个判断是为了在左边data菜单年份为空时也能显示出新增数据按钮 */}
-        {!dataCategory[0] && <Button type="primary" className={$style['botton']}><Link to={DataPathCopy}>Search data</Link></Button>}
+        {/* {!dataCategory[0] && <Button type="primary" className={$style['botton']}><Link to={DataPathCopy}>Search data</Link></Button>} */}
       </div>
     </div >
   )
