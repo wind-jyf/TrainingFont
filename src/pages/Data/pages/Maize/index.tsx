@@ -36,8 +36,8 @@ let ImagePathCopy: any = {
   query: [],
 }
 
-DataPath.query.type = 'Maize'
-ImagePath.query.type = 'Maize'
+DataPath.query.type = 'maize'
+ImagePath.query.type = 'maize'
 
 let ImagePathQueryArray: any = []
 let DataPathQueryArray: any = []
@@ -55,7 +55,7 @@ const Menu_left = (props: IProps) => {
     console.log('e.key.split[1] :>> ', e.key.split(':')[1], e.key.split(':')[0] == 'images', e.key.split(':')[0] == 'data');
     if (e.key.split(':')[0] == 'images') {
       ImagePathQueryArray = []
-      ImagePathQueryArray.push({ type: 'Maize' })
+      ImagePathQueryArray.push({ type: 'maize' })
 
       ImagePath.query['Year_item'] = Year_item
       ImagePathQueryArray.push({ 'Year_item': Year_item })
@@ -70,7 +70,7 @@ const Menu_left = (props: IProps) => {
         }
       })
 
-      getImgCategory({ type: 'Maize', Year_item: Year_item }).then(res => {
+      getImgCategory({ type: 'maize', Year_item: Year_item }).then(res => {
         console.log('getImgCategory :>> ', res);
         handleDirectoryList(res)
         res.forEach((item: any) => {
@@ -87,7 +87,7 @@ const Menu_left = (props: IProps) => {
     } else {
 
       DataPathQueryArray = []
-      DataPathQueryArray.push({ type: 'Maize' })
+      DataPathQueryArray.push({ type: 'maize' })
 
       DataPath.query['Year_item'] = Year_item
       DataPathQueryArray.push({ 'Year_item': Year_item })
@@ -101,7 +101,7 @@ const Menu_left = (props: IProps) => {
           console.log("categorydata:", category);
         }
       })
-      getDataCategory({ type: 'Maize', Year_item: Year_item }).then(res => {
+      getDataCategory({ type: 'maize', Year_item: Year_item }).then(res => {
         console.log('getDataCategory :>> ', res);
         handleDirectoryList(res)
         res.forEach((item: any) => {
@@ -184,17 +184,17 @@ export const Maize = (year: string) => {
 
   const [form] = Form.useForm();
   const getCategoryData = () => {
-    getCategory({ condition: { type: 'Maize' } }).then(res => {
+    getCategory({ condition: { type: 'maize' } }).then(res => {
       console.log("res111222333:", res);
       setDataCategory(res.data);
       setImageCategory(res.image);
 
       category = res.image[0]   //初始目录
-      category&&getImgCategory({ type: 'Maize', Year_item: category.Year_item }).then(res => {
+      category&&getImgCategory({ type: 'maize', Year_item: category.Year_item }).then(res => {
         console.log('getImgCategory :>> ', res);
         setDirectoryList(res)
         ImagePathQueryArray = []
-        ImagePathQueryArray.push({ 'type': 'Maize' })
+        ImagePathQueryArray.push({ 'type': 'maize' })
         ImagePathQueryArray.push({ 'Year_item': category.Year_item })
         res.forEach((item: any) => {
           console.log('res 6666:>> ', res);
