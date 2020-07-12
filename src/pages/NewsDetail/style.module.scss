@@ -2,24 +2,45 @@
     height: 100%;
     overflow: visible;
     padding-bottom: 40px;
+    font-family: SimSun,"Time News Roman";
     .newsName {
         text-align: center;
         margin-top: 20px;
-        font-size: 30px;
-        font-weight: 600;
+        font-size: 32px;
+        font-weight: 500;
+        color: #4218FF;
+    }
+    .date{
+        text-align: center;
+        font-size: 16px;
+        width: 100%;
+        margin-bottom: 10px;
+        margin-top: 10px;
     }
     .detailWrapper {
-        width: 800px; 
+        width: 1200px; 
         margin: 0 auto;
         text-indent: 2em;
+        font-size: 20px;
+        line-height: 30px;
         //font-size:30px;
         //.DraftEditor-root .DraftEditor-editorContainer .public-DraftEditor-content .public-DraftStyleDefault-block{
         
     }
 }
 :global{
+    h1 .public-DraftStyleDefault-block{
+        font-size: 28px;
+        text-align: center;
+        text-indent: 0;
+    }
+    h2 .public-DraftStyleDefault-block{
+        text-indent: 0;
+        font-size: 24px;
+        text-align: center;
+    }
     .rdw-editor-main .DraftEditor-root .DraftEditor-editorContainer .public-DraftEditor-content .public-DraftStyleDefault-block{
-        margin: -10px 0px;
+        margin: 0px 0px;
     }
     .rdw-editor-main{
         overflow: visible;

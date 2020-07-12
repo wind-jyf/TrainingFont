@@ -41,6 +41,7 @@ export const NewsDetail = () => {
         <Spin spinning={loading}>
             <div className={$style['detailContainer']}>
                 <div className={$style['newsName']}>{newsInfo.name}</div>
+                <div className={$style['date']}>发布日期：{newsInfo.date}</div>
                 {loading ? null :
                     <Editor
                         toolbarHidden
